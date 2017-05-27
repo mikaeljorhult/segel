@@ -1,0 +1,17 @@
+{
+  "extends": "standard",
+  "env": {
+    "browser": true
+  },
+  "plugins": [
+    "standard",
+    "promise",
+    "html"
+  ],
+  "rules": {
+    "semi": [
+      "error",
+      "always"
+    ]
+  }
+}
