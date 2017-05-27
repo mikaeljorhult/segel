@@ -1,10 +1,10 @@
 'use strict';
 
 // Dependencies.
-let Vue = require('vue');
+import Vue from 'vue';
 
 // Components.
-let Main = require('./components/main.vue');
+import Main from './components/main.vue';
 
 // Create Vue instance.
 const Segel = new Vue({ // eslint-disable-line
