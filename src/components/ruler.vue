@@ -2,7 +2,9 @@
     <aside>
         <ul>
             <li v-for="n in 24">
-                {{ n }}
+                <span v-bind:class="[n === new Date().getHours() + 1 ? 'current' : '']">
+                    {{ n - 1 }}
+                </span>
             </li>
         </ul>
     </aside>
@@ -43,6 +45,13 @@
         height: .66rem;
         left: 50%;
         margin-left: -1px;
+    }
+
+    span {
+        display: block;
+        width: 100%;
+        margin-left: -50%;
+        text-align: center;
     }
 </style>
 
