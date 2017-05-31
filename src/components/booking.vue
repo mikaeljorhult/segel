@@ -1,5 +1,8 @@
 <template>
-    <li v-bind:style="{ left: left + '%', width: width + '%' }"></li>
+    <li v-bind:style="{ left: left + '%', width: width + '%' }"
+        v-on:dragstart="dragstart"
+        draggable="true"
+    ></li>
 </template>
 
 <style scoped>
@@ -33,6 +36,13 @@
       },
       width: function () {
         return this.duration / (this.$root.$data.end - this.$root.$data.start) * 100;
+      }
+    },
+
+    methods: {
+      dragstart: function (e) {
+        e.dataTransfer.setData('text', this.key);
+        e.dataTransfer.effectAllowed = 'copyMove';
       }
     }
   };
