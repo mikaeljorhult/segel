@@ -32,5 +32,8 @@ export default {
         element.setAttribute('data-y', 0);
       }
     });
+  },
+  unbind: function (element) {
+    interact(element).unset();
   }
 };
