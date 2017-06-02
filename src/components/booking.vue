@@ -1,7 +1,7 @@
 <template>
-    <li v-bind:style="{ left: left + '%', width: width + '%' }"
-        v-on:dragstart="dragstart"
-        draggable="true"
+    <li class="booking"
+        v-draggable
+        v-bind:style="{ left: left + '%', width: width + '%' }"
     ></li>
 </template>
 
@@ -12,16 +12,23 @@
         position: absolute;
         top: 0;
         bottom: 0;
+        z-index: 100;
         background-color: rgba(255, 0, 0, .25);
     }
 </style>
 
 <script>
+  import Draggable from '../directives/draggable.js';
+
   export default {
     props: [
       'start',
       'end'
     ],
+
+    directives: {
+      draggable: Draggable
+    },
 
     data: function () {
       return {};
@@ -36,13 +43,6 @@
       },
       width: function () {
         return this.duration / (this.$root.$data.end - this.$root.$data.start) * 100;
-      }
-    },
-
-    methods: {
-      dragstart: function (e) {
-        e.dataTransfer.setData('text', this.key);
-        e.dataTransfer.effectAllowed = 'copyMove';
       }
     }
   };
