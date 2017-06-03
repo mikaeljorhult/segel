@@ -9,18 +9,18 @@ export default {
       onmove: function (event) {
         var element = event.target;
 
-        // keep the dragged position in the data-x/data-y attributes
-        var x = (parseFloat(element.getAttribute('data-x')) || 0) + event.dx;
-        var y = (parseFloat(element.getAttribute('data-y')) || 0) + event.dy;
+        // Get previous position from object data.
+        var x = (parseFloat(vnode.context.dragX) || 0) + event.dx;
+        var y = (parseFloat(vnode.context.dragY) || 0) + event.dy;
 
-        // translate the element
+        // Translate the element.
         element.style.webkitTransform =
           element.style.transform =
             'translate(' + x + 'px, ' + y + 'px)';
 
-        // update the position attributes
-        element.setAttribute('data-x', x);
-        element.setAttribute('data-y', y);
+        // Update the position.
+        vnode.context.dragX = x;
+        vnode.context.dragY = y;
       },
       onend: function (event) {
         var element = event.target;
@@ -28,8 +28,8 @@ export default {
         // Reset booking styles.
         element.webkitTransform = element.style.transform = '';
         element.style.height = '';
-        element.setAttribute('data-x', 0);
-        element.setAttribute('data-y', 0);
+        vnode.context.dragX = 0;
+        vnode.context.dragY = 0;
       }
     });
   },
