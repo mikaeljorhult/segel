@@ -10,7 +10,7 @@ export default {
         top: false,
         bottom: false,
         left: true,
-        right: true,
+        right: true
       },
       onmove: function (event) {
         var target = event.target;
