@@ -1,6 +1,7 @@
 <template>
     <li class="booking"
         v-draggable
+        v-resizable
         v-bind:style="{ left: left + '%', width: width + '%' }"
     ></li>
 </template>
@@ -19,6 +20,7 @@
 
 <script>
   import Draggable from '../directives/draggable.js';
+  import Resizable from '../directives/resizable.js';
 
   export default {
     props: [
@@ -27,7 +29,8 @@
     ],
 
     directives: {
-      draggable: Draggable
+      draggable: Draggable,
+      resizable: Resizable
     },
 
     data: function () {
