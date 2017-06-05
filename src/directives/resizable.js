@@ -13,35 +13,31 @@ export default {
         right: true
       },
       onmove: function (event) {
-        var target = event.target;
-
         // Get previous position from object data.
-        var x = (parseFloat(vnode.context.resizeX) || 0);
-        var y = (parseFloat(vnode.context.resizeY) || 0);
+        var x = vnode.context.resizeX || 0;
+        var y = vnode.context.resizeY || 0;
 
         // Update the element style.
-        target.style.width = event.rect.width + 'px';
-        target.style.height = event.rect.height + 'px';
+        vnode.context.$el.style.width = event.rect.width + 'px';
+        vnode.context.$el.style.height = event.rect.height + 'px';
 
         // Translate when resizing from top or left edges.
         x += event.deltaRect.left;
         y += event.deltaRect.top;
 
         // Translate the element.
-        target.style.webkitTransform =
-          target.style.transform =
+        vnode.context.$el.style.webkitTransform =
+          vnode.context.$el.style.transform =
             'translate(' + x + 'px,' + y + 'px)';
 
         // Update the position.
-        vnode.context.resizeX = x;
-        vnode.context.resizeY = y;
+        vnode.context.resizeX = parseFloat(x);
+        vnode.context.resizeY = parseFloat(y);
       },
       onend: function (event) {
-        var element = event.target;
-
         // Reset booking styles.
-        element.webkitTransform = element.style.transform = '';
-        element.style.height = '';
+        vnode.context.$el.webkitTransform = vnode.context.$el.style.transform = '';
+        vnode.context.$el.style.height = '';
         vnode.context.resizeX = 0;
         vnode.context.resizeY = 0;
       }

@@ -10,8 +10,8 @@ export default {
         var element = event.target;
 
         // Get previous position from object data.
-        var x = (parseFloat(vnode.context.dragX) || 0) + event.dx;
-        var y = (parseFloat(vnode.context.dragY) || 0) + event.dy;
+        var x = (vnode.context.dragX || 0) + event.dx;
+        var y = (vnode.context.dragY || 0) + event.dy;
 
         // Translate the element.
         element.style.webkitTransform =
@@ -19,8 +19,8 @@ export default {
             'translate(' + x + 'px, ' + y + 'px)';
 
         // Update the position.
-        vnode.context.dragX = x;
-        vnode.context.dragY = y;
+        vnode.context.dragX = parseFloat(x);
+        vnode.context.dragY = parseFloat(y);
       },
       onend: function (event) {
         var element = event.target;
