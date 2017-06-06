@@ -18,16 +18,16 @@ export default {
         var y = vnode.context.resizeY || 0;
 
         // Update the element style.
-        vnode.context.$el.style.width = event.rect.width + 'px';
-        vnode.context.$el.style.height = event.rect.height + 'px';
+        element.style.width = event.rect.width + 'px';
+        element.style.height = event.rect.height + 'px';
 
         // Translate when resizing from top or left edges.
         x += event.deltaRect.left;
         y += event.deltaRect.top;
 
         // Translate the element.
-        vnode.context.$el.style.webkitTransform =
-          vnode.context.$el.style.transform =
+        element.style.webkitTransform =
+          element.style.transform =
             'translate(' + x + 'px,' + y + 'px)';
 
         // Update the position.
@@ -36,8 +36,8 @@ export default {
       },
       onend: function (event) {
         // Reset booking styles.
-        vnode.context.$el.webkitTransform = vnode.context.$el.style.transform = '';
-        vnode.context.$el.style.height = '';
+        element.webkitTransform = element.style.transform = '';
+        element.style.height = '';
         vnode.context.resizeX = 0;
         vnode.context.resizeY = 0;
       }
