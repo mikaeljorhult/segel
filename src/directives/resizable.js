@@ -2,10 +2,18 @@
 
 // Dependencies.
 import interact from 'interact.js';
+import grid from '../helpers/grid';
 
 export default {
   bind: function (element, binding, vnode) {
     interact(element).resizable({
+      snap: {
+        targets: grid.create(
+          vnode.context.$root.$el.clientWidth,
+          35,
+          vnode.context.$root.steps
+        )
+      },
       edges: {
         top: false,
         bottom: false,

@@ -2,10 +2,21 @@
 
 // Dependencies.
 import interact from 'interact.js';
+import grid from '../helpers/grid';
 
 export default {
   bind: function (element, binding, vnode) {
     interact(element).draggable({
+      snap: {
+        targets: grid.create(
+          vnode.context.$root.$el.clientWidth,
+          35,
+          vnode.context.$root.steps
+        )
+      },
+      restrict: {
+        restriction: '.objects'
+      },
       onmove: function (event) {
         // Get previous position from object data.
         var x = (vnode.context.dragX || 0) + event.dx;
