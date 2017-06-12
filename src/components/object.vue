@@ -2,7 +2,7 @@
     <li>
         {{ name }}
 
-        <ul>
+        <ul v-dropzone>
             <segel-booking v-for="booking in bookings"
                            v-bind:key="booking.id"
                            v-bind:start="booking.start"
@@ -28,16 +28,25 @@
         padding: .5rem 0;
         border-bottom: 1px solid #e6e6e6
     }
+
+    .droppable {
+        background-color: rgba(0, 0, 0, .1);
+    }
 </style>
 
 <script>
   import Booking from './booking.vue';
+  import Dropzone from '../directives/dropzone.js';
 
   export default {
     props: [
       'name',
       'bookings'
     ],
+
+    directives: {
+      dropzone: Dropzone
+    },
 
     data: function () {
       return {
