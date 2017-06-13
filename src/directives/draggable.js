@@ -12,7 +12,8 @@ export default {
           vnode.context.$root.$el.clientWidth,
           35,
           vnode.context.$root.steps
-        )
+        ),
+        offset: 'startCoords'
       },
       restrict: {
         restriction: '.objects'
