@@ -42,10 +42,10 @@
         return this.end - this.start;
       },
       left: function () {
-        return (this.start - this.$root.start) / (this.$root.end - this.$root.start) * 100;
+        return (this.start - this.$root.start) / this.$root.duration * 100;
       },
       width: function () {
-        return this.duration / (this.$root.end - this.$root.start) * 100;
+        return this.duration / this.$root.duration * 100;
       }
     }
   };
