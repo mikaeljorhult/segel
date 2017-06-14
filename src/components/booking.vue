@@ -24,6 +24,7 @@
 
   export default {
     props: [
+      'id',
       'start',
       'end'
     ],

@@ -1,9 +1,10 @@
 <template>
     <ul class="objects">
         <segel-object v-for="object in objects"
-            v-bind:key="object.id"
-            v-bind:name="object.name"
-            v-bind:bookings="object.bookings"
+                      v-bind:key="object.id"
+                      v-bind:id="object.id"
+                      v-bind:name="object.name"
+                      v-bind:bookings="object.bookings"
         ></segel-object>
     </ul>
 </template>

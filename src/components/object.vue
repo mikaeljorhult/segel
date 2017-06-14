@@ -5,6 +5,7 @@
         <ul v-dropzone>
             <segel-booking v-for="booking in bookings"
                            v-bind:key="booking.id"
+                           v-bind:id="booking.id"
                            v-bind:start="booking.start"
                            v-bind:end="booking.end"
             ></segel-booking>
@@ -40,6 +41,7 @@
 
   export default {
     props: [
+      'id',
       'name',
       'bookings'
     ],
