@@ -6,6 +6,7 @@
             <segel-booking v-for="booking in bookings"
                            v-bind:key="booking.id"
                            v-bind:id="booking.id"
+                           v-bind:object="id"
                            v-bind:start="booking.start"
                            v-bind:end="booking.end"
             ></segel-booking>

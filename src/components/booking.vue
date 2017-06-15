@@ -25,6 +25,7 @@
   export default {
     props: [
       'id',
+      'object',
       'start',
       'end'
     ],

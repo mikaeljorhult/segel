@@ -2,13 +2,13 @@
 
 // Dependencies.
 import interact from 'interact.js';
-import grid from '../helpers/grid';
+import Grid from '../helpers/grid';
 
 export default {
   bind: function (element, binding, vnode) {
     interact(element).draggable({
       snap: {
-        targets: grid.create(
+        targets: Grid.create(
           vnode.context.$root.$el.clientWidth,
           35,
           vnode.context.$root.steps
@@ -32,7 +32,7 @@ export default {
         vnode.context.dragX = parseFloat(x);
         vnode.context.dragY = parseFloat(y);
       },
-      onend: function (event) {
+      onend: function () {
         // Reset booking styles.
         element.webkitTransform = element.style.transform = '';
         element.style.height = '';

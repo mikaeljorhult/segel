@@ -2,13 +2,14 @@
 
 // Dependencies.
 import interact from 'interact.js';
-import grid from '../helpers/grid';
+import Grid from '../helpers/grid';
+import Events from '../helpers/events.js';
 
 export default {
   bind: function (element, binding, vnode) {
     interact(element).resizable({
       snap: {
-        targets: grid.create(
+        targets: Grid.create(
           vnode.context.$root.$el.clientWidth,
           35,
           vnode.context.$root.steps
@@ -43,7 +44,18 @@ export default {
         vnode.context.resizeX = parseFloat(x);
         vnode.context.resizeY = parseFloat(y);
       },
-      onend: function (event) {
+      onend: function () {
+        var start = Math.round((element.offsetLeft + vnode.context.resizeX) / vnode.context.$root.$el.clientWidth * vnode.context.$root.duration);
+        var end = Math.round(element.getBoundingClientRect().width / vnode.context.$root.$el.clientWidth * vnode.context.$root.duration);
+
+        // Publish change event with values for booking.
+        Events.$emit('change', {
+          id: vnode.context.id,
+          object: vnode.context.object,
+          start: Grid.round(vnode.context.$root.start + start, vnode.context.$root.duration, vnode.context.$root.steps),
+          end: Grid.round(vnode.context.$root.start + start + end, vnode.context.$root.duration, vnode.context.$root.steps)
+        });
+
         // Reset booking styles.
         element.webkitTransform = element.style.transform = '';
         element.style.height = '';

@@ -14,9 +14,9 @@ const Segel = new Vue({
 
   beforeMount: function () {
     // Get attributes from root element if present.
-    this.start = this.$el.getAttribute('start') ? this.$el.getAttribute('start') : this.start;
-    this.end = this.$el.getAttribute('end') ? this.$el.getAttribute('end') : this.end;
-    this.steps = this.$el.getAttribute('steps') ? this.$el.getAttribute('steps') : this.steps;
+    this.start = this.$el.getAttribute('start') ? parseInt(this.$el.getAttribute('start')) : this.start;
+    this.end = this.$el.getAttribute('end') ? parseInt(this.$el.getAttribute('end')) : this.end;
+    this.steps = this.$el.getAttribute('steps') ? parseInt(this.$el.getAttribute('steps')) : this.steps;
     this.objects = this.$el.getAttribute('objects') ? this.$el.getAttribute('objects') : this.objects;
   },
 
