@@ -5,6 +5,7 @@ import Vue from 'vue';
 
 // Components.
 import Main from './components/main.vue';
+import Events from './helpers/events.js';
 
 // Create Vue instance.
 const Segel = new Vue({
@@ -58,6 +59,11 @@ const Segel = new Vue({
       return this.end - this.start;
     }
   }
+});
+
+// Republish change events.
+Events.$on('change', function (data) {
+  Segel.$emit('change', data);
 });
 
 export default Segel;
