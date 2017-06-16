@@ -61,7 +61,11 @@ const Segel = new Vue({
   }
 });
 
-// Republish change events.
+// Republish events.
+Events.$on('add', function (data) {
+  Segel.$emit('add', data);
+});
+
 Events.$on('change', function (data) {
   Segel.$emit('change', data);
 });

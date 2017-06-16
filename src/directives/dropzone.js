@@ -3,6 +3,7 @@
 // Dependencies.
 import interact from 'interact.js';
 import Events from '../helpers/events.js';
+import Grid from '../helpers/grid.js';
 
 export default {
   bind: function (element, binding, vnode) {
@@ -27,6 +28,17 @@ export default {
 
         element.classList.remove('droppable');
       }
+    }).on('doubletap', function (event) {
+      var position = Math.round(event.offsetX / vnode.context.$root.$el.clientWidth * vnode.context.$root.duration);
+      var stepSize = vnode.context.$root.duration / vnode.context.$root.steps;
+      var start = Grid.round(position + vnode.context.$root.start, vnode.context.$root.duration, vnode.context.$root.steps);
+
+      // Publish change event with values for created booking.
+      Events.$emit('add', {
+        object: vnode.context.id,
+        start: start,
+        end: start + stepSize * 2
+      });
     });
   },
   unbind: function (element) {
