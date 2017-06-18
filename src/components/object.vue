@@ -23,6 +23,7 @@
         right: 0;
         padding-left: 0;
         list-style: none;
+        user-select: none;
     }
 
     li {
