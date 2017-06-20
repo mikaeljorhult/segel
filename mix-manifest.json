@@ -1,6 +1,3 @@
 {
-  "/dist/main.js": "/dist/main.js",
-  "/dist/index.js": "/dist/index.js",
-  "/dist/vendor.js": "/dist/vendor.js",
-  "/dist/manifest.js": "/dist/manifest.js"
+    "/dist/index.js": "/dist/index.js"
 }
