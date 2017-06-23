@@ -7,6 +7,19 @@ import Vue from 'vue';
 import Main from './components/main.vue';
 import Events from './helpers/events.js';
 
+// Create state object.
+const Store = {
+  state: {
+    start: Math.floor(new Date().setHours(0, 0, 0, 0) / 1000),
+    end: Math.floor(new Date().setHours(23, 59, 59, 999) / 1000),
+    steps: 48,
+    objects: [
+      {id: 1, name: 'Object 1', bookings: [{id: 1, start: 1483264800, 'end': 1483311600}]},
+      {id: 2, name: 'Object 2', bookings: []}
+    ],
+  }
+};
+
 // Create Vue instance.
 const Segel = new Vue({
   el: '#segel',
@@ -24,35 +37,7 @@ const Segel = new Vue({
     'segel-main': Main
   },
 
-  props: {
-    start: {
-      type: Number,
-      default: function () {
-        return Math.floor(new Date().setHours(0, 0, 0, 0) / 1000);
-      }
-    },
-    end: {
-      type: Number,
-      default: function () {
-        return Math.floor(new Date().setHours(23, 59, 59, 999) / 1000);
-      }
-    },
-    steps: {
-      type: Number,
-      default: 48
-    },
-    objects: {
-      type: Array,
-      default: function () {
-        return [
-          {id: 1, name: 'Object 1', bookings: [{id: 1, start: 1483264800, 'end': 1483311600}]},
-          {id: 2, name: 'Object 2', bookings: []}
-        ];
-      }
-    }
-  },
-
-  data: {},
+  data: Store.state,
 
   computed: {
     duration: function () {
