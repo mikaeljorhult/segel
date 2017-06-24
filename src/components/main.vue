@@ -1,7 +1,10 @@
 <template>
     <section>
         <segel-ruler></segel-ruler>
-        <segel-objects v-bind:objects="this.objects"></segel-objects>
+        <segel-objects
+                v-bind:objects="objects"
+                v-bind:bookings="bookings"
+        ></segel-objects>
     </section>
 </template>
 
@@ -11,7 +14,8 @@
 
   export default {
     props: [
-      'objects'
+      'objects',
+      'bookings'
     ],
 
     data: function () {
