@@ -13,6 +13,10 @@ const Store = {
     bookings: [
       {id: 1, object: 1, start: 1483264800, 'end': 1483311600}
     ]
+  },
+  changeTime: function (amount) {
+    this.state.start = this.state.start + amount;
+    this.state.end = this.state.end + amount;
   }
 };
 

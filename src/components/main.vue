@@ -1,5 +1,6 @@
 <template>
     <section>
+        <segel-navigation></segel-navigation>
         <segel-ruler></segel-ruler>
         <segel-objects
                 v-bind:objects="objects"
@@ -9,6 +10,7 @@
 </template>
 
 <script>
+  import Navigation from './navigation.vue';
   import Ruler from './ruler.vue';
   import Objects from './objects.vue';
 
@@ -23,6 +25,7 @@
     },
 
     components: {
+      'segel-navigation': Navigation,
       'segel-ruler': Ruler,
       'segel-objects': Objects
     }
