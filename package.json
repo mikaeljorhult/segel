@@ -6,17 +6,17 @@
   "license": "MIT",
   "dependencies": {
     "interact.js": "^1.2.8",
-    "vue": "^2.3.3"
+    "vue": "^2.3.4"
   },
   "devDependencies": {
-    "eslint": "^4.0.0",
+    "eslint": "^4.1.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-html": "^3.0.0",
-    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-import": "^2.6.0",
     "eslint-plugin-node": "^5.0.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
-    "laravel-mix": "^1.0.3"
+    "laravel-mix": "^1.0.6"
   },
   "scripts": {
     "test": "./node_modules/.bin/eslint ./src --ext .js,.vue",
