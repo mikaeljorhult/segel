@@ -4,7 +4,7 @@
 const Store = {
   state: {
     start: Math.floor(new Date().setHours(0, 0, 0, 0) / 1000),
-    end: Math.floor(new Date().setHours(23, 59, 59, 999) / 1000),
+    end: Math.floor(new Date().setHours(24, 0, 0, 0) / 1000),
     steps: 48,
     objects: [
       {id: 1, name: 'Object 1'},
@@ -17,6 +17,10 @@ const Store = {
   changeTime: function (amount) {
     this.state.start = this.state.start + amount;
     this.state.end = this.state.end + amount;
+  },
+  setTime: function (timestamps) {
+    this.state.start = timestamps.start;
+    this.state.end = timestamps.end;
   }
 };
 

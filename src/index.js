@@ -11,7 +11,7 @@ import Store from './helpers/store.js';
 // Create Vue instance.
 const Segel = new Vue({
   el: '#segel',
-  template: '<segel-main v-bind:objects="objects" v-bind:bookings="bookings"></segel-main>',
+  template: '<segel-main v-bind:start="start" v-bind:end="end" v-bind:objects="objects" v-bind:bookings="bookings"></segel-main>',
 
   beforeMount: function () {
     // Get attributes from root element if present.

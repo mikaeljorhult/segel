@@ -6,7 +6,8 @@
   "license": "MIT",
   "dependencies": {
     "interact.js": "^1.2.8",
-    "vue": "^2.3.4"
+    "vue": "^2.3.4",
+    "vue-flatpickr-component": "^1.2.3"
   },
   "devDependencies": {
     "eslint": "^4.1.0",

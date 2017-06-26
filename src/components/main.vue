@@ -1,6 +1,8 @@
 <template>
     <section>
-        <segel-navigation></segel-navigation>
+        <segel-navigation
+                v-bind:start="start"
+        ></segel-navigation>
         <segel-ruler></segel-ruler>
         <segel-objects
                 v-bind:objects="objects"
@@ -16,6 +18,8 @@
 
   export default {
     props: [
+      'start',
+      'end',
       'objects',
       'bookings'
     ],
