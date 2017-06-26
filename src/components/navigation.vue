@@ -36,7 +36,7 @@
 
     computed: {
       date: function () {
-        return new Date(this.start * 1000);
+        return new Date(this.start * 1000).toISOString();
       }
     },
 
