@@ -2,28 +2,21 @@
 
 // Dependencies.
 import interact from 'interact.js';
+import Debounce from 'lodash.debounce';
 import Grid from '../helpers/grid';
 
-// Variables.
-let debounceTimer;
-
 const handleResize = function (element, vnode) {
-  clearTimeout(debounceTimer);
-
-  // Debounce grid calculations.
-  debounceTimer = setTimeout(function () {
-    // Set new grid based on current widths.
-    interact(element).draggable().snap.targets = Grid.create(
-      vnode.context.$root.$el.clientWidth,
-      35,
-      vnode.context.$root.steps
-    );
-  }, 150);
+  // Set new grid based on current widths.
+  interact(element).draggable().snap.targets = Grid.create(
+    vnode.context.$root.$el.clientWidth,
+    35,
+    vnode.context.$root.steps
+  );
 };
 
 export default {
   bind: function (element, binding, vnode) {
-    window.addEventListener('resize', handleResize.bind(null, element, vnode));
+    window.addEventListener('resize', Debounce(handleResize.bind(null, element, vnode), 150));
 
     interact(element).draggable({
       snap: {
@@ -61,7 +54,7 @@ export default {
     });
   },
   unbind: function (element, context, vnode) {
-    window.removeEventListener('resize', handleResize.bind(null, element, vnode));
+    window.removeEventListener('resize', Debounce(handleResize.bind(null, element, vnode), 150));
     interact(element).unset();
   }
 };

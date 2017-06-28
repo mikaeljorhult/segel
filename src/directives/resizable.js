@@ -2,11 +2,23 @@
 
 // Dependencies.
 import interact from 'interact.js';
+import Debounce from 'lodash.debounce';
 import Grid from '../helpers/grid';
 import Events from '../helpers/events.js';
 
+const handleResize = function (element, vnode) {
+  // Set new grid based on current widths.
+  interact(element).resizable().snap.targets = Grid.create(
+    vnode.context.$root.$el.clientWidth,
+    35,
+    vnode.context.$root.steps
+  );
+};
+
 export default {
   bind: function (element, binding, vnode) {
+    window.addEventListener('resize', Debounce(handleResize.bind(null, element, vnode), 150));
+
     interact(element).resizable({
       snap: {
         targets: Grid.create(
@@ -64,7 +76,8 @@ export default {
       }
     });
   },
-  unbind: function (element) {
+  unbind: function (element, context, vnode) {
+    window.removeEventListener('resize', Debounce(handleResize.bind(null, element, vnode), 150));
     interact(element).unset();
   }
 };
