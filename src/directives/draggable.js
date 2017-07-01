@@ -2,7 +2,7 @@
 
 // Dependencies.
 import interact from 'interact.js';
-import Debounce from 'lodash.debounce';
+import Debounce from 'lodash/debounce';
 import Grid from '../helpers/grid';
 
 const handleResize = function (element, vnode) {
