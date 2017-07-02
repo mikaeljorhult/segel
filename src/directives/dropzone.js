@@ -21,14 +21,14 @@ export default {
         // Create copy if ALT key is pressed, otherwise edit existing.
         if (event.dragEvent.altKey) {
           // Add new booking.
-          Events.$emit('add', {
+          Events.$emit('bookings:add', {
             object: vnode.context.id,
             start: event.relatedTarget.__vue__.start + change,
             end: event.relatedTarget.__vue__.end + change
           });
         } else {
           // Change existing booking.
-          Events.$emit('change', {
+          Events.$emit('bookings:update', {
             id: event.relatedTarget.__vue__.id,
             object: vnode.context.id,
             start: event.relatedTarget.__vue__.start + change,
@@ -44,7 +44,7 @@ export default {
       var start = Grid.round(position + vnode.context.$root.start, vnode.context.$root.duration, vnode.context.$root.steps);
 
       // Publish change event with values for created booking.
-      Events.$emit('add', {
+      Events.$emit('bookings:add', {
         object: vnode.context.id,
         start: start,
         end: start + stepSize * 2

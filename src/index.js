@@ -36,13 +36,13 @@ const Segel = new Vue({
 });
 
 // Republish events.
-Events.$on('add', function (data) {
-  Segel.$emit('add', data);
+Events.$on('bookings:add', function (data) {
+  Segel.$emit('bookings:add', data);
   Store.addBooking(data);
 });
 
-Events.$on('change', function (data) {
-  Segel.$emit('change', data);
+Events.$on('bookings:update', function (data) {
+  Segel.$emit('bookings:update', data);
   Store.editBooking(data);
 });
 

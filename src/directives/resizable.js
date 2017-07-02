@@ -61,7 +61,7 @@ export default {
         var end = Math.round(element.getBoundingClientRect().width / vnode.context.$root.$el.clientWidth * vnode.context.$root.duration);
 
         // Publish change event with values for booking.
-        Events.$emit('change', {
+        Events.$emit('bookings:update', {
           id: vnode.context.id,
           object: vnode.context.object,
           start: Grid.round(vnode.context.$root.start + start, vnode.context.$root.duration, vnode.context.$root.steps),
