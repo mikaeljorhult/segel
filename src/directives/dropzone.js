@@ -18,13 +18,23 @@ export default {
         // Convert moved pixels to change in timestamp.
         var change = Math.round(event.dragEvent.dx / vnode.context.$root.$el.clientWidth * vnode.context.$root.duration);
 
-        // Publish change event with values for booking.
-        Events.$emit('change', {
-          id: event.relatedTarget.__vue__.id,
-          object: vnode.context.id,
-          start: event.relatedTarget.__vue__.start + change,
-          end: event.relatedTarget.__vue__.end + change
-        });
+        // Create copy if ALT key is pressed, otherwise edit existing.
+        if (event.dragEvent.altKey) {
+          // Add new booking.
+          Events.$emit('add', {
+            object: vnode.context.id,
+            start: event.relatedTarget.__vue__.start + change,
+            end: event.relatedTarget.__vue__.end + change
+          });
+        } else {
+          // Change existing booking.
+          Events.$emit('change', {
+            id: event.relatedTarget.__vue__.id,
+            object: vnode.context.id,
+            start: event.relatedTarget.__vue__.start + change,
+            end: event.relatedTarget.__vue__.end + change
+          });
+        }
 
         element.classList.remove('droppable');
       }
