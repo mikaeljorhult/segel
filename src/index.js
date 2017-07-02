@@ -38,10 +38,12 @@ const Segel = new Vue({
 // Republish events.
 Events.$on('add', function (data) {
   Segel.$emit('add', data);
+  Store.addBooking(data);
 });
 
 Events.$on('change', function (data) {
   Segel.$emit('change', data);
+  Store.editBooking(data);
 });
 
 export default Segel;

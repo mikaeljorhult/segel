@@ -21,6 +21,16 @@ const Store = {
   setTime: function (timestamps) {
     this.state.start = timestamps.start;
     this.state.end = timestamps.end;
+  },
+  addBooking: function (data) {
+    this.state.bookings.push(data);
+  },
+  editBooking: function (data) {
+    let index = this.state.bookings.findIndex(function (element) {
+      return element.id === data.id;
+    });
+
+    this.state.bookings.splice(index, 1, data);
   }
 };
 

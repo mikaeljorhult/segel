@@ -2,7 +2,7 @@
 
 // Dependencies.
 import interact from 'interact.js';
-import Debounce from 'lodash/debounce';
+import debounce from 'lodash/debounce';
 import Grid from '../helpers/grid';
 
 const handleResize = function (element, vnode) {
@@ -16,7 +16,7 @@ const handleResize = function (element, vnode) {
 
 export default {
   bind: function (element, binding, vnode) {
-    window.addEventListener('resize', Debounce(handleResize.bind(null, element, vnode), 150));
+    window.addEventListener('resize', debounce(handleResize.bind(null, element, vnode), 150));
 
     interact(element).draggable({
       snap: {
@@ -54,7 +54,7 @@ export default {
     });
   },
   unbind: function (element, context, vnode) {
-    window.removeEventListener('resize', Debounce(handleResize.bind(null, element, vnode), 150));
+    window.removeEventListener('resize', debounce(handleResize.bind(null, element, vnode), 150));
     interact(element).unset();
   }
 };
