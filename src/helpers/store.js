@@ -18,9 +18,9 @@ const Store = {
     this.state.start = this.state.start + amount;
     this.state.end = this.state.end + amount;
   },
-  setTime: function (timestamps) {
-    this.state.start = timestamps.start;
-    this.state.end = timestamps.end;
+  setTime: function (start, end) {
+    this.state.start = start;
+    this.state.end = end;
   },
   addBooking: function (data) {
     this.state.bookings.push(data);

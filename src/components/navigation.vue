@@ -56,10 +56,10 @@
       dateChange: function (event) {
         let date = event[0];
 
-        Store.setTime({
-          start: date.setHours(0, 0, 0, 0) / 1000,
-          end: date.setHours(24, 0, 0, 0) / 1000
-        });
+        Store.setTime(
+          date.setHours(0, 0, 0, 0) / 1000,
+          date.setHours(24, 0, 0, 0) / 1000
+        );
       }
     }
   };
