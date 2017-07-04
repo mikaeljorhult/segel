@@ -1,7 +1,7 @@
 'use strict';
 
 // Dependencies.
-import inRange from 'lodash/inRange';
+import Availability from '../helpers/availability';
 
 // Create state object.
 const Store = {
@@ -27,7 +27,7 @@ const Store = {
   },
   addBooking: function (data) {
     // Check availability off requested object.
-    if (!isAvailable(this.state.bookings, data)) { return; }
+    if (!Availability.isAvailable(this.state.bookings, data)) { return; }
 
     // Assign temporary ID to booking.
     // TODO: Get the actual ID from user.
@@ -38,7 +38,7 @@ const Store = {
   },
   editBooking: function (data) {
     // Check availability off requested object.
-    if (!isAvailable(this.state.bookings, data)) { return; }
+    if (!Availability.isAvailable(this.state.bookings, data)) { return; }
 
     // Retrieve the index of the stored copy of booking.
     let index = this.state.bookings.findIndex(function (element) {
@@ -49,22 +49,6 @@ const Store = {
     this.state.bookings.splice(index, 1, data);
   }
 };
-
-function isAvailable (bookings, data) {
-  // Bookings for the requested object.
-  let objectBookings = bookings.filter(function (booking) {
-    // Same object as booking but ignore itself.
-    return booking.object === data.object &&
-      !(data.id !== undefined && booking.id === data.id);
-  });
-
-  // Return false if any bookings are in the same time slot.
-  return objectBookings.filter(function (booking) {
-    return inRange(data.start, booking.start - 1, booking.end) ||
-      inRange(data.end, booking.start + 1, booking.end) ||
-      inRange(booking.start, data.start, data.end);
-  }).length === 0;
-}
 
 // Return the instance.
 export default Store;
