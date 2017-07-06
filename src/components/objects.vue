@@ -1,5 +1,5 @@
 <template>
-    <ul class="objects">
+    <ul class="segel-objects">
         <segel-object
                 v-for="object in objects"
                 v-bind:key="object.id"
@@ -9,14 +9,6 @@
         ></segel-object>
     </ul>
 </template>
-
-<style scoped>
-    ul {
-        overflow: hidden;
-        padding-left: 0;
-        list-style: none;
-    }
-</style>
 
 <script>
   import Object from './object.vue';

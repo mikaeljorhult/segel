@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="segel">
         <segel-navigation
                 v-bind:start="start"
         ></segel-navigation>

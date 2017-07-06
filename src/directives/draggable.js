@@ -28,7 +28,7 @@ export default {
         offset: 'startCoords'
       },
       restrict: {
-        restriction: '.objects'
+        restriction: '.segel-objects'
       },
       onmove: function (event) {
         // Get previous position from object data.

@@ -1,21 +1,10 @@
 <template>
-    <section>
+    <section class="segel-navigation">
         <a v-on:click="decrease">&laquo;</a>
         <flat-pickr v-model="date" v-bind:config="config"></flat-pickr>
         <a v-on:click="increase">&raquo;</a>
     </section>
 </template>
-
-<style scoped>
-    a {
-        cursor: pointer;
-    }
-
-    input {
-        width: 8em;
-        text-align: center;
-    }
-</style>
 
 <script>
   import Store from '../helpers/store.js';

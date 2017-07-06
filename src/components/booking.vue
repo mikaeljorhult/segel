@@ -1,22 +1,10 @@
 <template>
-    <li class="booking"
+    <li class="segel-booking"
         v-draggable
         v-resizable
         v-bind:style="{ left: left + '%', width: width + '%' }"
     ></li>
 </template>
-
-<style scoped>
-    li {
-        display: block;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        z-index: 100;
-        background-color: rgba(255, 0, 0, .25);
-    }
-</style>
 
 <script>
   import Draggable from '../directives/draggable.js';
