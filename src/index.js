@@ -42,6 +42,7 @@ Events.$on('bookings:add', function (data) {
 });
 
 Events.$on('bookings:update', function (data) {
+  console.log(data);
   Segel.$emit('bookings:update', data);
   Store.editBooking(data);
 });

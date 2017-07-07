@@ -70,6 +70,7 @@ export default {
 
         // Reset booking styles.
         element.webkitTransform = element.style.transform = '';
+        element.style.width = vnode.context.width + '%';
         element.style.height = '';
         vnode.context.resizeX = 0;
         vnode.context.resizeY = 0;
