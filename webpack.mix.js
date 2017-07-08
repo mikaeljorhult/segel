@@ -1,15 +1,13 @@
 let mix = require('laravel-mix');
 
-/*
- |--------------------------------------------------------------------------
- | Mix Asset Management
- |--------------------------------------------------------------------------
- |
- | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Laravel application. By default, we are compiling the Sass
- | file for your application, as well as bundling up your JS files.
- |
- */
+// Output UMD for module or as global object Segel.
+mix.webpackConfig({
+  output: {
+    library: 'Segel',
+    libraryTarget: 'umd'
+  }
+});
 
+// Process JavaScript and Sass.
 mix.js('src/index.js', 'dist')
   .sass('src/styles/main.scss', 'dist');
