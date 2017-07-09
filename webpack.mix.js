@@ -4,10 +4,16 @@ let mix = require('laravel-mix');
 mix.webpackConfig({
   output: {
     library: 'Segel',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
+    libraryExport: 'default',
+    umdNamedDefine: true
   }
 });
 
 // Process JavaScript and Sass.
 mix.js('src/index.js', 'dist')
-  .sass('src/styles/main.scss', 'dist');
+  .standaloneSass('src/styles/main.scss', 'dist')
+  .styles([
+    'node_modules/flatpickr/dist/flatpickr.css',
+    'dist/main.css'
+  ], 'dist/main.css');

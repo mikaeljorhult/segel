@@ -10,7 +10,6 @@ import Store from './helpers/store.js';
 
 // Create Vue instance.
 const Segel = new Vue({
-  el: '#segel',
   template: '<segel-main v-bind:start="start" v-bind:end="end" v-bind:objects="objects" v-bind:bookings="bookings"></segel-main>',
 
   beforeMount: function () {
@@ -42,9 +41,10 @@ Events.$on('bookings:add', function (data) {
 });
 
 Events.$on('bookings:update', function (data) {
-  console.log(data);
   Segel.$emit('bookings:update', data);
   Store.editBooking(data);
 });
 
-export default Segel;
+export default function (selector) {
+  Segel.$mount(selector);
+};
