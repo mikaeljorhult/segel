@@ -9,7 +9,7 @@ import Events from './helpers/events.js';
 import Store from './helpers/store.js';
 
 // Create Vue instance.
-const Segel = new Vue({
+const vueInstance = new Vue({
   template: '<segel-main v-bind:start="start" v-bind:end="end" v-bind:objects="objects" v-bind:bookings="bookings"></segel-main>',
 
   beforeMount: function () {
@@ -36,15 +36,20 @@ const Segel = new Vue({
 
 // Republish events.
 Events.$on('bookings:add', function (data) {
-  Segel.$emit('bookings:add', data);
+  vueInstance.$emit('bookings:add', data);
   Store.addBooking(data);
 });
 
 Events.$on('bookings:update', function (data) {
-  Segel.$emit('bookings:update', data);
+  vueInstance.$emit('bookings:update', data);
   Store.editBooking(data);
 });
 
-export default function (selector) {
-  Segel.$mount(selector);
+// Declare function to export.
+const Segel = function (selector) {
+  vueInstance.$mount(selector);
 };
+
+Segel.instance = vueInstance;
+
+export default Segel;
