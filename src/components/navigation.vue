@@ -35,11 +35,11 @@
 
     methods: {
       decrease: function () {
-        Store.changeTime(this.$root.duration * -1);
+        Store.changeTime(Store.state.duration * -1);
       },
 
       increase: function () {
-        Store.changeTime(this.$root.duration);
+        Store.changeTime(Store.state.duration);
       },
 
       dateChange: function (event) {

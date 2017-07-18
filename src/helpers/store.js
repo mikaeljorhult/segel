@@ -8,6 +8,7 @@ const Store = {
   state: {
     start: Math.floor(new Date().setHours(0, 0, 0, 0) / 1000),
     end: Math.floor(new Date().setHours(24, 0, 0, 0) / 1000),
+    duration: 86400,
     steps: 48,
     objects: [
       {id: 1, name: 'Object 1'},
@@ -24,6 +25,7 @@ const Store = {
   setTime: function (start, end) {
     this.state.start = start;
     this.state.end = end;
+    this.duration = end - start;
   },
   addBooking: function (data) {
     // Check availability off requested object.

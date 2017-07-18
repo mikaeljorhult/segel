@@ -9,6 +9,7 @@
 <script>
   import Draggable from '../directives/draggable.js';
   import Resizable from '../directives/resizable.js';
+  import Store from '../helpers/store';
 
   export default {
     props: [
@@ -32,10 +33,10 @@
         return this.end - this.start;
       },
       left: function () {
-        return (this.start - this.$root.start) / this.$root.duration * 100;
+        return (this.start - Store.state.start) / Store.state.duration * 100;
       },
       width: function () {
-        return this.duration / this.$root.duration * 100;
+        return this.duration / Store.state.duration * 100;
       }
     }
   };

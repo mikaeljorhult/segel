@@ -25,13 +25,7 @@ const vueInstance = new Vue({
     'segel-main': Main
   },
 
-  data: Store.state,
-
-  computed: {
-    duration: function () {
-      return this.end - this.start;
-    }
-  }
+  data: Store.state
 });
 
 // Republish events.
