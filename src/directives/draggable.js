@@ -30,6 +30,9 @@ export default {
       restrict: {
         restriction: '.segel-objects'
       },
+      onstart: function () {
+        element.classList.add('dragging');
+      },
       onmove: function (event) {
         // Get previous position from object data.
         var x = (vnode.context.dragX || 0) + event.dx;
@@ -46,6 +49,7 @@ export default {
       },
       onend: function () {
         // Reset booking styles.
+        element.classList.remove('dragging');
         element.webkitTransform = element.style.transform = '';
         element.style.height = '';
         vnode.context.dragX = 0;
