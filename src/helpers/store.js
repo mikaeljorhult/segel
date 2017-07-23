@@ -31,7 +31,7 @@ const Store = {
 
     // Assign temporary ID to booking.
     // TODO: Get the actual ID from user.
-    data.id = (Math.random() + 1).toString(36);
+    data.id = data.id || (Math.random() + 1).toString(36);
 
     // Add booking to storage.
     this.state.bookings.push(data);
