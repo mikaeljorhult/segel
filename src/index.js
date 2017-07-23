@@ -36,7 +36,7 @@ Events.$on('bookings:add', function (data) {
 
 Events.$on('bookings:update', function (data) {
   vueInstance.$emit('bookings:update', data);
-  Store.editBooking(data);
+  Store.updateBooking(data);
 });
 
 // Declare function to export.
@@ -44,6 +44,30 @@ const Segel = function (selector) {
   vueInstance.$mount(selector);
 };
 
+Segel.bookings = {
+  add: function (data) {
+    Store.addBooking(data);
+  },
+  update: function (data) {
+    Store.updateBooking(data);
+  },
+  remove: function (data) {
+    Store.removeBooking(data);
+  }
+};
+
 Segel.instance = vueInstance;
+
+/**
+ * Include test data if development build.
+ */
+if (process.env.NODE_ENV === 'development') {
+  Segel.bookings.add({
+    id: 1,
+    object: 1,
+    start: 1483264800,
+    end: 1483311600
+  });
+}
 
 export default Segel;
