@@ -56,12 +56,36 @@ Segel.bookings = {
   }
 };
 
+Segel.objects = {
+  add: function (data) {
+    Store.addObject(data);
+  },
+  update: function (data) {
+    Store.updateObject(data);
+  },
+  remove: function (data) {
+    Store.removeObject(data);
+  }
+};
+
 Segel.instance = vueInstance;
 
 /**
  * Include test data if development build.
  */
 if (process.env.NODE_ENV === 'development') {
+  // Objects.
+  Segel.objects.add({
+    id: 1,
+    name: 'Object 1'
+  });
+
+  Segel.objects.add({
+    id: 2,
+    name: 'Object 2'
+  });
+
+  // Bookings.
   Segel.bookings.add({
     id: 1,
     object: 1,

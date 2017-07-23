@@ -10,10 +10,7 @@ const Store = {
     end: Math.floor(new Date().setHours(24, 0, 0, 0) / 1000),
     duration: 86400,
     steps: 48,
-    objects: [
-      {id: 1, name: 'Object 1'},
-      {id: 2, name: 'Object 2'}
-    ],
+    objects: [],
     bookings: []
   },
   changeTime: function (amount) {
@@ -55,7 +52,29 @@ const Store = {
     });
 
     // Replace booking with new data.
-    this.state.bookings.splice(index, 1, data);
+    this.state.bookings.splice(index, 1);
+  },
+  addObject: function (data) {
+    // Add booking to storage.
+    this.state.objects.push(data);
+  },
+  updateObject: function (data) {
+    // Retrieve the index of the stored copy of object.
+    let index = this.state.objects.findIndex(function (element) {
+      return element.id === data.id;
+    });
+
+    // Replace object with new data.
+    this.state.objects.splice(index, 1, data);
+  },
+  removeObject: function (data) {
+    // Retrieve the index of the stored copy of object.
+    let index = this.state.objects.findIndex(function (element) {
+      return element.id === data.id;
+    });
+
+    // Replace object with new data.
+    this.state.objects.splice(index, 1);
   }
 };
 
