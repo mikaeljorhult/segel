@@ -7,6 +7,10 @@ mix.webpackConfig({
     libraryTarget: 'umd',
     libraryExport: 'default',
     umdNamedDefine: true
+  },
+  externals: {
+    'vue': 'Vue',
+    'interact.js': 'interact'
   }
 });
 
