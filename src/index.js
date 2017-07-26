@@ -7,6 +7,7 @@ import Vue from 'vue';
 import Main from './components/main.vue';
 import Events from './helpers/events.js';
 import Store from './helpers/store.js';
+import Seeder from './helpers/seeder.js';
 
 // Create Vue instance.
 const vueInstance = new Vue({
@@ -27,6 +28,11 @@ const vueInstance = new Vue({
 
   data: Store.state
 });
+
+// Include test data if development build.
+if (process.env.NODE_ENV === 'development') {
+  Seeder.seed();
+}
 
 // Republish events.
 Events.$on('bookings:add', function (data) {
@@ -75,27 +81,5 @@ Segel.objects = {
 };
 
 Segel.instance = vueInstance;
-
-/**
- * Include test data if development build.
- */
-if (process.env.NODE_ENV === 'development') {
-  // Objects.
-  Segel.objects.add({
-    id: 1,
-    name: 'Object 1'
-  }).add({
-    id: 2,
-    name: 'Object 2'
-  });
-
-  // Bookings.
-  Segel.bookings.add({
-    id: 1,
-    object: 1,
-    start: 1483264800,
-    end: 1483311600
-  });
-}
 
 export default Segel;

@@ -1,7 +1,7 @@
 'use strict';
 
 // Dependencies.
-import Availability from '../helpers/availability';
+import Availability from './availability';
 
 // Create state object.
 const Store = {
