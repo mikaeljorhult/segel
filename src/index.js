@@ -47,24 +47,30 @@ const Segel = function (selector) {
 Segel.bookings = {
   add: function (data) {
     Store.addBooking(data);
+    return this;
   },
   update: function (data) {
     Store.updateBooking(data);
+    return this;
   },
   remove: function (data) {
     Store.removeBooking(data);
+    return this;
   }
 };
 
 Segel.objects = {
   add: function (data) {
     Store.addObject(data);
+    return this;
   },
   update: function (data) {
     Store.updateObject(data);
+    return this;
   },
   remove: function (data) {
     Store.removeObject(data);
+    return this;
   }
 };
 
@@ -78,9 +84,7 @@ if (process.env.NODE_ENV === 'development') {
   Segel.objects.add({
     id: 1,
     name: 'Object 1'
-  });
-
-  Segel.objects.add({
+  }).add({
     id: 2,
     name: 'Object 2'
   });
