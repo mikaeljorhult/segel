@@ -5,9 +5,10 @@ import Vue from 'vue';
 
 // Components.
 import Main from './components/main.vue';
-import Events from './helpers/events.js';
-import Store from './helpers/store.js';
-import Seeder from './helpers/seeder.js';
+import Events from './helpers/events';
+import Store from './helpers/store';
+import Seeder from './helpers/seeder';
+import Process from './helpers/process';
 
 // Create Vue instance.
 const vueInstance = new Vue({
@@ -52,30 +53,48 @@ const Segel = function (selector) {
 
 Segel.bookings = {
   add: function (data) {
-    Store.addBooking(data);
+    Process(data, function (booking) {
+      Store.addBooking(booking);
+    });
+
     return this;
   },
   update: function (data) {
-    Store.updateBooking(data);
+    Process(data, function (booking) {
+      Store.updateBooking(booking);
+    });
+
     return this;
   },
   remove: function (data) {
-    Store.removeBooking(data);
+    Process(data, function (booking) {
+      Store.removeBooking(booking);
+    });
+
     return this;
   }
 };
 
 Segel.objects = {
   add: function (data) {
-    Store.addObject(data);
+    Process(data, function (object) {
+      Store.addObject(object);
+    });
+
     return this;
   },
   update: function (data) {
-    Store.updateObject(data);
+    Process(data, function (object) {
+      Store.updateObject(object);
+    });
+
     return this;
   },
   remove: function (data) {
-    Store.removeObject(data);
+    Process(data, function (object) {
+      Store.removeObject(object);
+    });
+
     return this;
   }
 };
