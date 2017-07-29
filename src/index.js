@@ -2,6 +2,7 @@
 
 // Components.
 import Instance from './vue';
+import Cast from './helpers/cast';
 import Process from './helpers/process';
 import Store from './helpers/store';
 import Seeder from './helpers/seeder';
@@ -44,7 +45,7 @@ Segel.bookings = {};
  */
 Segel.bookings.add = function (bookings) {
   Process(bookings, function (booking) {
-    Store.addBooking(booking);
+    Store.addBooking(Cast.booking(booking));
   });
 
   return this;
@@ -58,7 +59,7 @@ Segel.bookings.add = function (bookings) {
  */
 Segel.bookings.update = function (bookings) {
   Process(bookings, function (booking) {
-    Store.updateBooking(booking);
+    Store.updateBooking(Cast.booking(booking));
   });
 
   return this;
@@ -72,7 +73,7 @@ Segel.bookings.update = function (bookings) {
  */
 Segel.bookings.remove = function (bookings) {
   Process(bookings, function (booking) {
-    Store.removeBooking(booking);
+    Store.removeBooking(Cast.booking(booking));
   });
 
   return this;
@@ -93,7 +94,7 @@ Segel.objects = {};
  */
 Segel.objects.add = function (objects) {
   Process(objects, function (object) {
-    Store.addObject(object);
+    Store.addObject(Cast.object(object));
   });
 
   return this;
@@ -107,7 +108,7 @@ Segel.objects.add = function (objects) {
  */
 Segel.objects.update = function (objects) {
   Process(objects, function (object) {
-    Store.updateObject(object);
+    Store.updateObject(Cast.object(object));
   });
 
   return this;
@@ -121,7 +122,7 @@ Segel.objects.update = function (objects) {
  */
 Segel.objects.remove = function (objects) {
   Process(objects, function (object) {
-    Store.removeObject(object);
+    Store.removeObject(Cast.object(object));
   });
 
   return this;
