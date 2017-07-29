@@ -1,7 +1,6 @@
 'use strict';
 
 // Components.
-import Events from './helpers/events';
 import Instance from './vue';
 import Process from './helpers/process';
 import Store from './helpers/store';
@@ -29,17 +28,6 @@ const Segel = function (selector) {
  * @type {Vue}
  */
 Segel.instance = Instance;
-
-// Republish events.
-Events.$on('bookings:add', function (data) {
-  Instance.$emit('bookings:add', data);
-  Store.addBooking(data);
-});
-
-Events.$on('bookings:update', function (data) {
-  Instance.$emit('bookings:update', data);
-  Store.updateBooking(data);
-});
 
 /**
  * Base for methods manipulating bookings in store.

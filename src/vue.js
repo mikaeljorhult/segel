@@ -5,6 +5,7 @@ import Vue from 'vue';
 
 // Components.
 import Main from './components/main.vue';
+import Events from './helpers/events';
 import Store from './helpers/store';
 
 /**
@@ -12,7 +13,7 @@ import Store from './helpers/store';
  *
  * @type {Vue}
  */
-const vueInstance = new Vue({
+const Instance = new Vue({
   template: '<segel-main v-bind:start="start" v-bind:end="end" v-bind:objects="objects" v-bind:bookings="bookings"></segel-main>',
 
   beforeMount: function () {
@@ -31,4 +32,15 @@ const vueInstance = new Vue({
   data: Store.state
 });
 
-export default vueInstance;
+// Republish events.
+Events.$on('bookings:add', function (data) {
+  Instance.$emit('bookings:add', data);
+  Store.addBooking(data);
+});
+
+Events.$on('bookings:update', function (data) {
+  Instance.$emit('bookings:update', data);
+  Store.updateBooking(data);
+});
+
+export default Instance;
