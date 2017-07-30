@@ -1,7 +1,7 @@
 'use strict';
 
 // Dependencies.
-import Availability from './availability';
+import Validation from './validation';
 
 // Create state object.
 const Store = {
@@ -24,7 +24,7 @@ const Store = {
   },
   addBooking: function (data) {
     // Check availability off requested object.
-    if (!Availability.isAvailable(this.state.bookings, data)) { return; }
+    if (!Validation.isAvailable(this.state.bookings, data)) { return; }
 
     // Assign temporary ID to booking.
     // TODO: Get the actual ID from user.
@@ -35,7 +35,7 @@ const Store = {
   },
   updateBooking: function (data) {
     // Check availability off requested object.
-    if (!Availability.isAvailable(this.state.bookings, data)) { return; }
+    if (!Validation.isAvailable(this.state.bookings, data)) { return; }
 
     // Retrieve the index of the stored copy of booking.
     let index = this.state.bookings.findIndex(function (element) {
