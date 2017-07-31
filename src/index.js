@@ -10,11 +10,12 @@ import Store from './helpers/store';
  * Constructor.
  * Takes a CSS selector to which it will insert the schedule,
  *
- * @param selector
+ * @param {string} selector
  * @constructor
  */
 const Segel = function (selector) {
   Instance.$mount(selector);
+  return Segel;
 };
 
 /**
@@ -74,6 +75,15 @@ Segel.bookings.remove = function (bookings) {
 };
 
 /**
+ * Return traversal to main Segel object.
+ *
+ * @returns {Segel}
+ */
+Segel.bookings.end = function () {
+  return Segel;
+};
+
+/**
  * Base for methods manipulating objects in store.
  *
  * @type object
@@ -120,6 +130,15 @@ Segel.objects.remove = function (objects) {
   });
 
   return this;
+};
+
+/**
+ * Return traversal to main Segel object.
+ *
+ * @returns {Segel}
+ */
+Segel.objects.end = function () {
+  return Segel;
 };
 
 export default Segel;
