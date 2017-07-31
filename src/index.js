@@ -5,12 +5,6 @@ import Instance from './vue';
 import Cast from './helpers/cast';
 import Process from './helpers/process';
 import Store from './helpers/store';
-import Seeder from './helpers/seeder';
-
-// Include test data if development build.
-if (process.env.NODE_ENV === 'development') {
-  Seeder.seed();
-}
 
 /**
  * Constructor.
