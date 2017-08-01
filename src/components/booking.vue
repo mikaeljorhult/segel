@@ -1,6 +1,6 @@
 <template>
     <li class="segel-booking"
-        v-draggable
+        v-draggable="isEditable"
         v-resizable
         v-bind:style="{ left: left + '%', width: width + '%' }"
     ></li>
@@ -29,6 +29,9 @@
     },
 
     computed: {
+      isEditable: function () {
+        return this.start > Math.floor(new Date().getTime() / 1000);
+      },
       duration: function () {
         return this.end - this.start;
       },

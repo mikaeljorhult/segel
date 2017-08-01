@@ -19,6 +19,7 @@ export default {
     window.addEventListener('resize', debounce(handleResize.bind(null, element, vnode), 150));
 
     interact(element).draggable({
+      enabled: binding.value === undefined ? true : binding.value,
       snap: {
         targets: Grid.create(
           vnode.context.$root.$el.clientWidth,
