@@ -20,6 +20,7 @@ export default {
     window.addEventListener('resize', debounce(handleResize.bind(null, element, vnode), 150));
 
     interact(element).resizable({
+      enabled: binding.value === undefined ? true : binding.value,
       snap: {
         targets: Grid.create(
           vnode.context.$root.$el.clientWidth,
@@ -77,7 +78,7 @@ export default {
       }
     });
   },
-  unbind: function (element, context, vnode) {
+  unbind: function (element, binding, vnode) {
     window.removeEventListener('resize', debounce(handleResize.bind(null, element, vnode), 150));
     interact(element).unset();
   }

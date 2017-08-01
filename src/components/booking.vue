@@ -1,7 +1,7 @@
 <template>
     <li class="segel-booking"
         v-draggable="isEditable"
-        v-resizable
+        v-resizable="isEditable"
         v-bind:style="{ left: left + '%', width: width + '%' }"
     ></li>
 </template>
