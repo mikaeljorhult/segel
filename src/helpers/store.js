@@ -46,7 +46,9 @@ const Store = {
     });
 
     // Replace booking with new data.
-    this.state.bookings.splice(index, 1, data);
+    if (index !== -1) {
+      this.state.bookings.splice(index, 1, data);
+    }
   },
   removeBooking: function (data) {
     // Retrieve the index of the stored copy of booking.
@@ -55,7 +57,9 @@ const Store = {
     });
 
     // Replace booking with new data.
-    this.state.bookings.splice(index, 1);
+    if (index !== -1) {
+      this.state.bookings.splice(index, 1);
+    }
   },
   addObject: function (data) {
     // Check that object with index don't already exist.
@@ -71,7 +75,9 @@ const Store = {
     });
 
     // Replace object with new data.
-    this.state.objects.splice(index, 1, data);
+    if (index !== -1) {
+      this.state.objects.splice(index, 1, data);
+    }
   },
   removeObject: function (data) {
     // Retrieve the index of the stored copy of object.
@@ -80,7 +86,9 @@ const Store = {
     });
 
     // Replace object with new data.
-    this.state.objects.splice(index, 1);
+    if (index !== -1) {
+      this.state.objects.splice(index, 1);
+    }
   }
 };
 
