@@ -18,5 +18,12 @@ export default {
         inRange(data.end, booking.start + 1, booking.end) ||
         inRange(booking.start, data.start, data.end);
     }).length === 0;
+  },
+
+  isUnique: function (array, data) {
+    // Check if object with index exists in array.
+    return array.findIndex(function (element) {
+      return element.id === data.id;
+    }) === -1;
   }
 };

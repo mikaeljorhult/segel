@@ -26,6 +26,9 @@ const Store = {
     // Check availability off requested object.
     if (!Validation.isAvailable(this.state.bookings, data)) { return; }
 
+    // Check that booking with index don't already exist.
+    if (!Validation.isUnique(this.state.bookings, data)) { return; }
+
     // Assign temporary ID to booking.
     // TODO: Get the actual ID from user.
     data.id = data.id || (Math.random() + 1).toString(36);
@@ -55,7 +58,10 @@ const Store = {
     this.state.bookings.splice(index, 1);
   },
   addObject: function (data) {
-    // Add booking to storage.
+    // Check that object with index don't already exist.
+    if (!Validation.isUnique(this.state.objects, data)) { return; }
+
+    // Add object to storage.
     this.state.objects.push(data);
   },
   updateObject: function (data) {
