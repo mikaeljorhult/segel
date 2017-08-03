@@ -23,11 +23,7 @@ const Store = {
     this.duration = end - start;
   },
   addBooking: function (data) {
-    // Check availability off requested object.
-    if (!Validation.isAvailable(this.state.bookings, data)) { return; }
-
-    // Check that booking with index don't already exist.
-    if (!Validation.isUnique(this.state.bookings, data)) { return; }
+    if (!Validation.multipleRules(['isAvailable', 'isUnique'], this.state.bookings, data)) { return; }
 
     // Assign temporary ID to booking.
     // TODO: Get the actual ID from user.
