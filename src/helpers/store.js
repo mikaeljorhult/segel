@@ -3,8 +3,6 @@
 // Dependencies.
 import Validation from './validation';
 
-let timer;
-
 // Create state object.
 const Store = {
   state: {
@@ -89,13 +87,13 @@ const Store = {
       this.state.objects.splice(index, 1);
     }
   },
-  setCurrentTime: function() {
+  setCurrentTime: function () {
     this.state.currentTime = Math.floor(new Date().getTime() / 1000);
   }
 };
 
 // Start timer that ticks every second.
-(function timer() {
+(function timer () {
   Store.setCurrentTime();
   setTimeout(timer, 1000);
 })();
