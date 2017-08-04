@@ -31,7 +31,7 @@
 
     computed: {
       isEditable: function () {
-        return this.start > Math.floor(new Date().getTime() / 1000);
+        return this.start > Store.state.currentTime;
       },
       duration: function () {
         return this.end - this.start;

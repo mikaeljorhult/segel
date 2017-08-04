@@ -58,8 +58,15 @@ export default {
       }
     });
   },
-  unbind: function (element, context, vnode) {
+  unbind: function (element, binding, vnode) {
     window.removeEventListener('resize', debounce(handleResize.bind(null, element, vnode), 150));
     interact(element).unset();
+  },
+  update: function (element, binding) {
+    // Only set status of draggable if it has changed.
+    if (binding.value !== binding.oldValue) {
+      // Enable/disable depending on passed in boolean. Always true if nothing was passed.
+      interact(element).draggable().enabled = binding.value === undefined ? true : binding.value;
+    }
   }
 };

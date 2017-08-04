@@ -3,6 +3,8 @@
 // Dependencies.
 import Validation from './validation';
 
+let timer;
+
 // Create state object.
 const Store = {
   state: {
@@ -11,7 +13,8 @@ const Store = {
     duration: 86400,
     steps: 48,
     objects: [],
-    bookings: []
+    bookings: [],
+    currentTime: Math.floor(new Date() / 1000)
   },
   changeTime: function (amount) {
     this.state.start = this.state.start + amount;
@@ -85,8 +88,17 @@ const Store = {
     if (index !== -1) {
       this.state.objects.splice(index, 1);
     }
+  },
+  setCurrentTime: function() {
+    this.state.currentTime = Math.floor(new Date().getTime() / 1000);
   }
 };
+
+// Start timer that ticks every second.
+(function timer() {
+  Store.setCurrentTime();
+  setTimeout(timer, 1000);
+})();
 
 // Return the instance.
 export default Store;
