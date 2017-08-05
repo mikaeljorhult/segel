@@ -6,7 +6,7 @@ import Vue from 'vue';
 // Components.
 import Main from './components/main.vue';
 import Events from './helpers/events';
-import Store from './helpers/store';
+import Store from './store/store';
 
 /**
  * Root element for Vue.

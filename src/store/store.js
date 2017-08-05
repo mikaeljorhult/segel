@@ -1,8 +1,8 @@
 'use strict';
 
 // Dependencies.
-import Events from './events';
-import Validation from './validation';
+import Events from '../helpers/events';
+import Validation from '../helpers/validation';
 
 // Create state object.
 const Store = {

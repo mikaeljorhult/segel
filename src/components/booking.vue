@@ -10,7 +10,7 @@
 <script>
   import Draggable from '../directives/draggable.js';
   import Resizable from '../directives/resizable.js';
-  import Store from '../helpers/store';
+  import Store from '../store/store';
 
   export default {
     props: [

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import Store from '../helpers/store.js';
+  import Store from '../store/store.js';
   import flatpickr from 'vue-flatpickr-component';
 
   export default {

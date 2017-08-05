@@ -4,7 +4,7 @@
 import Instance from './vue';
 import Cast from './helpers/cast';
 import Process from './helpers/process';
-import Store from './helpers/store';
+import Store from './store/store';
 
 /**
  * Constructor.
