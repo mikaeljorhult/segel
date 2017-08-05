@@ -43,4 +43,8 @@ Events.$on('bookings:update', function (data) {
   Store.updateBooking(data);
 });
 
+Events.$on('time:changed', function (start, end) {
+  Instance.$emit('time:changed', start, end);
+});
+
 export default Instance;

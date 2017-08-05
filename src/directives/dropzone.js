@@ -39,9 +39,9 @@ export default {
         element.classList.remove('droppable');
       }
     }).on('doubletap', function (event) {
-      var position = Math.round(event.offsetX / vnode.context.$root.$el.clientWidth * vnode.context.$root.duration);
-      var stepSize = vnode.context.$root.duration / vnode.context.$root.steps;
-      var start = Grid.round(position + vnode.context.$root.start, vnode.context.$root.duration, vnode.context.$root.steps);
+      let position = Math.round(event.offsetX / vnode.context.$root.$el.clientWidth * vnode.context.$root.duration);
+      let stepSize = vnode.context.$root.duration / vnode.context.$root.steps;
+      let start = Grid.round(position + vnode.context.$root.start, vnode.context.$root.duration, vnode.context.$root.steps);
 
       // Publish change event with values for created booking.
       Events.$emit('bookings:add', {

@@ -1,6 +1,7 @@
 'use strict';
 
 // Dependencies.
+import Events from './events';
 import Validation from './validation';
 
 // Create state object.
@@ -17,11 +18,17 @@ const Store = {
   changeTime: function (amount) {
     this.state.start = this.state.start + amount;
     this.state.end = this.state.end + amount;
+
+    // Emit event that time has changed.
+    Events.$emit('time:changed', this.state.start, this.state.end);
   },
   setTime: function (start, end) {
     this.state.start = start;
     this.state.end = end;
     this.duration = end - start;
+
+    // Emit event that time has changed.
+    Events.$emit('time:changed', this.state.start, this.state.end);
   },
   addBooking: function (data) {
     if (!Validation.multipleRules(['isAvailable', 'isUnique'], this.state.bookings, data)) { return; }

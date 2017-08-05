@@ -24,8 +24,13 @@
     },
 
     computed: {
-      date: function () {
-        return new Date(this.start * 1000).toISOString();
+      date: {
+        get: function () {
+          return new Date(this.start * 1000).toISOString();
+        },
+        set: function (value) {
+          // No need to do anything as new start property will be passed through after event.
+        }
       }
     },
 
