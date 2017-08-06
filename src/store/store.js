@@ -96,10 +96,10 @@ const Store = new Vuex.Store({
 });
 
 // Start timer that ticks every second.
-/* (function timer () {
-  Store.setCurrentTime();
+(function timer () {
+  Store.commit('setCurrentTime');
   setTimeout(timer, 1000);
-})(); */
+})();
 
 // Return the instance.
 export default Store;
