@@ -5,6 +5,9 @@ import Vuex from 'vuex';
 import Events from '../helpers/events';
 import Validation from '../helpers/validation';
 
+// Modules.
+import Objects from './modules/objects';
+
 // Create state object.
 const Store = new Vuex.Store({
   state: {
@@ -60,38 +63,12 @@ const Store = new Vuex.Store({
         state.bookings.splice(index, 1);
       }
     },
-    addObject: function (state, data) {
-      // Check that object with index don't already exist.
-      if (!Validation.isUnique(state.objects, data)) { return; }
-
-      // Add object to storage.
-      state.objects.push(data);
-    },
-    updateObject: function (state, data) {
-      // Retrieve the index of the stored copy of object.
-      let index = state.objects.findIndex(function (element) {
-        return element.id === data.id;
-      });
-
-      // Replace object with new data.
-      if (index !== -1) {
-        state.objects.splice(index, 1, data);
-      }
-    },
-    removeObject: function (state, data) {
-      // Retrieve the index of the stored copy of object.
-      let index = state.objects.findIndex(function (element) {
-        return element.id === data.id;
-      });
-
-      // Replace object with new data.
-      if (index !== -1) {
-        state.objects.splice(index, 1);
-      }
-    },
     setCurrentTime: function (state) {
       state.currentTime = Math.floor(new Date().getTime() / 1000);
     }
+  },
+  modules: {
+    objects: Objects
   }
 });
 

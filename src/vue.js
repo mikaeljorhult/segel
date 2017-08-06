@@ -33,7 +33,7 @@ const Instance = new Vue({
 
   computed: {
     objects: function () {
-      return this.$store.state.objects;
+      return this.$store.state.objects.all;
     },
     bookings: function () {
       return this.$store.state.bookings;

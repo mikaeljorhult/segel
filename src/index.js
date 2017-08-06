@@ -98,7 +98,7 @@ Segel.objects = {};
  */
 Segel.objects.add = function (objects) {
   Process(objects, function (object) {
-    Store.commit('addObject', Cast.object(object));
+    Store.commit('objects/add', Cast.object(object));
   });
 
   return this;
@@ -112,7 +112,7 @@ Segel.objects.add = function (objects) {
  */
 Segel.objects.update = function (objects) {
   Process(objects, function (object) {
-    Store.commit('updateObject', Cast.object(object));
+    Store.commit('objects/update', Cast.object(object));
   });
 
   return this;
@@ -126,7 +126,7 @@ Segel.objects.update = function (objects) {
  */
 Segel.objects.remove = function (objects) {
   Process(objects, function (object) {
-    Store.commit('removeObject', Cast.object(object));
+    Store.commit('objects/remove', Cast.object(object));
   });
 
   return this;
