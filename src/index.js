@@ -40,7 +40,7 @@ Segel.bookings = {};
  */
 Segel.bookings.add = function (bookings) {
   Process(bookings, function (booking) {
-    Store.addBooking(Cast.booking(booking));
+    Store.commit('addBooking', Cast.booking(booking));
   });
 
   return this;
@@ -54,7 +54,7 @@ Segel.bookings.add = function (bookings) {
  */
 Segel.bookings.update = function (bookings) {
   Process(bookings, function (booking) {
-    Store.updateBooking(Cast.booking(booking));
+    Store.commit('updateBooking', Cast.booking(booking));
   });
 
   return this;
@@ -68,7 +68,7 @@ Segel.bookings.update = function (bookings) {
  */
 Segel.bookings.remove = function (bookings) {
   Process(bookings, function (booking) {
-    Store.removeBooking(Cast.booking(booking));
+    Store.commit('removeBooking', Cast.booking(booking));
   });
 
   return this;
@@ -98,7 +98,7 @@ Segel.objects = {};
  */
 Segel.objects.add = function (objects) {
   Process(objects, function (object) {
-    Store.addObject(Cast.object(object));
+    Store.commit('addObject', Cast.object(object));
   });
 
   return this;
@@ -112,7 +112,7 @@ Segel.objects.add = function (objects) {
  */
 Segel.objects.update = function (objects) {
   Process(objects, function (object) {
-    Store.updateObject(Cast.object(object));
+    Store.commit('updateObject', Cast.object(object));
   });
 
   return this;
@@ -126,7 +126,7 @@ Segel.objects.update = function (objects) {
  */
 Segel.objects.remove = function (objects) {
   Process(objects, function (object) {
-    Store.removeObject(Cast.object(object));
+    Store.commit('removeObject', Cast.object(object));
   });
 
   return this;

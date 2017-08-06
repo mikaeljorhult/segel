@@ -14,7 +14,7 @@ import Store from './store/store';
  * @type {Vue}
  */
 const Instance = new Vue({
-  template: '<segel-main v-bind:start="start" v-bind:end="end" v-bind:objects="objects" v-bind:bookings="bookings"></segel-main>',
+  template: '<segel-main v-bind:objects="objects" v-bind:bookings="bookings"></segel-main>',
 
   beforeMount: function () {
     // Get attributes from root element if present.
@@ -29,20 +29,19 @@ const Instance = new Vue({
     'segel-main': Main
   },
 
-  store: Store
+  store: Store,
+
+  computed: {
+    objects: function () {
+      return this.$store.state.objects;
+    },
+    bookings: function () {
+      return this.$store.state.bookings;
+    }
+  }
 });
 
 // Republish events.
-Events.$on('bookings:add', function (data) {
-  Instance.$emit('bookings:add', data);
-  Store.addBooking(data);
-});
-
-Events.$on('bookings:update', function (data) {
-  Instance.$emit('bookings:update', data);
-  Store.updateBooking(data);
-});
-
 Events.$on('time:changed', function (start, end) {
   Instance.$emit('time:changed', start, end);
 });

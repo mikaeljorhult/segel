@@ -2,7 +2,6 @@
 
 // Dependencies.
 import interact from 'interact.js';
-import Events from '../helpers/events.js';
 import Grid from '../helpers/grid.js';
 
 export default {
@@ -16,19 +15,19 @@ export default {
       },
       ondrop: function (event) {
         // Convert moved pixels to change in timestamp.
-        var change = Math.round(event.dragEvent.dx / vnode.context.$root.$el.clientWidth * vnode.context.$root.duration);
+        var change = Math.round(event.dragEvent.dx / vnode.context.$root.$el.clientWidth * vnode.context.$store.state.duration);
 
         // Create copy if ALT key is pressed, otherwise edit existing.
         if (event.dragEvent.altKey) {
-          // Add new booking.
-          Events.$emit('bookings:add', {
+          // Add new booking to store.
+          vnode.context.$store.commit('addBooking', {
             object: vnode.context.id,
             start: event.relatedTarget.__vue__.start + change,
             end: event.relatedTarget.__vue__.end + change
           });
         } else {
-          // Change existing booking.
-          Events.$emit('bookings:update', {
+          // Commit changes of existing booking to store.
+          vnode.context.$store.commit('updateBooking', {
             id: event.relatedTarget.__vue__.id,
             object: vnode.context.id,
             start: event.relatedTarget.__vue__.start + change,
@@ -39,12 +38,12 @@ export default {
         element.classList.remove('droppable');
       }
     }).on('doubletap', function (event) {
-      let position = Math.round(event.offsetX / vnode.context.$root.$el.clientWidth * vnode.context.$root.duration);
-      let stepSize = vnode.context.$root.duration / vnode.context.$root.steps;
-      let start = Grid.round(position + vnode.context.$root.start, vnode.context.$root.duration, vnode.context.$root.steps);
+      let position = Math.round(event.offsetX / vnode.context.$root.$el.clientWidth * vnode.context.$store.state.duration);
+      let stepSize = vnode.context.$store.state.duration / vnode.context.$store.state.steps;
+      let start = Grid.round(position + vnode.context.$store.state.start, vnode.context.$store.state.duration, vnode.context.$store.state.steps);
 
-      // Publish change event with values for created booking.
-      Events.$emit('bookings:add', {
+      // Add new booking to store.
+      vnode.context.$store.commit('addBooking', {
         object: vnode.context.id,
         start: start,
         end: start + stepSize * 2

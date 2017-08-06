@@ -16,8 +16,6 @@
 
   export default {
     props: [
-      'start',
-      'end',
       'objects',
       'bookings'
     ],

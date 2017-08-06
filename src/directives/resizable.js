@@ -4,14 +4,13 @@
 import interact from 'interact.js';
 import debounce from 'lodash/debounce';
 import Grid from '../helpers/grid';
-import Events from '../helpers/events.js';
 
 const handleResize = function (element, vnode) {
   // Set new grid based on current widths.
   interact(element).resizable().snap.targets = Grid.create(
     vnode.context.$root.$el.clientWidth,
     35,
-    vnode.context.$root.steps
+    vnode.context.$store.state.steps
   );
 };
 
@@ -25,7 +24,7 @@ export default {
         targets: Grid.create(
           vnode.context.$root.$el.clientWidth,
           35,
-          vnode.context.$root.steps
+          vnode.context.$store.state.steps
         ),
         offset: 'startCoords'
       },
@@ -58,15 +57,15 @@ export default {
         vnode.context.resizeY = parseFloat(y);
       },
       onend: function () {
-        var start = Math.round((element.offsetLeft + vnode.context.resizeX) / vnode.context.$root.$el.clientWidth * vnode.context.$root.duration);
-        var end = Math.round(element.getBoundingClientRect().width / vnode.context.$root.$el.clientWidth * vnode.context.$root.duration);
+        var start = Math.round((element.offsetLeft + vnode.context.resizeX) / vnode.context.$root.$el.clientWidth * vnode.context.$store.state.duration);
+        var end = Math.round(element.getBoundingClientRect().width / vnode.context.$root.$el.clientWidth * vnode.context.$store.state.duration);
 
-        // Publish change event with values for booking.
-        Events.$emit('bookings:update', {
+        // Commit changes to store.
+        vnode.context.$store.commit('updateBooking', {
           id: vnode.context.id,
           object: vnode.context.object,
-          start: Grid.round(vnode.context.$root.start + start, vnode.context.$root.duration, vnode.context.$root.steps),
-          end: Grid.round(vnode.context.$root.start + start + end, vnode.context.$root.duration, vnode.context.$root.steps)
+          start: Grid.round(vnode.context.$store.state.start + start, vnode.context.$store.state.duration, vnode.context.$store.state.steps),
+          end: Grid.round(vnode.context.$store.state.start + start + end, vnode.context.$store.state.duration, vnode.context.$store.state.steps)
         });
 
         // Reset booking styles.

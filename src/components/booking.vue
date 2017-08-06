@@ -10,7 +10,6 @@
 <script>
   import Draggable from '../directives/draggable.js';
   import Resizable from '../directives/resizable.js';
-  import Store from '../store/store';
 
   export default {
     props: [
@@ -31,16 +30,16 @@
 
     computed: {
       isEditable: function () {
-        return this.start > Store.state.currentTime;
+        return this.start > this.$store.state.currentTime;
       },
       duration: function () {
         return this.end - this.start;
       },
       left: function () {
-        return (this.start - Store.state.start) / Store.state.duration * 100;
+        return (this.start - this.$store.state.start) / this.$store.state.duration * 100;
       },
       width: function () {
-        return this.duration / Store.state.duration * 100;
+        return this.duration / this.$store.state.duration * 100;
       }
     }
   };
