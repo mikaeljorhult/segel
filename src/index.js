@@ -40,7 +40,7 @@ Segel.bookings = {};
  */
 Segel.bookings.add = function (bookings) {
   Process(bookings, function (booking) {
-    Store.commit('addBooking', Cast.booking(booking));
+    Store.commit('bookings/add', Cast.booking(booking));
   });
 
   return this;
@@ -54,7 +54,7 @@ Segel.bookings.add = function (bookings) {
  */
 Segel.bookings.update = function (bookings) {
   Process(bookings, function (booking) {
-    Store.commit('updateBooking', Cast.booking(booking));
+    Store.commit('bookings/update', Cast.booking(booking));
   });
 
   return this;
@@ -68,7 +68,7 @@ Segel.bookings.update = function (bookings) {
  */
 Segel.bookings.remove = function (bookings) {
   Process(bookings, function (booking) {
-    Store.commit('removeBooking', Cast.booking(booking));
+    Store.commit('bookings/remove', Cast.booking(booking));
   });
 
   return this;

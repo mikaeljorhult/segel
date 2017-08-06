@@ -36,7 +36,7 @@ const Instance = new Vue({
       return this.$store.state.objects.all;
     },
     bookings: function () {
-      return this.$store.state.bookings;
+      return this.$store.state.bookings.all;
     }
   }
 });

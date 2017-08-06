@@ -3,10 +3,10 @@
 // Dependencies.
 import Vuex from 'vuex';
 import Events from '../helpers/events';
-import Validation from '../helpers/validation';
 
 // Modules.
 import Objects from './modules/objects';
+import Bookings from './modules/bookings';
 
 // Create state object.
 const Store = new Vuex.Store({
@@ -28,46 +28,12 @@ const Store = new Vuex.Store({
       // Emit event that time has changed.
       Events.$emit('time:changed', state.start, state.end);
     },
-    addBooking: function (state, data) {
-      if (!Validation.multipleRules(['isAvailable', 'isUnique'], state.bookings, data)) { return; }
-
-      // Assign temporary ID to booking.
-      // TODO: Get the actual ID from user.
-      data.id = data.id || (Math.random() + 1).toString(36);
-
-      // Add booking to storage.
-      state.bookings.push(data);
-    },
-    updateBooking: function (state, data) {
-      // Check availability off requested object.
-      if (!Validation.isAvailable(state.bookings, data)) { return; }
-
-      // Retrieve the index of the stored copy of booking.
-      let index = state.bookings.findIndex(function (element) {
-        return element.id === data.id;
-      });
-
-      // Replace booking with new data.
-      if (index !== -1) {
-        state.bookings.splice(index, 1, data);
-      }
-    },
-    removeBooking: function (state, data) {
-      // Retrieve the index of the stored copy of booking.
-      let index = state.bookings.findIndex(function (element) {
-        return element.id === data.id;
-      });
-
-      // Replace booking with new data.
-      if (index !== -1) {
-        state.bookings.splice(index, 1);
-      }
-    },
     setCurrentTime: function (state) {
       state.currentTime = Math.floor(new Date().getTime() / 1000);
     }
   },
   modules: {
+    bookings: Bookings,
     objects: Objects
   }
 });
