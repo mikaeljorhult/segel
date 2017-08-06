@@ -7,29 +7,29 @@
 </template>
 
 <script>
-  import Store from '../store/store.js';
   import flatpickr from 'vue-flatpickr-component';
 
   export default {
-    props: [
-      'start'
-    ],
-
     data: function () {
       return {
-        config: {
-          onChange: this.dateChange
-        }
+        config: {}
       };
     },
 
     computed: {
       date: {
         get: function () {
-          return new Date(this.start * 1000).toISOString();
+          // Format start date to YYYY-MM-DD.
+          return new Date(this.$store.state.start * 1000).toISOString();
         },
         set: function (value) {
-          // No need to do anything as new start property will be passed through after event.
+          // Parse YYYY-MM-DD to Date object.
+          let dateObject = new Date(value);
+
+          this.$store.commit('setTime', {
+            start: dateObject.setHours(0, 0, 0, 0) / 1000,
+            end: dateObject.setHours(24, 0, 0, 0) / 1000
+          });
         }
       }
     },
@@ -40,20 +40,17 @@
 
     methods: {
       decrease: function () {
-        Store.changeTime(Store.state.duration * -1);
+        this.$store.commit('setTime', {
+          start: this.$store.state.start + (this.$store.state.duration * -1),
+          end: this.$store.state.end + (this.$store.state.duration * -1)
+        });
       },
 
       increase: function () {
-        Store.changeTime(Store.state.duration);
-      },
-
-      dateChange: function (event) {
-        let date = event[0];
-
-        Store.setTime(
-          date.setHours(0, 0, 0, 0) / 1000,
-          date.setHours(24, 0, 0, 0) / 1000
-        );
+        this.$store.commit('setTime', {
+          start: this.$store.state.start + this.$store.state.duration,
+          end: this.$store.state.end + this.$store.state.duration
+        });
       }
     }
   };

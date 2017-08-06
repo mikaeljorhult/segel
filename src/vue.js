@@ -29,7 +29,7 @@ const Instance = new Vue({
     'segel-main': Main
   },
 
-  data: Store.state
+  store: Store
 });
 
 // Republish events.

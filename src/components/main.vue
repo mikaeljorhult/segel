@@ -1,8 +1,6 @@
 <template>
     <section class="segel">
-        <segel-navigation
-                v-bind:start="start"
-        ></segel-navigation>
+        <segel-navigation></segel-navigation>
         <segel-ruler></segel-ruler>
         <segel-objects
                 v-bind:objects="objects"
