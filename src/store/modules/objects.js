@@ -16,6 +16,19 @@ const Objects = {
     all: []
   },
 
+  getters: {
+    all: function (state) {
+      return state.all;
+    },
+    get: function (state) {
+      return function (id) {
+        return state.all.find(function (object) {
+          return object.id === id;
+        });
+      };
+    }
+  },
+
   mutations: {
     add: function (state, data) {
       // Check that object with index don't already exist.

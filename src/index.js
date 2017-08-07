@@ -34,6 +34,25 @@ Segel.instance = Instance;
 Segel.bookings = {};
 
 /**
+ * Get all stored bookings.
+ *
+ * @returns {Array} - All stored bookings.
+ */
+Segel.bookings.all = function () {
+  return Store.getter['bookings/all'];
+};
+
+/**
+ * Get a store booking based on ID.
+ *
+ * @param id - ID of requested booking.
+ * @returns {Object|null} - Booking if found, otherwise null.
+ */
+Segel.bookings.get = function (id) {
+  return Store.getters['bookings/get'](id) || null;
+};
+
+/**
  * Add one or more bookings to the store.
  *
  * @param {Object|Object[]} bookings - Bookings to add.
@@ -90,6 +109,25 @@ Segel.bookings.end = function () {
  * @type object
  */
 Segel.objects = {};
+
+/**
+ * Get all stored objects.
+ *
+ * @returns {Array} - All stored objects.
+ */
+Segel.objects.all = function () {
+  return Store.getter['objects/all'];
+};
+
+/**
+ * Get a store object based on ID.
+ *
+ * @param id - ID of requested object.
+ * @returns {Object|null} - Object if found, otherwise null.
+ */
+Segel.objects.get = function (id) {
+  return Store.getters['objects/get'](id) || null;
+};
 
 /**
  * Add one or more objects to the store.

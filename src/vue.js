@@ -23,10 +23,10 @@ const Instance = new Vue({
 
   computed: {
     objects: function () {
-      return this.$store.state.objects.all;
+      return this.$store.getters['objects/all'];
     },
     bookings: function () {
-      return this.$store.state.bookings.all;
+      return this.$store.getters['bookings/all'];
     }
   }
 });

@@ -16,6 +16,19 @@ const Bookings = {
     all: []
   },
 
+  getters: {
+    all: function (state) {
+      return state.all;
+    },
+    get: function (state) {
+      return function (id) {
+        return state.all.find(function (booking) {
+          return booking.id === id;
+        });
+      };
+    }
+  },
+
   mutations: {
     add: function (state, data) {
       if (!Validation.multipleRules(['isAvailable', 'isUnique'], state.all, data)) { return; }
