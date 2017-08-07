@@ -5,7 +5,6 @@ import Vue from 'vue';
 
 // Components.
 import Main from './components/main.vue';
-import Events from './helpers/events';
 import Store from './store/store';
 
 /**
@@ -39,11 +38,6 @@ const Instance = new Vue({
       return this.$store.state.bookings.all;
     }
   }
-});
-
-// Republish events.
-Events.$on('time:changed', function (start, end) {
-  Instance.$emit('time:changed', start, end);
 });
 
 export default Instance;

@@ -3,6 +3,7 @@
 // Components.
 import Instance from './vue';
 import Cast from './helpers/cast';
+import Events from './helpers/events';
 import Process from './helpers/process';
 import Store from './store/store';
 
@@ -138,6 +139,32 @@ Segel.objects.remove = function (objects) {
  * @returns {Segel}
  */
 Segel.objects.end = function () {
+  return Segel;
+};
+
+/**
+ * Assign callback handler for events.
+ *
+ * @param {string|string[]} event - Event to subscribe to.
+ * @param {Function} callback - Function to run when event is broadcast.
+ * @returns {Segel}
+ */
+Segel.on = function (event, callback) {
+  Events.$on(event, callback);
+
+  return Segel;
+};
+
+/**
+ * Remove an assigned callback event handler.
+ *
+ * @param {string|string[]} event - Event to unsubscribe to.
+ * @param {Function} callback - Function to remove.
+ * @returns {Segel}
+ */
+Segel.off = function (event, callback) {
+  Events.$off(event, callback);
+
   return Segel;
 };
 

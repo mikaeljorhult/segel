@@ -1,6 +1,7 @@
 'use strict';
 
 // Dependencies.
+import Events from '../../helpers/events';
 import Validation from '../../helpers/validation';
 
 /**
@@ -22,6 +23,9 @@ const Objects = {
 
       // Add object to storage.
       state.all.push(data);
+
+      // Emit event with the added object.
+      Events.$emit('objects:added', data);
     },
     update: function (state, data) {
       // Retrieve the index of the stored copy of object.
@@ -32,6 +36,9 @@ const Objects = {
       // Replace object with new data.
       if (index !== -1) {
         state.all.splice(index, 1, data);
+
+        // Emit event with the updated object.
+        Events.$emit('objects:updated', data);
       }
     },
     remove: function (state, data) {
@@ -43,6 +50,9 @@ const Objects = {
       // Replace object with new data.
       if (index !== -1) {
         state.all.splice(index, 1);
+
+        // Emit event with the removed object.
+        Events.$emit('objects:removed', data);
       }
     }
   }

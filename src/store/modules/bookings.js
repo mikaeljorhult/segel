@@ -1,6 +1,7 @@
 'use strict';
 
 // Dependencies.
+import Events from '../../helpers/events';
 import Validation from '../../helpers/validation';
 
 /**
@@ -25,6 +26,9 @@ const Bookings = {
 
       // Add booking to storage.
       state.all.push(data);
+
+      // Emit event with the added booking.
+      Events.$emit('bookings:added', data);
     },
     update: function (state, data) {
       // Check availability off requested object.
@@ -38,6 +42,9 @@ const Bookings = {
       // Replace booking with new data.
       if (index !== -1) {
         state.all.splice(index, 1, data);
+
+        // Emit event with the updated booking.
+        Events.$emit('bookings:updated', data);
       }
     },
     remove: function (state, data) {
@@ -49,6 +56,9 @@ const Bookings = {
       // Replace booking with new data.
       if (index !== -1) {
         state.all.splice(index, 1);
+
+        // Emit event with the removed booking.
+        Events.$emit('bookings:removed', data);
       }
     }
   }
