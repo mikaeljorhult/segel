@@ -5,8 +5,8 @@ import Vuex from 'vuex';
 import Events from '../helpers/events';
 
 // Modules.
-import Objects from './modules/objects';
 import Bookings from './modules/bookings';
+import Objects from './modules/objects';
 
 // Create state object.
 const Store = new Vuex.Store({
@@ -15,8 +15,6 @@ const Store = new Vuex.Store({
     end: Math.floor(new Date().setHours(24, 0, 0, 0) / 1000),
     duration: 86400,
     steps: 48,
-    objects: [],
-    bookings: [],
     currentTime: Math.floor(new Date() / 1000)
   },
   mutations: {
