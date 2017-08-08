@@ -37,10 +37,10 @@
         return this.end - this.start;
       },
       left: function () {
-        return (this.start - this.$store.state.start) / this.$store.state.duration * 100;
+        return (this.start - this.$store.state.start) / this.$store.getters['duration'] * 100;
       },
       width: function () {
-        return this.duration / this.$store.state.duration * 100;
+        return this.duration / this.$store.getters['duration'] * 100;
       }
     }
   };

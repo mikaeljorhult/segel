@@ -14,15 +14,20 @@ const Store = new Vuex.Store({
   state: {
     start: Math.floor(new Date().setHours(0, 0, 0, 0) / 1000),
     end: Math.floor(new Date().setHours(24, 0, 0, 0) / 1000),
-    duration: 86400,
     steps: 48,
     currentTime: Math.floor(new Date() / 1000)
   },
+
+  getters: {
+    duration: function (state) {
+      return state.end - state.start;
+    }
+  },
+
   mutations: {
     setTime: function (state, timestamps) {
       state.start = timestamps.start;
       state.end = timestamps.end;
-      state.duration = timestamps.end - timestamps.start;
 
       // Emit event that time has changed.
       Events.$emit('time:changed', state.start, state.end);
@@ -31,6 +36,7 @@ const Store = new Vuex.Store({
       state.currentTime = Math.floor(new Date().getTime() / 1000);
     }
   },
+
   modules: {
     config: Config,
     bookings: Bookings,

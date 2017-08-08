@@ -15,19 +15,19 @@ export default {
       },
       ondrop: function (event) {
         // Convert moved pixels to change in timestamp.
-        var change = Math.round(event.dragEvent.dx / vnode.context.$root.$el.clientWidth * vnode.context.$store.state.duration);
+        var change = Math.round(event.dragEvent.dx / vnode.context.$root.$el.clientWidth * vnode.context.$store.getters['duration']);
 
         // Create copy if ALT key is pressed, otherwise edit existing.
         if (event.dragEvent.altKey) {
           // Add new booking to store.
-          vnode.context.$store.commit('addBooking', {
+          vnode.context.$store.commit('bookings/add', {
             object: vnode.context.id,
             start: event.relatedTarget.__vue__.start + change,
             end: event.relatedTarget.__vue__.end + change
           });
         } else {
           // Commit changes of existing booking to store.
-          vnode.context.$store.commit('updateBooking', {
+          vnode.context.$store.commit('bookings/update', {
             id: event.relatedTarget.__vue__.id,
             object: vnode.context.id,
             start: event.relatedTarget.__vue__.start + change,
@@ -38,12 +38,12 @@ export default {
         element.classList.remove('droppable');
       }
     }).on('doubletap', function (event) {
-      let position = Math.round(event.offsetX / vnode.context.$root.$el.clientWidth * vnode.context.$store.state.duration);
-      let stepSize = vnode.context.$store.state.duration / vnode.context.$store.state.steps;
-      let start = Grid.round(position + vnode.context.$store.state.start, vnode.context.$store.state.duration, vnode.context.$store.state.steps);
+      let position = Math.round(event.offsetX / vnode.context.$root.$el.clientWidth * vnode.context.$store.getters['duration']);
+      let stepSize = vnode.context.$store.getters['duration'] / vnode.context.$store.state.steps;
+      let start = Grid.round(position + vnode.context.$store.state.start, vnode.context.$store.getters['duration'], vnode.context.$store.state.steps);
 
       // Add new booking to store.
-      vnode.context.$store.commit('addBooking', {
+      vnode.context.$store.commit('bookings/add', {
         object: vnode.context.id,
         start: start,
         end: start + stepSize * 2

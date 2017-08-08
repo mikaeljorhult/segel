@@ -41,15 +41,15 @@
     methods: {
       decrease: function () {
         this.$store.commit('setTime', {
-          start: this.$store.state.start + (this.$store.state.duration * -1),
-          end: this.$store.state.end + (this.$store.state.duration * -1)
+          start: this.$store.state.start + (this.$store.getters['duration'] * -1),
+          end: this.$store.state.end + (this.$store.getters['duration'] * -1)
         });
       },
 
       increase: function () {
         this.$store.commit('setTime', {
-          start: this.$store.state.start + this.$store.state.duration,
-          end: this.$store.state.end + this.$store.state.duration
+          start: this.$store.state.start + this.$store.getters['duration'],
+          end: this.$store.state.end + this.$store.getters['duration']
         });
       }
     }

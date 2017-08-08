@@ -57,15 +57,15 @@ export default {
         vnode.context.resizeY = parseFloat(y);
       },
       onend: function () {
-        var start = Math.round((element.offsetLeft + vnode.context.resizeX) / vnode.context.$root.$el.clientWidth * vnode.context.$store.state.duration);
-        var end = Math.round(element.getBoundingClientRect().width / vnode.context.$root.$el.clientWidth * vnode.context.$store.state.duration);
+        var start = Math.round((element.offsetLeft + vnode.context.resizeX) / vnode.context.$root.$el.clientWidth * vnode.context.$store.getters['duration']);
+        var end = Math.round(element.getBoundingClientRect().width / vnode.context.$root.$el.clientWidth * vnode.context.$store.getters['duration']);
 
         // Commit changes to store.
-        vnode.context.$store.commit('updateBooking', {
+        vnode.context.$store.commit('bookings/update', {
           id: vnode.context.id,
           object: vnode.context.object,
-          start: Grid.round(vnode.context.$store.state.start + start, vnode.context.$store.state.duration, vnode.context.$store.state.steps),
-          end: Grid.round(vnode.context.$store.state.start + start + end, vnode.context.$store.state.duration, vnode.context.$store.state.steps)
+          start: Grid.round(vnode.context.$store.state.start + start, vnode.context.$store.getters['duration'], vnode.context.$store.state.steps),
+          end: Grid.round(vnode.context.$store.state.start + start + end, vnode.context.$store.getters['duration'], vnode.context.$store.state.steps)
         });
 
         // Reset booking styles.
