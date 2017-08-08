@@ -9,13 +9,19 @@ import Store from './store/store';
 
 /**
  * Constructor.
- * Takes a CSS selector to which it will insert the schedule,
  *
- * @param {string} selector
+ * @param {string} selector - CSS selector to which it will insert the schedule.
+ * @param {Object} [config] - Configuration to use.
  * @constructor
  */
-const Segel = function (selector) {
+const Segel = function (selector, config) {
+  if (typeof config === 'object') {
+    Store.commit('config/set', config);
+  }
+
+  // Mount the Vue instance to document.
   Instance.$mount(selector);
+
   return Segel;
 };
 

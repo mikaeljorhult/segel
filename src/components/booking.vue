@@ -30,7 +30,8 @@
 
     computed: {
       isEditable: function () {
-        return this.start > this.$store.state.currentTime;
+        return this.$store.getters['config/editable'] &&
+          this.start > this.$store.state.currentTime;
       },
       duration: function () {
         return this.end - this.start;

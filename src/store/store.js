@@ -5,6 +5,7 @@ import Vuex from 'vuex';
 import Events from '../helpers/events';
 
 // Modules.
+import Config from './modules/config';
 import Bookings from './modules/bookings';
 import Objects from './modules/objects';
 
@@ -31,6 +32,7 @@ const Store = new Vuex.Store({
     }
   },
   modules: {
+    config: Config,
     bookings: Bookings,
     objects: Objects
   }
