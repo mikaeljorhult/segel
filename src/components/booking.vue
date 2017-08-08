@@ -1,5 +1,6 @@
 <template>
     <li
+        v-if="isInView"
         v-draggable="isEditable"
         v-resizable="isEditable"
         v-bind:class="{'segel-booking': true, editable: isEditable}"
@@ -8,6 +9,7 @@
 </template>
 
 <script>
+  import inRange from 'lodash/inRange';
   import Draggable from '../directives/draggable.js';
   import Resizable from '../directives/resizable.js';
 
@@ -32,6 +34,12 @@
       isEditable: function () {
         return this.$store.getters['config/editable'] &&
           this.start > this.$store.state.currentTime;
+      },
+      isInView: function () {
+        return inRange(this.start, this.$store.state.start, this.$store.state.end) ||
+          inRange(this.end, this.$store.state.start, this.$store.state.end) ||
+          (this.start < this.$store.state.start && this.end > this.$store.state.start) ||
+          (this.end < this.$store.state.end && this.end > this.$store.state.end);
       },
       duration: function () {
         return this.end - this.start;
