@@ -19,6 +19,8 @@
 
 .segel-container {
   position: relative;
+  border: 2px solid #f0f0f0;
+  border-width: 2px 0;
 }
 
 .segel-indicator {
@@ -33,8 +35,6 @@
 }
 
 .segel-ruler {
-  background-color: #e6e6e6;
-
   ul {
     display: flex;
     justify-content: space-between;
@@ -44,32 +44,12 @@
   li {
     flex: 1;
     position: relative;
-    padding: .25rem 0 1.5rem 0;
+    padding: .5rem 0 .6rem .5rem;
+    background-color: #f3f3f3;
   }
 
-  li::before,
-  li::after {
-    content: '';
-    display: block;
-    width: 1px;
-    height: 1rem;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-color: #000;
-  }
-
-  li::after {
-    height: .66rem;
-    left: 50%;
-    margin-left: -1px;
-  }
-
-  span {
-    display: block;
-    width: 100%;
-    margin-left: -50%;
-    text-align: center;
+  li:nth-child(even) {
+    background-color: #f8f8f8;
   }
 }
 
