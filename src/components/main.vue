@@ -2,6 +2,10 @@
     <section class="segel">
         <segel-navigation></segel-navigation>
         <div class="segel-container">
+            <ul class="segel-grid">
+                <li v-for="n in 24">&nbsp;</li>
+            </ul>
+
             <segel-indicator></segel-indicator>
             <segel-ruler></segel-ruler>
             <segel-objects

@@ -50,6 +50,36 @@
 
   li:nth-child(even) {
     background-color: #f8f8f8;
+
+    span {
+      display: none;
+    }
+  }
+
+  // TODO: Base this on container width.
+  @media (min-width: 701px) {
+    li:nth-child(even) span {
+      display: inline;
+    }
+  }
+}
+
+.segel-grid {
+  display: flex;
+  position: absolute;
+  top: 2rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+
+  li {
+    flex: 1;
+    background-color: rgba(0, 0, 0, .025);
+  }
+
+  li:nth-child(even) {
+    background-color: rgba(0, 0, 0, .01);
   }
 }
 
