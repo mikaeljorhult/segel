@@ -1,16 +1,22 @@
 'use strict';
 
 // Dependencies.
+import Vue from 'vue';
 import Vuex from 'vuex';
 import Events from '../helpers/events';
 
 // Modules.
-import Config from './modules/config';
-import Bookings from './modules/bookings';
-import Objects from './modules/objects';
+import SegelConfig from './modules/config';
+import SegelBookings from './modules/bookings';
+import SegelObjects from './modules/objects';
+
+// Install Vuex if it is not done automatically.
+if (window.Vue === undefined) {
+  Vue.use(Vuex);
+}
 
 // Create state object.
-const Store = new Vuex.Store({
+const SegelStore = new Vuex.Store({
   state: {
     start: Math.floor(new Date().setHours(0, 0, 0, 0) / 1000),
     end: Math.floor(new Date().setHours(24, 0, 0, 0) / 1000),
@@ -38,17 +44,17 @@ const Store = new Vuex.Store({
   },
 
   modules: {
-    config: Config,
-    bookings: Bookings,
-    objects: Objects
+    config: SegelConfig,
+    bookings: SegelBookings,
+    objects: SegelObjects
   }
 });
 
 // Start timer that ticks every second.
 (function timer () {
-  Store.commit('setCurrentTime');
+  SegelStore.commit('setCurrentTime');
   setTimeout(timer, 1000);
 })();
 
 // Return the instance.
-export default Store;
+export default SegelStore;

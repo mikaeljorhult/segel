@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import Booking from './booking.vue';
+  import SegelBooking from './booking.vue';
   import Dropzone from '../directives/dropzone.js';
 
   export default {
@@ -39,7 +39,7 @@
     },
 
     components: {
-      'segel-booking': Booking
+      'segel-booking': SegelBooking
     },
 
     methods: {

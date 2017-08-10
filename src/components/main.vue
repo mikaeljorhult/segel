@@ -17,10 +17,10 @@
 </template>
 
 <script>
-  import Navigation from './navigation.vue';
-  import Indicator from './indicator.vue';
-  import Ruler from './ruler.vue';
-  import Objects from './objects.vue';
+  import SegelNavigation from './navigation.vue';
+  import SegelIndicator from './indicator.vue';
+  import SegelRuler from './ruler.vue';
+  import SegelObjects from './objects.vue';
 
   export default {
     props: [
@@ -33,10 +33,10 @@
     },
 
     components: {
-      'segel-navigation': Navigation,
-      'segel-indicator': Indicator,
-      'segel-ruler': Ruler,
-      'segel-objects': Objects
+      'segel-navigation': SegelNavigation,
+      'segel-indicator': SegelIndicator,
+      'segel-ruler': SegelRuler,
+      'segel-objects': SegelObjects
     }
   };
 </script>

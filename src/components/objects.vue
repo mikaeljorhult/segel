@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import Object from './object.vue';
+  import SegelObject from './object.vue';
 
   export default {
     props: [
@@ -24,7 +24,7 @@
     },
 
     components: {
-      'segel-object': Object
+      'segel-object': SegelObject
     },
 
     methods: {
