@@ -32,5 +32,37 @@ Also available for use in browser through [unpkg](https://unpkg.com):
 </body>
 ```
 
+## Usage
+Basic usage:
+```javascript
+Segel('#segel');
+```
+
+The constructor also takes an optional configuration to disable the possibility for the user to edit bookings.
+```javascript
+Segel('#segel', {
+  editable: false
+});
+```
+
+Add objects and bookings:
+```javascript
+let segel = Segel('#segel');
+
+// Add an new object.
+segel.objects.add({
+  id: 1,
+  name: 'Conference Room'
+});
+
+// Create a new booking of the object on current date between 10 am and 11 am.
+segel.bookings.add({
+  id: 1,
+  object: 1,
+  start: Math.floor(new Date().setHours(10, 0, 0, 0) / 1000),
+  end: Math.floor(new Date().setHours(11, 0, 0, 0) / 1000)
+});
+```
+
 ## License
 Segel is released under the [MIT license](http://mikaeljorhult.mit-license.org).
