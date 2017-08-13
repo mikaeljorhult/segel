@@ -3,6 +3,7 @@
 // Dependencies.
 import Vue from 'vue';
 import Vuex from 'vuex';
+import Cast from '../helpers/cast';
 import Events from '../helpers/events';
 
 // Modules.
@@ -18,10 +19,10 @@ if (window.Vue === undefined) {
 // Create state object.
 const SegelStore = new Vuex.Store({
   state: {
-    start: Math.floor(new Date().setHours(0, 0, 0, 0) / 1000),
-    end: Math.floor(new Date().setHours(24, 0, 0, 0) / 1000),
+    start: Cast.date(new Date().setHours(0, 0, 0, 0)),
+    end: Cast.date(new Date().setHours(24, 0, 0, 0)),
     steps: 48,
-    currentTime: Math.floor(new Date() / 1000)
+    currentTime: Cast.date(new Date())
   },
 
   getters: {
@@ -39,7 +40,7 @@ const SegelStore = new Vuex.Store({
       Events.$emit('time:changed', state.start, state.end);
     },
     setCurrentTime: function (state) {
-      state.currentTime = Math.floor(new Date().getTime() / 1000);
+      state.currentTime = Cast.date(new Date());
     }
   },
 
