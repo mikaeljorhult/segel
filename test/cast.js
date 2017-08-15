@@ -1,8 +1,11 @@
 import test from 'ava';
 import Cast from '../src/helpers/cast';
 
+// Unix Epoch timestamp for January 1st, 2017 to compare against.
+const unixTimestamp = Math.floor(new Date(2017, 0, 1).getTime() / 1000);
+
 test('that date objects are converted to an integer', function (t) {
-  t.is(Cast.date(new Date(2017, 0, 1)), 1483225200);
+  t.is(Cast.date(new Date(2017, 0, 1)), unixTimestamp);
 });
 
 test('that unix timestamps are passed through', function (t) {
@@ -29,7 +32,7 @@ test('that properties of a booking are cast to correct types', function (t) {
   t.is(typeof booking.end, 'number');
 
   // Timestamps should be Unix Epoch.
-  t.is(booking.start, 1483225200);
+  t.is(booking.start, unixTimestamp);
   t.is(booking.end, 1483225200);
 
   // Other properties should be left unaltered.
