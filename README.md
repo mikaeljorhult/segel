@@ -59,8 +59,8 @@ segel.objects.add({
 segel.bookings.add({
   id: 1,
   object: 1,
-  start: Math.floor(new Date().setHours(10, 0, 0, 0) / 1000),
-  end: Math.floor(new Date().setHours(11, 0, 0, 0) / 1000)
+  start: new Date().setHours(10, 0, 0, 0),
+  end: new Date().setHours(11, 0, 0, 0)
 });
 ```
 
