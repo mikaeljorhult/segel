@@ -48,7 +48,7 @@
   "scripts": {
     "test": "ava",
     "posttest": "npm run lint",
-    "lint": "./node_modules/.bin/eslint ./src --ext .js,.vue",
+    "lint": "./node_modules/.bin/eslint ./src ./test --ext .js,.vue",
     "dev": "NODE_ENV=development webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "watch": "NODE_ENV=development webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "hot": "NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
