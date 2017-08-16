@@ -15,7 +15,7 @@ export default {
       },
       ondrop: function (event) {
         // Convert moved pixels to change in timestamp.
-        var change = Math.round(event.dragEvent.dx / vnode.context.$root.$el.clientWidth * vnode.context.$store.getters['duration']);
+        let change = Math.round(event.dragEvent.dx / vnode.context.$root.$el.clientWidth * vnode.context.$store.getters['duration']);
 
         // Create copy if ALT key is pressed, otherwise edit existing.
         if (event.dragEvent.altKey) {
