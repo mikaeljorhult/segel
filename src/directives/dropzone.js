@@ -20,7 +20,7 @@ export default {
         // Create copy if ALT key is pressed, otherwise edit existing.
         if (event.dragEvent.altKey) {
           // Add new booking to store.
-          vnode.context.$store.commit('bookings/add', {
+          vnode.context.$store.dispatch('bookings/create', {
             object: vnode.context.id,
             start: event.relatedTarget.__vue__.start + change,
             end: event.relatedTarget.__vue__.end + change
@@ -43,7 +43,7 @@ export default {
       let start = Grid.round(position + vnode.context.$store.state.start, vnode.context.$store.getters['duration'], vnode.context.$store.state.steps);
 
       // Add new booking to store.
-      vnode.context.$store.commit('bookings/add', {
+      vnode.context.$store.dispatch('bookings/create', {
         object: vnode.context.id,
         start: start,
         end: start + stepSize * 2

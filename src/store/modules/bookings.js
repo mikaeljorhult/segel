@@ -74,6 +74,16 @@ const Bookings = {
         Events.$emit('bookings:removed', data);
       }
     }
+  },
+
+  actions: {
+    create: function (context, data) {
+      // TODO: Allow hooking in to do server side requests.
+      context.commit('add', data);
+
+      // Emit event with the updated booking.
+      Events.$emit('bookings:created', data);
+    }
   }
 };
 
