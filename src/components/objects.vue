@@ -14,10 +14,16 @@
   import SegelObject from './object.vue';
 
   export default {
-    props: [
-      'objects',
-      'bookings'
-    ],
+    props: {
+      objects: {
+        type: Array,
+        default: []
+      },
+      bookings: {
+        type: Array,
+        default: []
+      }
+    },
 
     data () {
       return {};

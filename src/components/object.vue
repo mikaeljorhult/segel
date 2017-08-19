@@ -22,11 +22,20 @@
   import Dropzone from '../directives/dropzone.js';
 
   export default {
-    props: [
-      'id',
-      'name',
-      'bookings'
-    ],
+    props: {
+      id: {
+        type: [String, Number],
+        required: true
+      },
+      name: {
+        type: String,
+        required: true
+      },
+      bookings: {
+        type: Array,
+        default: []
+      }
+    },
 
     directives: {
       dropzone: Dropzone

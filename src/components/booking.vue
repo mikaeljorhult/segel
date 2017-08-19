@@ -14,12 +14,24 @@
   import Resizable from '../directives/resizable.js';
 
   export default {
-    props: [
-      'id',
-      'object',
-      'start',
-      'end'
-    ],
+    props: {
+      id: {
+        type: [String, Number],
+        required: true
+      },
+      object: {
+        type: [String, Number],
+        required: true
+      },
+      start: {
+        type: Number,
+        required: true
+      },
+      end: {
+        type: Number,
+        required: true
+      }
+    },
 
     directives: {
       draggable: Draggable,
