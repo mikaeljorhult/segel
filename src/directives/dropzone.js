@@ -38,6 +38,12 @@ export default {
         element.classList.remove('droppable');
       }
     }).on('doubletap', function (event) {
+      // Only listen to clicks directly on the object, not bookings.
+      if (event.target !== element) {
+        event.stopPropagation();
+        return;
+      }
+
       let position = Math.round(event.offsetX / vnode.context.$root.$el.clientWidth * vnode.context.$store.getters['duration']);
       let stepSize = vnode.context.$store.getters['duration'] / vnode.context.$store.state.steps;
       let start = Grid.round(position + vnode.context.$store.state.start, vnode.context.$store.getters['duration'], vnode.context.$store.state.steps);
