@@ -1,7 +1,7 @@
 {
   "name": "segel",
   "description": "Vue-based module for creating Gantt-like timeline charts for bookings.",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "main": "src/index.js",
   "browser": "dist/index.js",
   "author": "Mikael Jorhult",
