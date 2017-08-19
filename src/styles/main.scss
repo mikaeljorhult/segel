@@ -1,4 +1,8 @@
 .segel {
+  &, & * {
+    box-sizing: border-box;
+  }
+
   ul {
     margin: 0;
     padding-left: 0;
@@ -85,6 +89,13 @@
 
 .segel-objects {
   overflow: hidden;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .segel-object {
