@@ -10,7 +10,7 @@ import Store from './store/store';
 /**
  * Constructor.
  *
- * @param {string} selector - CSS selector to which it will insert the schedule.
+ * @param {String} selector - CSS selector to which it will insert the schedule.
  * @param {Object} [config] - Configuration to use.
  * @constructor
  */
@@ -35,7 +35,7 @@ Segel.instance = Instance;
 /**
  * Base for methods manipulating bookings in store.
  *
- * @type object
+ * @type Object
  */
 Segel.bookings = {};
 
@@ -189,7 +189,7 @@ Segel.objects.end = function () {
 /**
  * Assign callback handler for events.
  *
- * @param {string|string[]} event - Event to subscribe to.
+ * @param {String|String[]} event - Event to subscribe to.
  * @param {Function} callback - Function to run when event is broadcast.
  * @returns {Segel}
  */
@@ -202,7 +202,7 @@ Segel.on = function (event, callback) {
 /**
  * Remove an assigned callback event handler.
  *
- * @param {string|string[]} event - Event to unsubscribe to.
+ * @param {String|String[]} event - Event to unsubscribe to.
  * @param {Function} callback - Function to remove.
  * @returns {Segel}
  */
