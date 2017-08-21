@@ -3,7 +3,7 @@
         <ul>
             <li v-for="n in 24">
                 <span v-bind:class="[n === new Date().getHours() + 1 ? 'current' : '']">
-                    {{ ('0' + (n - 1)).slice(-2) }}
+                    {{ n - 1 | leadingZero }}
                 </span>
             </li>
         </ul>
@@ -11,5 +11,11 @@
 </template>
 
 <script>
-  export default {};
+  export default {
+    filters: {
+      leadingZero: function (value) {
+        return ('0' + value).slice(-2);
+      }
+    }
+  };
 </script>
