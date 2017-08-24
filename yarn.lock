@@ -4726,6 +4726,10 @@ nan@^2.3.0, nan@^2.3.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.6.2.tgz#e4ff34e6c95fdfb5aecc08de6596f43605a7db45"
 
+nanoid@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-0.2.0.tgz#ee6f261ad53b2f44e7820105df35a2a985bab405"
+
 natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"

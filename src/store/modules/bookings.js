@@ -1,6 +1,7 @@
 'use strict';
 
 // Dependencies.
+import nanoid from 'nanoid';
 import Events from '../../helpers/events';
 import Validation from '../../helpers/validation';
 
@@ -32,10 +33,6 @@ const Bookings = {
   mutations: {
     add: function (state, data) {
       if (!Validation.multipleRules(['isAvailable', 'isUnique'], state.all, data)) { return; }
-
-      // Assign temporary ID to booking.
-      // TODO: Get the actual ID from user.
-      data.id = data.id || (Math.random() + 1).toString(36);
 
       // Add booking to storage.
       state.all.push(data);
@@ -78,6 +75,10 @@ const Bookings = {
 
   actions: {
     create: function (context, data) {
+      // Assign temporary ID to booking.
+      // TODO: Get the actual ID from user.
+      data.id = data.id || nanoid();
+
       // TODO: Allow hooking in to do server side requests.
       context.commit('add', data);
 
