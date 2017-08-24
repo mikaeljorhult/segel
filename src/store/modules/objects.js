@@ -1,6 +1,7 @@
 'use strict';
 
 // Dependencies.
+import nanoid from 'nanoid';
 import Events from '../../helpers/events';
 import Validation from '../../helpers/validation';
 
@@ -67,6 +68,20 @@ const Objects = {
         // Emit event with the removed object.
         Events.$emit('objects:removed', data);
       }
+    }
+  },
+
+  actions: {
+    create: function (context, data) {
+      // Assign temporary ID to object.
+      // TODO: Get the actual ID from user.
+      data.id = data.id || nanoid();
+
+      // TODO: Allow hooking in to do server side requests.
+      context.commit('add', data);
+
+      // Emit event with the updated object.
+      Events.$emit('objects:created', data);
     }
   }
 };
