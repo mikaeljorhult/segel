@@ -17,11 +17,15 @@
     props: {
       objects: {
         type: Array,
-        default: []
+        default: function () {
+          return [];
+        }
       },
       bookings: {
         type: Array,
-        default: []
+        default: function () {
+          return [];
+        }
       }
     },
 

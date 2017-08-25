@@ -33,7 +33,9 @@
       },
       bookings: {
         type: Array,
-        default: []
+        default: function () {
+          return [];
+        }
       }
     },
 
