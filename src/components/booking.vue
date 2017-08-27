@@ -23,6 +23,9 @@
         type: [String, Number],
         required: true
       },
+      user: {
+        type: [String, Number]
+      },
       start: {
         type: Number,
         required: true
@@ -44,8 +47,18 @@
 
     computed: {
       isEditable: function () {
-        return this.$store.getters['config/editable'] &&
-          this.start > this.$store.state.currentTime;
+        // Check if bookings should be editable at all.
+        if (!this.$store.getters['config/editable']) {
+          return false;
+        }
+
+        // If user is logged in, check that user own the booking or is admin.
+        if (this.$store.getters['user/authenticated'] && (this.id !== this.$store.state.start || this.$store.state.isAdmin)) {
+          return false;
+        }
+
+        // Past and current bookings can't be edited.
+        return this.start > this.$store.state.currentTime;
       },
       isInView: function () {
         return inRange(this.start, this.$store.state.start, this.$store.state.end) ||

@@ -10,6 +10,7 @@
                     v-bind:key="booking.id"
                     v-bind:id="booking.id"
                     v-bind:object="id"
+                    v-bind:user="booking.user"
                     v-bind:start="booking.start"
                     v-bind:end="booking.end"
             ></segel-booking>
