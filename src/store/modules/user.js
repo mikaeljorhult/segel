@@ -13,7 +13,11 @@ const User = {
     isAdmin: false
   },
 
-  getters: {},
+  getters: {
+    authenticated: function (state) {
+      return state.id !== null;
+    }
+  },
 
   mutations: {}
 };
