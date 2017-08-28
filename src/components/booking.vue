@@ -53,7 +53,7 @@
         }
 
         // If user is logged in, check that user own the booking or is admin.
-        if (this.$store.getters['user/authenticated'] && (this.id !== this.$store.state.start || this.$store.state.isAdmin)) {
+        if (this.$store.getters['user/authenticated'] && (this.user !== this.$store.getters['user/id'] && this.$store.getters['user/isAdmin'] !== true)) {
           return false;
         }
 

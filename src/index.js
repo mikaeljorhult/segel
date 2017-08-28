@@ -35,7 +35,7 @@ Segel.instance = Instance;
 /**
  * Base for methods manipulating bookings in store.
  *
- * @type Object
+ * @type {Object}
  */
 Segel.bookings = {};
 
@@ -112,7 +112,7 @@ Segel.bookings.end = function () {
 /**
  * Base for methods manipulating objects in store.
  *
- * @type object
+ * @type {Object}
  */
 Segel.objects = {};
 
@@ -183,6 +183,38 @@ Segel.objects.remove = function (objects) {
  * @returns {Segel}
  */
 Segel.objects.end = function () {
+  return Segel;
+};
+
+/**
+ * Base for methods manipulating user in store.
+ *
+ * @type {Object}
+ */
+Segel.user = {};
+
+/**
+ * Set the current user.
+ *
+ * @param user
+ * @returns {Segel.user}
+ */
+Segel.user.set = function (user) {
+  if (['[object String]', '[object Number]'].indexOf(Object.prototype.toString.call(user)) > -1) {
+    user = {id: user};
+  }
+
+  Store.commit('user/set', user);
+
+  return this;
+};
+
+/**
+ * Return traversal to main Segel object.
+ *
+ * @returns {Segel}
+ */
+Segel.user.end = function () {
   return Segel;
 };
 
