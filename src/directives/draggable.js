@@ -7,9 +7,10 @@ import Grid from '../helpers/grid';
 
 const handleResize = function (element, vnode) {
   // Set new grid based on current widths.
+  // TODO: Calculate height.
   interact(element).draggable().snap.targets = Grid.create(
     vnode.context.$root.$el.clientWidth,
-    35,
+    36,
     vnode.context.$store.state.steps
   );
 };
@@ -23,7 +24,7 @@ export default {
       snap: {
         targets: Grid.create(
           vnode.context.$root.$el.clientWidth,
-          35,
+          36,
           vnode.context.$store.state.steps
         ),
         offset: 'startCoords'
