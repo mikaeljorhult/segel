@@ -1,7 +1,7 @@
 'use strict';
 
 // Dependencies.
-import interact from 'interact.js';
+import interact from 'interactjs';
 
 /**
  * Create an interact.js snap grid.

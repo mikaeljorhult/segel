@@ -1,7 +1,7 @@
 'use strict';
 
 // Dependencies.
-import interact from 'interact.js';
+import interact from 'interactjs';
 import debounce from 'lodash/debounce';
 import Grid from '../helpers/grid';
 
