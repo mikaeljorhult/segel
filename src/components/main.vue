@@ -1,6 +1,5 @@
 <template>
     <section class="segel">
-        <segel-navigation></segel-navigation>
         <div class="segel-container">
             <ul class="segel-grid">
                 <li v-for="n in 24">&nbsp;</li>
@@ -17,7 +16,6 @@
 </template>
 
 <script>
-  import SegelNavigation from './navigation.vue';
   import SegelIndicator from './indicator.vue';
   import SegelRuler from './ruler.vue';
   import SegelObjects from './objects.vue';
@@ -43,7 +41,6 @@
     },
 
     components: {
-      'segel-navigation': SegelNavigation,
       'segel-indicator': SegelIndicator,
       'segel-ruler': SegelRuler,
       'segel-objects': SegelObjects

@@ -1,4 +1,6 @@
 .segel {
+  margin: 1rem 0;
+
   &, & * {
     box-sizing: border-box;
   }
@@ -7,17 +9,6 @@
     margin: 0;
     padding-left: 0;
     list-style: none;
-  }
-}
-
-.segel-navigation {
-  a {
-    cursor: pointer;
-  }
-
-  input {
-    width: 8em;
-    text-align: center;
   }
 }
 

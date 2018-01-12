@@ -16,8 +16,4 @@ mix.webpackConfig({
 
 // Process JavaScript and Sass.
 mix.js('src/index.js', 'dist')
-  .standaloneSass('src/styles/main.scss', 'dist')
-  .styles([
-    'node_modules/flatpickr/dist/flatpickr.css',
-    'dist/main.css'
-  ], 'dist/main.css');
+  .standaloneSass('src/styles/main.scss', 'dist');
