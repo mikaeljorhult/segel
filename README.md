@@ -24,7 +24,7 @@ Also available for use in browser through [unpkg](https://unpkg.com):
     <div id="segel"></div>
 
     <script src="https://unpkg.com/vue"></script>
-    <script src="https://unpkg.com/interact.js"></script>
+    <script src="https://unpkg.com/interactjs"></script>
     <script src="https://unpkg.com/segel"></script>
     <script>
         Segel('#segel');
