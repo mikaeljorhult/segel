@@ -14,22 +14,22 @@ import isFunction from 'lodash/isFunction';
 const Validation = {};
 
 /**
- * Check that no other bookings occupy the same time slot on the same object.
+ * Check that no other bookings occupy the same time slot on the same resource.
  *
  * @param {Object[]} bookings - Array of booking to validate against.
  * @param {Object} data - Booking object to validate.
  * @returns {boolean} - Whether data is valid to insert or update as a booking.
  */
 Validation.isAvailable = function (bookings, data) {
-  // Bookings for the requested object.
-  let objectBookings = bookings.filter(function (booking) {
-    // Same object as booking but ignore itself.
-    return booking.object === data.object &&
+  // Bookings for the requested resource.
+  let resourceBookings = bookings.filter(function (booking) {
+    // Same resource as booking but ignore itself.
+    return booking.resource === data.resource &&
       !(data.id !== undefined && booking.id === data.id);
   });
 
   // Return false if any bookings are in the same time slot.
-  return objectBookings.filter(function (booking) {
+  return resourceBookings.filter(function (booking) {
     return inRange(data.start, booking.start - 1, booking.end) ||
       inRange(data.end, booking.start + 1, booking.end) ||
       inRange(booking.start, data.start, data.end);
@@ -37,11 +37,11 @@ Validation.isAvailable = function (bookings, data) {
 };
 
 /**
- * Check whether object with same ID already exists.
+ * Check whether resource with same ID already exists.
  *
- * @param {Object[]} array - Array of bookings or objects to validate against.
- * @param {Object} data - Booking or object to validate.
- * @returns {boolean} - Whether data is valid to insert or update as a booking or object.
+ * @param {Object[]} array - Array of bookings or resources to validate against.
+ * @param {Object} data - Booking or resource to validate.
+ * @returns {boolean} - Whether data is valid to insert or update as a booking or resource.
  */
 Validation.isUnique = function (array, data) {
   // Check if object with index exists in array.
@@ -54,9 +54,9 @@ Validation.isUnique = function (array, data) {
  * Validate against multiple rules.
  *
  * @param {String|String[]} rules
- * @param {Object[]} array - Array of bookings or objects to validate against.
- * @param {Object} data - Booking or object to validate.
- * @returns {boolean} - Whether data is valid to insert or update as a booking or object.
+ * @param {Object[]} array - Array of bookings or resources to validate against.
+ * @param {Object} data - Booking or resource to validate.
+ * @returns {boolean} - Whether data is valid to insert or update as a booking or resource.
  */
 Validation.multipleRules = function (rules, array, data) {
   let valid = true;

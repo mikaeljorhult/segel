@@ -7,10 +7,10 @@
 
             <segel-indicator></segel-indicator>
             <segel-ruler></segel-ruler>
-            <segel-objects
-                    v-bind:objects="objects"
+            <segel-resources
+                    v-bind:resources="resources"
                     v-bind:bookings="bookings"
-            ></segel-objects>
+            ></segel-resources>
         </div>
     </section>
 </template>
@@ -18,11 +18,11 @@
 <script>
   import SegelIndicator from './indicator.vue';
   import SegelRuler from './ruler.vue';
-  import SegelObjects from './objects.vue';
+  import SegelResources from './resources.vue';
 
   export default {
     props: {
-      objects: {
+      resources: {
         type: Array,
         default: function () {
           return [];
@@ -43,7 +43,7 @@
     components: {
       'segel-indicator': SegelIndicator,
       'segel-ruler': SegelRuler,
-      'segel-objects': SegelObjects
+      'segel-resources': SegelResources
     }
   };
 </script>

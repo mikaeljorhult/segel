@@ -35,7 +35,7 @@ export default {
         right: true
       },
       onmove: function (event) {
-        // Get previous position from object data.
+        // Get previous position from resource data.
         var x = vnode.context.resizeX || 0;
         var y = vnode.context.resizeY || 0;
 
@@ -63,7 +63,7 @@ export default {
         // Commit changes to store.
         vnode.context.$store.commit('bookings/update', {
           id: vnode.context.id,
-          object: vnode.context.object,
+          resource: vnode.context.resource,
           start: Grid.round(vnode.context.$store.state.start + start, vnode.context.$store.getters['duration'], vnode.context.$store.state.steps),
           end: Grid.round(vnode.context.$store.state.start + start + end, vnode.context.$store.getters['duration'], vnode.context.$store.state.steps)
         });

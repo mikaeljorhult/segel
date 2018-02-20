@@ -30,13 +30,13 @@ Cast.booking = function (booking) {
 };
 
 /**
- * Cast properties of an object to correct type.
+ * Cast properties of a resource to correct type.
  *
- * @param {Object} object - Object to work with.
- * @returns {Object} - Object with properties cast to correct types.
+ * @param {Object} resource - Resource to work with.
+ * @returns {Object} - Resource with properties cast to correct types.
  */
-Cast.object = function (object) {
-  return object;
+Cast.resource = function (resource) {
+  return resource;
 };
 
 /**

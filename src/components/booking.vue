@@ -19,7 +19,7 @@
         type: [String, Number],
         required: true
       },
-      object: {
+      resource: {
         type: [String, Number],
         required: true
       },

@@ -9,7 +9,7 @@ import Events from '../helpers/events';
 // Modules.
 import SegelConfig from './modules/config';
 import SegelBookings from './modules/bookings';
-import SegelObjects from './modules/objects';
+import SegelResources from './modules/resources';
 import SegelUser from './modules/user';
 
 // Install Vuex if it is not done automatically.
@@ -48,7 +48,7 @@ const SegelStore = new Vuex.Store({
   modules: {
     config: SegelConfig,
     bookings: SegelBookings,
-    objects: SegelObjects,
+    resources: SegelResources,
     user: SegelUser
   }
 });

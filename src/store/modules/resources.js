@@ -6,11 +6,11 @@ import Events from '../../helpers/events';
 import Validation from '../../helpers/validation';
 
 /**
- * Module for objects.
+ * Module for resources.
  *
  * @type {Object}
  */
-const Objects = {
+const Resources = {
   namespaced: true,
 
   state: {
@@ -23,8 +23,8 @@ const Objects = {
     },
     get: function (state) {
       return function (id) {
-        return state.all.find(function (object) {
-          return object.id === id;
+        return state.all.find(function (resource) {
+          return resource.id === id;
         });
       };
     }
@@ -32,58 +32,58 @@ const Objects = {
 
   mutations: {
     add: function (state, data) {
-      // Check that object with index don't already exist.
+      // Check that resource with index don't already exist.
       if (!Validation.isUnique(state.all, data)) { return; }
 
-      // Add object to storage.
+      // Add resource to storage.
       state.all.push(data);
 
-      // Emit event with the added object.
-      Events.$emit('objects:added', data);
+      // Emit event with the added resource.
+      Events.$emit('resources:added', data);
     },
     update: function (state, data) {
-      // Retrieve the index of the stored copy of object.
+      // Retrieve the index of the stored copy of resource.
       let index = state.all.findIndex(function (element) {
         return element.id === data.id;
       });
 
-      // Replace object with new data.
+      // Replace resource with new data.
       if (index !== -1) {
         state.all.splice(index, 1, data);
 
-        // Emit event with the updated object.
-        Events.$emit('objects:updated', data);
+        // Emit event with the updated resource.
+        Events.$emit('resources:updated', data);
       }
     },
     remove: function (state, data) {
-      // Retrieve the index of the stored copy of object.
+      // Retrieve the index of the stored copy of resource.
       let index = state.all.findIndex(function (element) {
         return element.id === data.id;
       });
 
-      // Replace object with new data.
+      // Replace resource with new data.
       if (index !== -1) {
         state.all.splice(index, 1);
 
-        // Emit event with the removed object.
-        Events.$emit('objects:removed', data);
+        // Emit event with the removed resource.
+        Events.$emit('resources:removed', data);
       }
     }
   },
 
   actions: {
     create: function (context, data) {
-      // Assign temporary ID to object.
+      // Assign temporary ID to resource.
       // TODO: Get the actual ID from user.
       data.id = data.id || nanoid();
 
       // TODO: Allow hooking in to do server side requests.
       context.commit('add', data);
 
-      // Emit event with the updated object.
-      Events.$emit('objects:created', data);
+      // Emit event with the updated resource.
+      Events.$emit('resources:created', data);
     }
   }
 };
 
-export default Objects;
+export default Resources;

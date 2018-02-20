@@ -45,17 +45,17 @@ Segel('#segel', {
 });
 ```
 
-Add objects and bookings:
+Add resources and bookings:
 ```javascript
 let segel = Segel('#segel');
 
-// Add an new object.
-segel.objects.add({
+// Add an new resource.
+segel.resources.add({
   id: 1,
   name: 'Conference Room'
 });
 
-// Create a new booking of the object on current date between 10 am and 11 am.
+// Create a new booking of the resource on current date between 10 am and 11 am.
 segel.bookings.add({
   id: 1,
   object: 1,

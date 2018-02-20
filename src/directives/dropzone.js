@@ -21,7 +21,7 @@ export default {
         if (event.dragEvent.altKey) {
           // Add new booking to store.
           vnode.context.$store.dispatch('bookings/create', {
-            object: vnode.context.id,
+            resource: vnode.context.id,
             start: event.relatedTarget.__vue__.start + change,
             end: event.relatedTarget.__vue__.end + change
           });
@@ -29,7 +29,7 @@ export default {
           // Commit changes of existing booking to store.
           vnode.context.$store.commit('bookings/update', {
             id: event.relatedTarget.__vue__.id,
-            object: vnode.context.id,
+            resource: vnode.context.id,
             start: event.relatedTarget.__vue__.start + change,
             end: event.relatedTarget.__vue__.end + change
           });
@@ -38,7 +38,7 @@ export default {
         element.classList.remove('droppable');
       }
     }).on('doubletap', function (event) {
-      // Only listen to clicks directly on the object, not bookings.
+      // Only listen to clicks directly on the resource, not bookings.
       if (event.target !== element) {
         event.stopPropagation();
         return;
@@ -50,7 +50,7 @@ export default {
 
       // Add new booking to store.
       vnode.context.$store.dispatch('bookings/create', {
-        object: vnode.context.id,
+        resource: vnode.context.id,
         start: start,
         end: start + stepSize * 2
       });

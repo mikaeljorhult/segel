@@ -41,7 +41,7 @@ const Bookings = {
       Events.$emit('bookings:added', data);
     },
     update: function (state, data) {
-      // Check availability off requested object.
+      // Check availability off requested resource.
       if (!Validation.isAvailable(state.all, data)) { return; }
 
       // Retrieve the index of the stored copy of booking.

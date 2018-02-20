@@ -13,7 +13,7 @@ import Store from './store/store';
  * @type {Vue}
  */
 const Instance = new Vue({
-  template: '<segel-main v-bind:objects="objects" v-bind:bookings="bookings"></segel-main>',
+  template: '<segel-main v-bind:resources="resources" v-bind:bookings="bookings"></segel-main>',
 
   components: {
     'segel-main': Main
@@ -22,8 +22,8 @@ const Instance = new Vue({
   store: Store,
 
   computed: {
-    objects: function () {
-      return this.$store.getters['objects/all'];
+    resources: function () {
+      return this.$store.getters['resources/all'];
     },
     bookings: function () {
       return this.$store.getters['bookings/all'];

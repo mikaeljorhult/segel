@@ -1,5 +1,5 @@
 <template>
-    <li class="segel-object">
+    <li class="segel-resource">
         {{ name }}
 
         <ul class="segel-bookings"
@@ -9,7 +9,7 @@
                     v-for="booking in bookings"
                     v-bind:key="booking.id"
                     v-bind:id="booking.id"
-                    v-bind:object="id"
+                    v-bind:resource="id"
                     v-bind:user="booking.user"
                     v-bind:start="booking.start"
                     v-bind:end="booking.end"

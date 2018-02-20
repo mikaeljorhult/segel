@@ -22,7 +22,7 @@ test('that milliseconds unix timestamps are converted to seconds', function (t) 
 test('that properties of a booking are cast to correct types', function (t) {
   let booking = Cast.booking({
     id: 1,
-    object: 1,
+    resource: 1,
     start: new Date(2017, 0, 1),
     end: '1483225200'
   });
@@ -37,11 +37,11 @@ test('that properties of a booking are cast to correct types', function (t) {
 
   // Other properties should be left unaltered.
   t.is(booking.id, 1);
-  t.is(booking.object, 1);
+  t.is(booking.resource, 1);
 });
 
 test('that properties of an object are cast to correct types', function (t) {
-  let object = Cast.object({
+  let object = Cast.resource({
     id: 1,
     name: 'Conference Room 1'
   });

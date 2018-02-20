@@ -30,13 +30,13 @@ export default {
         offset: 'startCoords'
       },
       restrict: {
-        restriction: '.segel-objects'
+        restriction: '.segel-resources'
       },
       onstart: function () {
         element.classList.add('dragging');
       },
       onmove: function (event) {
-        // Get previous position from object data.
+        // Get previous position from resource data.
         var x = (vnode.context.dragX || 0) + event.dx;
         var y = (vnode.context.dragY || 0) + event.dy;
 

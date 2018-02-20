@@ -110,68 +110,68 @@ Segel.bookings.end = function () {
 };
 
 /**
- * Base for methods manipulating objects in store.
+ * Base for methods manipulating resources in store.
  *
  * @type {Object}
  */
-Segel.objects = {};
+Segel.resources = {};
 
 /**
- * Get all stored objects.
+ * Get all stored resources.
  *
- * @returns {Array} - All stored objects.
+ * @returns {Array} - All stored resources.
  */
-Segel.objects.all = function () {
-  return Store.getter['objects/all'];
+Segel.resources.all = function () {
+  return Store.getter['resources/all'];
 };
 
 /**
- * Get a store object based on ID.
+ * Get a store resource based on ID.
  *
- * @param id - ID of requested object.
- * @returns {Object|null} - Object if found, otherwise null.
+ * @param id - ID of requested resource.
+ * @returns {Object|null} - Resource if found, otherwise null.
  */
-Segel.objects.get = function (id) {
-  return Store.getters['objects/get'](id) || null;
+Segel.resources.get = function (id) {
+  return Store.getters['resources/get'](id) || null;
 };
 
 /**
- * Add one or more objects to the store.
+ * Add one or more resources to the store.
  *
- * @param {Object|Object[]} objects - Objects to add.
- * @returns {Segel.objects}
+ * @param {Object|Object[]} resources - Resources to add.
+ * @returns {Segel.resources}
  */
-Segel.objects.add = function (objects) {
-  Process(objects, function (object) {
-    Store.commit('objects/add', Cast.object(object));
+Segel.resources.add = function (resources) {
+  Process(resources, function (resource) {
+    Store.commit('resources/add', Cast.resource(resource));
   });
 
   return this;
 };
 
 /**
- * Update one or more objects in the store.
+ * Update one or more resources in the store.
  *
- * @param {Object|Object[]} objects - Objects to update.
- * @returns {Segel.objects}
+ * @param {Object|Object[]} resources - Resources to update.
+ * @returns {Segel.resources}
  */
-Segel.objects.update = function (objects) {
-  Process(objects, function (object) {
-    Store.commit('objects/update', Cast.object(object));
+Segel.resources.update = function (resources) {
+  Process(resources, function (resource) {
+    Store.commit('resources/update', Cast.resource(resource));
   });
 
   return this;
 };
 
 /**
- * Remove one ore more objects from the store.
+ * Remove one ore more resources from the store.
  *
- * @param {Object|Object[]} objects - Objects to remove.
- * @returns {Segel.objects}
+ * @param {Object|Object[]} resources - Resources to remove.
+ * @returns {Segel.resources}
  */
-Segel.objects.remove = function (objects) {
-  Process(objects, function (object) {
-    Store.commit('objects/remove', Cast.object(object));
+Segel.resources.remove = function (resources) {
+  Process(resources, function (resource) {
+    Store.commit('resources/remove', Cast.resource(resource));
   });
 
   return this;
@@ -182,7 +182,7 @@ Segel.objects.remove = function (objects) {
  *
  * @returns {Segel}
  */
-Segel.objects.end = function () {
+Segel.resources.end = function () {
   return Segel;
 };
 
