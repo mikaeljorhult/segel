@@ -1,5 +1,5 @@
 <template>
-    <ul class="resources">
+    <ul class="segel-resources">
         <segel-resource
                 v-for="resource in resources"
                 v-bind:key="resource.id"
