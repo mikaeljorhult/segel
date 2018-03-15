@@ -10,7 +10,7 @@ mix.webpackConfig({
   },
   externals: {
     'vue': 'Vue',
-    'interact.js': 'interact'
+    'interactjs': 'interact'
   }
 });
 
