@@ -34,8 +34,8 @@ const SegelStore = new Vuex.Store({
 
   mutations: {
     setTime: function (state, timestamps) {
-      state.start = timestamps.start;
-      state.end = timestamps.end;
+      state.start = Cast.date(timestamps.start);
+      state.end = Cast.date(timestamps.end);
 
       // Emit event that time has changed.
       Events.$emit('time:changed', state.start, state.end);

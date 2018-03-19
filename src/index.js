@@ -187,6 +187,38 @@ Segel.resources.end = function () {
 };
 
 /**
+ * Base for methods manipulating time in store.
+ *
+ * @type {Object}
+ */
+Segel.time = {};
+
+/**
+ * Set the current user.
+ *
+ * @param start
+ * @param end
+ * @returns {Segel.time}
+ */
+Segel.time.set = function (start, end) {
+  Store.commit('setTime', {
+    start: start,
+    end: end
+  });
+
+  return this;
+};
+
+/**
+ * Return traversal to main Segel object.
+ *
+ * @returns {Segel}
+ */
+Segel.time.end = function () {
+  return Segel;
+};
+
+/**
  * Base for methods manipulating user in store.
  *
  * @type {Object}
