@@ -33,6 +33,15 @@ const Segel = function (selector, config) {
 Segel.instance = Instance;
 
 /**
+ * Return traversal to main Segel object.
+ *
+ * @returns {Segel}
+ */
+function returnSegel () {
+  return Segel;
+}
+
+/**
  * Base for methods manipulating bookings in store.
  *
  * @type {Object}
@@ -105,9 +114,7 @@ Segel.bookings.remove = function (bookings) {
  *
  * @returns {Segel}
  */
-Segel.bookings.end = function () {
-  return Segel;
-};
+Segel.bookings.end = returnSegel;
 
 /**
  * Base for methods manipulating resources in store.
@@ -182,9 +189,7 @@ Segel.resources.remove = function (resources) {
  *
  * @returns {Segel}
  */
-Segel.resources.end = function () {
-  return Segel;
-};
+Segel.resources.end = returnSegel;
 
 /**
  * Base for methods manipulating time in store.
@@ -214,9 +219,7 @@ Segel.time.set = function (start, end) {
  *
  * @returns {Segel}
  */
-Segel.time.end = function () {
-  return Segel;
-};
+Segel.time.end = returnSegel;
 
 /**
  * Base for methods manipulating user in store.
@@ -246,9 +249,7 @@ Segel.user.set = function (user) {
  *
  * @returns {Segel}
  */
-Segel.user.end = function () {
-  return Segel;
-};
+Segel.user.end = returnSegel;
 
 /**
  * Assign callback handler for events.
