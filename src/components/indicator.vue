@@ -18,10 +18,10 @@
 
     computed: {
       isInView: function () {
-        return inRange(this.state.time.current, this.$store.state.start, this.$store.state.end);
+        return inRange(this.state.time.current, this.state.time.start, this.state.time.end);
       },
       left: function () {
-        return (this.state.time.current - this.$store.state.start) / this.$store.getters['duration'] * 100;
+        return (this.state.time.current - this.state.time.start) / this.state.time.duration() * 100;
       }
     }
   };

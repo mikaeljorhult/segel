@@ -50,6 +50,8 @@
       };
     },
 
+    inject: ['state'],
+
     components: {
       'segel-booking': SegelBooking
     },

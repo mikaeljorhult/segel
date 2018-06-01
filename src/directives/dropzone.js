@@ -15,7 +15,7 @@ export default {
       },
       ondrop: function (event) {
         // Convert moved pixels to change in timestamp.
-        let change = Math.round(event.dragEvent.dx / vnode.context.$root.$el.clientWidth * vnode.context.$store.getters['duration']);
+        let change = Math.round(event.dragEvent.dx / vnode.context.$root.$el.clientWidth * vnode.context.state.time.duration());
 
         // Create copy if ALT key is pressed, otherwise edit existing.
         if (event.dragEvent.altKey) {
@@ -44,9 +44,9 @@ export default {
         return;
       }
 
-      let position = Math.round(event.offsetX / vnode.context.$root.$el.clientWidth * vnode.context.$store.getters['duration']);
-      let stepSize = vnode.context.$store.getters['duration'] / vnode.context.$store.state.steps;
-      let start = Grid.round(position + vnode.context.$store.state.start, vnode.context.$store.getters['duration'], vnode.context.$store.state.steps);
+      let position = Math.round(event.offsetX / vnode.context.$root.$el.clientWidth * vnode.context.state.time.duration());
+      let stepSize = vnode.context.state.time.duration() / vnode.context.$store.state.steps;
+      let start = Grid.round(position + vnode.context.state.time.start, vnode.context.state.time.duration(), vnode.context.$store.state.steps);
 
       // Add new booking to store.
       vnode.context.$store.dispatch('bookings/create', {

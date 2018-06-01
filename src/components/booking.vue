@@ -63,19 +63,19 @@
         return this.start > this.state.time.current;
       },
       isInView: function () {
-        return inRange(this.start, this.$store.state.start, this.$store.state.end) ||
-          inRange(this.end, this.$store.state.start, this.$store.state.end) ||
-          (this.start < this.$store.state.start && this.end > this.$store.state.start) ||
-          (this.end < this.$store.state.end && this.end > this.$store.state.end);
+        return inRange(this.start, this.state.time.start, this.state.time.end) ||
+          inRange(this.end, this.state.time.start, this.state.time.end) ||
+          (this.start < this.state.time.start && this.end > this.state.time.start) ||
+          (this.end < this.state.time.end && this.end > this.state.time.end);
       },
       duration: function () {
         return this.end - this.start;
       },
       left: function () {
-        return (this.start - this.$store.state.start) / this.$store.getters['duration'] * 100;
+        return (this.start - this.state.time.start) / this.state.time.duration() * 100;
       },
       width: function () {
-        return this.duration / this.$store.getters['duration'] * 100;
+        return this.duration / this.state.time.duration() * 100;
       }
     }
   };

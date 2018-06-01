@@ -4,7 +4,12 @@ import Cast from "../helpers/cast";
 
 const Store = {
     time: {
-        current: '',
+        start: Cast.date(new Date().setHours(0, 0, 0, 0)),
+        end: Cast.date(new Date().setHours(24, 0, 0, 0)),
+        duration: function () {
+            return this.end - this.start;
+        },
+        current: null,
         tick: function () {
             this.current = Cast.date(new Date());
         }
