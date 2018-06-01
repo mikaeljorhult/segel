@@ -45,6 +45,8 @@
       return {};
     },
 
+    inject: ['state'],
+
     computed: {
       isEditable: function () {
         // Check if bookings should be editable at all.
@@ -58,7 +60,7 @@
         }
 
         // Past and current bookings can't be edited.
-        return this.start > this.$store.state.currentTime;
+        return this.start > this.state.time.current;
       },
       isInView: function () {
         return inRange(this.start, this.$store.state.start, this.$store.state.end) ||

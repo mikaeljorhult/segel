@@ -14,12 +14,14 @@
       return {};
     },
 
+    inject: ['state'],
+
     computed: {
       isInView: function () {
-        return inRange(this.$store.state.currentTime, this.$store.state.start, this.$store.state.end);
+        return inRange(this.state.time.current, this.$store.state.start, this.$store.state.end);
       },
       left: function () {
-        return (this.$store.state.currentTime - this.$store.state.start) / this.$store.getters['duration'] * 100;
+        return (this.state.time.current - this.$store.state.start) / this.$store.getters['duration'] * 100;
       }
     }
   };

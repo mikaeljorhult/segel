@@ -16,6 +16,7 @@
 </template>
 
 <script>
+  import Store from '../store'
   import SegelIndicator from './indicator.vue';
   import SegelRuler from './ruler.vue';
   import SegelResources from './resources.vue';
@@ -37,7 +38,18 @@
     },
 
     data: function () {
-      return {};
+      return Store;
+    },
+
+    provide: function () {
+      const state = {};
+
+      Object.defineProperty(state, 'time', {
+        enumerable: true,
+        get: () => Store.time,
+      });
+
+      return { state: state };
     },
 
     components: {

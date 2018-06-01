@@ -22,8 +22,7 @@ const SegelStore = new Vuex.Store({
   state: {
     start: Cast.date(new Date().setHours(0, 0, 0, 0)),
     end: Cast.date(new Date().setHours(24, 0, 0, 0)),
-    steps: 48,
-    currentTime: Cast.date(new Date())
+    steps: 48
   },
 
   getters: {
@@ -39,9 +38,6 @@ const SegelStore = new Vuex.Store({
 
       // Emit event that time has changed.
       Events.$emit('time:changed', state.start, state.end);
-    },
-    setCurrentTime: function (state) {
-      state.currentTime = Cast.date(new Date());
     }
   },
 
@@ -52,12 +48,6 @@ const SegelStore = new Vuex.Store({
     user: SegelUser
   }
 });
-
-// Start timer that ticks every second.
-(function timer () {
-  SegelStore.commit('setCurrentTime');
-  setTimeout(timer, 1000);
-})();
 
 // Return the instance.
 export default SegelStore;
