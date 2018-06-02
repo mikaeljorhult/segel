@@ -50,7 +50,7 @@
     computed: {
       isEditable: function () {
         // Check if bookings should be editable at all.
-        if (!this.$store.getters['config/editable']) {
+        if (!this.state.config.editable) {
           return false;
         }
 

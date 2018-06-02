@@ -44,6 +44,11 @@
     provide: function () {
       const state = {};
 
+      Object.defineProperty(state, 'config', {
+        enumerable: true,
+        get: () => Store.config,
+      });
+
       Object.defineProperty(state, 'time', {
         enumerable: true,
         get: () => Store.time,

@@ -4,6 +4,18 @@ import forOwn from 'lodash/forOwn';
 import Cast from '../helpers/cast';
 
 const Store = {
+  config: {
+    editable: true,
+    set: function (config) {
+      // Iterate over all supplied properties.
+      forOwn(config, function (value, key) {
+        // Set value if key is available in state.
+        if (this[key] !== undefined) {
+          this[key] = value;
+        }
+      });
+    }
+  },
   time: {
     start: Cast.date(new Date().setHours(0, 0, 0, 0)),
     end: Cast.date(new Date().setHours(24, 0, 0, 0)),
