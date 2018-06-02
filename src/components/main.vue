@@ -49,6 +49,11 @@
         get: () => Store.time,
       });
 
+      Object.defineProperty(state, 'user', {
+        enumerable: true,
+        get: () => Store.user,
+      });
+
       return { state: state };
     },
 

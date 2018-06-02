@@ -2,7 +2,6 @@
 
 // Dependencies.
 import Vue from 'vue';
-
 // Components.
 import Main from './components/main.vue';
 import Store from './store/store';

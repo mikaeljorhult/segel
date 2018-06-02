@@ -236,7 +236,7 @@ Segel.user = {};
  */
 Segel.user.set = function (user) {
   if (['[object String]', '[object Number]'].indexOf(Object.prototype.toString.call(user)) > -1) {
-    user = {id: user};
+    user = { id: user };
   }
 
   Store.commit('user/set', user);
