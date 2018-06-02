@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import Store from '../store'
+  import Store from '../store';
   import SegelIndicator from './indicator.vue';
   import SegelRuler from './ruler.vue';
   import SegelResources from './resources.vue';
