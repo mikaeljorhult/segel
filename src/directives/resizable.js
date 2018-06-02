@@ -10,7 +10,7 @@ const handleResize = function (element, vnode) {
   interact(element).resizable().snap.targets = Grid.create(
     vnode.context.$root.$el.clientWidth,
     35,
-    vnode.context.$store.state.steps
+    vnode.context.state.time.steps
   );
 };
 
@@ -24,7 +24,7 @@ export default {
         targets: Grid.create(
           vnode.context.$root.$el.clientWidth,
           35,
-          vnode.context.$store.state.steps
+          vnode.context.state.time.steps
         ),
         offset: 'startCoords'
       },
@@ -64,8 +64,8 @@ export default {
         vnode.context.$store.commit('bookings/update', {
           id: vnode.context.id,
           resource: vnode.context.resource,
-          start: Grid.round(vnode.context.state.time.start + start, vnode.context.state.time.duration(), vnode.context.$store.state.steps),
-          end: Grid.round(vnode.context.state.time.start + start + end, vnode.context.state.time.duration(), vnode.context.$store.state.steps)
+          start: Grid.round(vnode.context.state.time.start + start, vnode.context.state.time.duration(), vnode.context.state.time.steps),
+          end: Grid.round(vnode.context.state.time.start + start + end, vnode.context.state.time.duration(), vnode.context.state.time.steps)
         });
 
         // Reset booking styles.

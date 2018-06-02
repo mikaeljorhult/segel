@@ -9,6 +9,7 @@ const Store = {
         duration: function () {
             return this.end - this.start;
         },
+        steps: 48,
         current: null,
         tick: function () {
             this.current = Cast.date(new Date());

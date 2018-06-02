@@ -17,16 +17,6 @@ if (window.Vue === undefined) {
 
 // Create state object.
 const SegelStore = new Vuex.Store({
-  state: {
-    steps: 48
-  },
-
-  getters: {
-    duration: function (state) {
-      return state.end - state.start;
-    }
-  },
-
   modules: {
     config: SegelConfig,
     bookings: SegelBookings,

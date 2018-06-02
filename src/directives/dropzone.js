@@ -45,8 +45,8 @@ export default {
       }
 
       let position = Math.round(event.offsetX / vnode.context.$root.$el.clientWidth * vnode.context.state.time.duration());
-      let stepSize = vnode.context.state.time.duration() / vnode.context.$store.state.steps;
-      let start = Grid.round(position + vnode.context.state.time.start, vnode.context.state.time.duration(), vnode.context.$store.state.steps);
+      let stepSize = vnode.context.state.time.duration() / vnode.context.state.time.steps;
+      let start = Grid.round(position + vnode.context.state.time.start, vnode.context.state.time.duration(), vnode.context.state.time.steps);
 
       // Add new booking to store.
       vnode.context.$store.dispatch('bookings/create', {
