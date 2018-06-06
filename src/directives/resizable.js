@@ -4,6 +4,7 @@
 import interact from 'interactjs';
 import debounce from 'lodash/debounce';
 import Grid from '../helpers/grid';
+import Store from '../store';
 
 const handleResize = function (element, vnode) {
   // Set new grid based on current widths.
@@ -61,7 +62,7 @@ export default {
         var end = Math.round(element.getBoundingClientRect().width / vnode.context.$root.$el.clientWidth * vnode.context.state.time.duration());
 
         // Commit changes to store.
-        vnode.context.$store.commit('bookings/update', {
+        Store.bookings.update({
           id: vnode.context.id,
           resource: vnode.context.resource,
           start: Grid.round(vnode.context.state.time.start + start, vnode.context.state.time.duration(), vnode.context.state.time.steps),

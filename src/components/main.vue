@@ -8,8 +8,8 @@
             <segel-indicator></segel-indicator>
             <segel-ruler></segel-ruler>
             <segel-resources
-                    v-bind:resources="resources"
-                    v-bind:bookings="bookings"
+                v-bind:resources="resources.all"
+                v-bind:bookings="bookings.all"
             ></segel-resources>
         </div>
     </section>
@@ -22,21 +22,6 @@
   import SegelResources from './resources.vue';
 
   export default {
-    props: {
-      resources: {
-        type: Array,
-        default: function () {
-          return [];
-        }
-      },
-      bookings: {
-        type: Array,
-        default: function () {
-          return [];
-        }
-      }
-    },
-
     data: function () {
       return Store;
     },

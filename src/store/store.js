@@ -3,6 +3,7 @@
 // Dependencies.
 import Vue from 'vue';
 import Vuex from 'vuex';
+
 // Modules.
 import SegelBookings from './modules/bookings';
 import SegelResources from './modules/resources';

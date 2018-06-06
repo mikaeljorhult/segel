@@ -5,7 +5,7 @@ import Instance from './vue';
 import Cast from './helpers/cast';
 import Events from './helpers/events';
 import Process from './helpers/process';
-import Store from './store/store';
+import Store from './store';
 
 /**
  * Constructor.
@@ -54,7 +54,7 @@ Segel.bookings = {};
  * @returns {Array} - All stored bookings.
  */
 Segel.bookings.all = function () {
-  return Store.getter['bookings/all'];
+  return Store.bookings.all;
 };
 
 /**
@@ -64,7 +64,7 @@ Segel.bookings.all = function () {
  * @returns {Object|null} - Booking if found, otherwise null.
  */
 Segel.bookings.get = function (id) {
-  return Store.getters['bookings/get'](id) || null;
+  return Store.bookings.get(id) || null;
 };
 
 /**
@@ -75,7 +75,7 @@ Segel.bookings.get = function (id) {
  */
 Segel.bookings.add = function (bookings) {
   Process(bookings, function (booking) {
-    Store.commit('bookings/add', Cast.booking(booking));
+    Store.bookings.add(Cast.booking(booking))
   });
 
   return this;
@@ -89,7 +89,7 @@ Segel.bookings.add = function (bookings) {
  */
 Segel.bookings.update = function (bookings) {
   Process(bookings, function (booking) {
-    Store.commit('bookings/update', Cast.booking(booking));
+    Store.bookings.update(Cast.booking(booking));
   });
 
   return this;
@@ -103,7 +103,7 @@ Segel.bookings.update = function (bookings) {
  */
 Segel.bookings.remove = function (bookings) {
   Process(bookings, function (booking) {
-    Store.commit('bookings/remove', Cast.booking(booking));
+    Store.bookings.remove(Cast.booking(booking));
   });
 
   return this;
@@ -129,7 +129,7 @@ Segel.resources = {};
  * @returns {Array} - All stored resources.
  */
 Segel.resources.all = function () {
-  return Store.getter['resources/all'];
+  return Store.resources.all;
 };
 
 /**
@@ -139,7 +139,7 @@ Segel.resources.all = function () {
  * @returns {Object|null} - Resource if found, otherwise null.
  */
 Segel.resources.get = function (id) {
-  return Store.getters['resources/get'](id) || null;
+  return Store.resources.get(id) || null;
 };
 
 /**
@@ -150,7 +150,7 @@ Segel.resources.get = function (id) {
  */
 Segel.resources.add = function (resources) {
   Process(resources, function (resource) {
-    Store.commit('resources/add', Cast.resource(resource));
+    Store.resources.add(Cast.resource(resource));
   });
 
   return this;
@@ -164,7 +164,7 @@ Segel.resources.add = function (resources) {
  */
 Segel.resources.update = function (resources) {
   Process(resources, function (resource) {
-    Store.commit('resources/update', Cast.resource(resource));
+    Store.resources.update(Cast.resource(resource));
   });
 
   return this;
@@ -178,7 +178,7 @@ Segel.resources.update = function (resources) {
  */
 Segel.resources.remove = function (resources) {
   Process(resources, function (resource) {
-    Store.commit('resources/remove', Cast.resource(resource));
+    Store.resources.remove(Cast.resource(resource));
   });
 
   return this;
@@ -206,10 +206,10 @@ Segel.time = {};
  * @returns {Segel.time}
  */
 Segel.time.set = function (start, end) {
-  Store.commit('setTime', {
-    start: start,
-    end: end
-  });
+  Store.time.set(
+    Cast.date(start),
+    Cast.date(end)
+  );
 
   return this;
 };
@@ -239,7 +239,7 @@ Segel.user.set = function (user) {
     user = { id: user };
   }
 
-  Store.commit('user/set', user);
+  Store.user.set(user);
 
   return this;
 };
