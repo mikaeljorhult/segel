@@ -75,7 +75,7 @@ Segel.bookings.get = function (id) {
  */
 Segel.bookings.add = function (bookings) {
   Process(bookings, function (booking) {
-    Store.bookings.add(Cast.booking(booking))
+    Store.bookings.add(Cast.booking(booking));
   });
 
   return this;

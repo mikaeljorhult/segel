@@ -31,17 +31,17 @@
 
       Object.defineProperty(state, 'config', {
         enumerable: true,
-        get: () => Store.config,
+        get: () => Store.config
       });
 
       Object.defineProperty(state, 'time', {
         enumerable: true,
-        get: () => Store.time,
+        get: () => Store.time
       });
 
       Object.defineProperty(state, 'user', {
         enumerable: true,
-        get: () => Store.user,
+        get: () => Store.user
       });
 
       return { state: state };

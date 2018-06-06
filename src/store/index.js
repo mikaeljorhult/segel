@@ -4,7 +4,7 @@ import forOwn from 'lodash/forOwn';
 import Cast from '../helpers/cast';
 import Events from '../helpers/events';
 import Validation from '../helpers/validation';
-import nanoid from "nanoid";
+import nanoid from 'nanoid';
 
 const Store = {
   config: {
@@ -22,7 +22,7 @@ const Store = {
   bookings: {
     all: [],
     get: function (id) {
-      return state.all.find(function (booking) {
+      return this.all.find(function (booking) {
         return booking.id === id;
       });
     },
@@ -67,7 +67,7 @@ const Store = {
         Events.$emit('bookings:updated', data);
       }
     },
-    remove: function (state, data) {
+    remove: function (data) {
       // Retrieve the index of the stored copy of booking.
       let index = this.all.findIndex(function (element) {
         return element.id === data.id;
@@ -85,7 +85,7 @@ const Store = {
   resources: {
     all: [],
     get: function (id) {
-      return state.all.find(function (resource) {
+      return this.all.find(function (resource) {
         return resource.id === id;
       });
     },
@@ -133,7 +133,7 @@ const Store = {
     end: Cast.date(new Date().setHours(24, 0, 0, 0)),
     set: function (start, end) {
       this.start = start;
-      this.end = start;
+      this.end = end;
     },
     duration: function () {
       return this.end - this.start;
