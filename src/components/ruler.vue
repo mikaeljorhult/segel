@@ -11,11 +11,11 @@
 </template>
 
 <script>
-  export default {
-    filters: {
-      leadingZero: function (value) {
-        return ('0' + value).slice(-2);
-      }
+export default {
+  filters: {
+    leadingZero: function(value) {
+      return ("0" + value).slice(-2);
     }
-  };
+  }
+};
 </script>

@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
 // Dependencies.
-import interact from 'interactjs';
+import interact from "interactjs";
 
 /**
  * Create an interact.js snap grid.
@@ -9,10 +9,8 @@ import interact from 'interactjs';
  * @param {Object} coordinates - Size of grid in pixels.
  * @returns {Array} - interact.js snap grid.
  */
-function snapGrid (coordinates) {
-  return [
-    interact.createSnapGrid(coordinates)
-  ];
+function snapGrid(coordinates) {
+  return [interact.createSnapGrid(coordinates)];
 }
 
 /**
@@ -30,7 +28,7 @@ const Grid = {};
  * @param {Number} steps - Number of steps to divide the horizontal space in.
  * @returns {Array} - interact.js snap grid.
  */
-Grid.create = function (width, height, steps) {
+Grid.create = function(width, height, steps) {
   return snapGrid({
     x: width / steps,
     y: height
@@ -45,12 +43,12 @@ Grid.create = function (width, height, steps) {
  * @param {Number} steps - Number of steps within the duration of the calendar.
  * @returns {Number} - Rounded timestamp.
  */
-Grid.round = function (timestamp, duration, steps) {
+Grid.round = function(timestamp, duration, steps) {
   let size = duration / steps;
   let offset = timestamp % size;
   let rounded = timestamp - offset;
 
-  return offset >= (size / 2) ? rounded + size : rounded;
+  return offset >= size / 2 ? rounded + size : rounded;
 };
 
 // Return the instance.

@@ -19,57 +19,57 @@
 </template>
 
 <script>
-  import SegelBooking from './booking.vue';
-  import Dropzone from '../directives/dropzone.js';
+import SegelBooking from "./booking.vue";
+import Dropzone from "../directives/dropzone.js";
 
-  export default {
-    props: {
-      id: {
-        type: [String, Number],
-        required: true
-      },
-      name: {
-        type: String,
-        required: true
-      },
-      bookings: {
-        type: Array,
-        default: function () {
-          return [];
-        }
-      }
+export default {
+  props: {
+    id: {
+      type: [String, Number],
+      required: true
     },
-
-    directives: {
-      dropzone: Dropzone
+    name: {
+      type: String,
+      required: true
     },
-
-    data: function () {
-      return {
-        dropTarget: false
-      };
-    },
-
-    inject: ['state'],
-
-    components: {
-      'segel-booking': SegelBooking
-    },
-
-    methods: {
-      dragenter: function () {
-        this.dropTarget = true;
-      },
-      dragleave: function () {
-        this.dropTarget = false;
-      },
-      dragover: function (e) {
-        this.dropTarget = true;
-        e.dataTransfer.dropEffect = e.altKey ? 'copy' : 'move';
-      },
-      drop: function () {
-        this.dropTarget = false;
+    bookings: {
+      type: Array,
+      default: function() {
+        return [];
       }
     }
-  };
+  },
+
+  directives: {
+    dropzone: Dropzone
+  },
+
+  data: function() {
+    return {
+      dropTarget: false
+    };
+  },
+
+  inject: ["state"],
+
+  components: {
+    "segel-booking": SegelBooking
+  },
+
+  methods: {
+    dragenter: function() {
+      this.dropTarget = true;
+    },
+    dragleave: function() {
+      this.dropTarget = false;
+    },
+    dragover: function(e) {
+      this.dropTarget = true;
+      e.dataTransfer.dropEffect = e.altKey ? "copy" : "move";
+    },
+    drop: function() {
+      this.dropTarget = false;
+    }
+  }
+};
 </script>

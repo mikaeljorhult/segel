@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
 // Dependencies.
-import Vue from 'vue';
+import Vue from "vue";
 
 // Components.
-import Main from './components/main.vue';
+import Main from "./components/main.vue";
 
 /**
  * Root element for Vue.
@@ -12,10 +12,10 @@ import Main from './components/main.vue';
  * @type {Vue}
  */
 const Instance = new Vue({
-  template: '<segel-main></segel-main>',
+  template: "<segel-main></segel-main>",
 
   components: {
-    'segel-main': Main
+    "segel-main": Main
   }
 });
 

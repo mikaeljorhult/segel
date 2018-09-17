@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
 // Dependencies.
-import castArray from 'lodash/castArray';
-import forEach from 'lodash/forEach';
+import castArray from "lodash/castArray";
+import forEach from "lodash/forEach";
 
 /**
  * Iterate over and pass arguments through callback.
@@ -11,9 +11,9 @@ import forEach from 'lodash/forEach';
  * @param {Function} callback - Function to process each data value.
  * @constructor
  */
-const Process = function (data, callback) {
+const Process = function(data, callback) {
   // Pass each object in array to callback.
-  forEach(castArray(data), function (object) {
+  forEach(castArray(data), function(object) {
     callback(object);
   });
 };

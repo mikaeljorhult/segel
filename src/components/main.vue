@@ -16,41 +16,41 @@
 </template>
 
 <script>
-  import Store from '../store';
-  import SegelIndicator from './indicator.vue';
-  import SegelRuler from './ruler.vue';
-  import SegelResources from './resources.vue';
+import Store from "../store";
+import SegelIndicator from "./indicator.vue";
+import SegelRuler from "./ruler.vue";
+import SegelResources from "./resources.vue";
 
-  export default {
-    data: function () {
-      return Store;
-    },
+export default {
+  data: function() {
+    return Store;
+  },
 
-    provide: function () {
-      const state = {};
+  provide: function() {
+    const state = {};
 
-      Object.defineProperty(state, 'config', {
-        enumerable: true,
-        get: () => Store.config
-      });
+    Object.defineProperty(state, "config", {
+      enumerable: true,
+      get: () => Store.config
+    });
 
-      Object.defineProperty(state, 'time', {
-        enumerable: true,
-        get: () => Store.time
-      });
+    Object.defineProperty(state, "time", {
+      enumerable: true,
+      get: () => Store.time
+    });
 
-      Object.defineProperty(state, 'user', {
-        enumerable: true,
-        get: () => Store.user
-      });
+    Object.defineProperty(state, "user", {
+      enumerable: true,
+      get: () => Store.user
+    });
 
-      return { state: state };
-    },
+    return { state: state };
+  },
 
-    components: {
-      'segel-indicator': SegelIndicator,
-      'segel-ruler': SegelRuler,
-      'segel-resources': SegelResources
-    }
-  };
+  components: {
+    "segel-indicator": SegelIndicator,
+    "segel-ruler": SegelRuler,
+    "segel-resources": SegelResources
+  }
+};
 </script>

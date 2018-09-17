@@ -1,11 +1,11 @@
-'use strict';
+"use strict";
 
 // Components.
-import Instance from './vue';
-import Cast from './helpers/cast';
-import Events from './helpers/events';
-import Process from './helpers/process';
-import Store from './store';
+import Instance from "./vue";
+import Cast from "./helpers/cast";
+import Events from "./helpers/events";
+import Process from "./helpers/process";
+import Store from "./store";
 
 /**
  * Constructor.
@@ -14,9 +14,9 @@ import Store from './store';
  * @param {Object} [config] - Configuration to use.
  * @constructor
  */
-const Segel = function (selector, config) {
-  if (typeof config === 'object') {
-    Store.commit('config/set', config);
+const Segel = function(selector, config) {
+  if (typeof config === "object") {
+    Store.commit("config/set", config);
   }
 
   // Mount the Vue instance to document.
@@ -37,7 +37,7 @@ Segel.instance = Instance;
  *
  * @returns {Segel}
  */
-function returnSegel () {
+function returnSegel() {
   return Segel;
 }
 
@@ -53,7 +53,7 @@ Segel.bookings = {};
  *
  * @returns {Array} - All stored bookings.
  */
-Segel.bookings.all = function () {
+Segel.bookings.all = function() {
   return Store.bookings.all;
 };
 
@@ -63,7 +63,7 @@ Segel.bookings.all = function () {
  * @param id - ID of requested booking.
  * @returns {Object|null} - Booking if found, otherwise null.
  */
-Segel.bookings.get = function (id) {
+Segel.bookings.get = function(id) {
   return Store.bookings.get(id) || null;
 };
 
@@ -73,8 +73,8 @@ Segel.bookings.get = function (id) {
  * @param {Object|Object[]} bookings - Bookings to add.
  * @returns {Segel.bookings}
  */
-Segel.bookings.add = function (bookings) {
-  Process(bookings, function (booking) {
+Segel.bookings.add = function(bookings) {
+  Process(bookings, function(booking) {
     Store.bookings.add(Cast.booking(booking));
   });
 
@@ -87,8 +87,8 @@ Segel.bookings.add = function (bookings) {
  * @param {Object|Object[]} bookings - Bookings to update.
  * @returns {Segel.bookings}
  */
-Segel.bookings.update = function (bookings) {
-  Process(bookings, function (booking) {
+Segel.bookings.update = function(bookings) {
+  Process(bookings, function(booking) {
     Store.bookings.update(Cast.booking(booking));
   });
 
@@ -101,8 +101,8 @@ Segel.bookings.update = function (bookings) {
  * @param {Object|Object[]} bookings - Bookings to remove.
  * @returns {Segel.bookings}
  */
-Segel.bookings.remove = function (bookings) {
-  Process(bookings, function (booking) {
+Segel.bookings.remove = function(bookings) {
+  Process(bookings, function(booking) {
     Store.bookings.remove(Cast.booking(booking));
   });
 
@@ -128,7 +128,7 @@ Segel.resources = {};
  *
  * @returns {Array} - All stored resources.
  */
-Segel.resources.all = function () {
+Segel.resources.all = function() {
   return Store.resources.all;
 };
 
@@ -138,7 +138,7 @@ Segel.resources.all = function () {
  * @param id - ID of requested resource.
  * @returns {Object|null} - Resource if found, otherwise null.
  */
-Segel.resources.get = function (id) {
+Segel.resources.get = function(id) {
   return Store.resources.get(id) || null;
 };
 
@@ -148,8 +148,8 @@ Segel.resources.get = function (id) {
  * @param {Object|Object[]} resources - Resources to add.
  * @returns {Segel.resources}
  */
-Segel.resources.add = function (resources) {
-  Process(resources, function (resource) {
+Segel.resources.add = function(resources) {
+  Process(resources, function(resource) {
     Store.resources.add(Cast.resource(resource));
   });
 
@@ -162,8 +162,8 @@ Segel.resources.add = function (resources) {
  * @param {Object|Object[]} resources - Resources to update.
  * @returns {Segel.resources}
  */
-Segel.resources.update = function (resources) {
-  Process(resources, function (resource) {
+Segel.resources.update = function(resources) {
+  Process(resources, function(resource) {
     Store.resources.update(Cast.resource(resource));
   });
 
@@ -176,8 +176,8 @@ Segel.resources.update = function (resources) {
  * @param {Object|Object[]} resources - Resources to remove.
  * @returns {Segel.resources}
  */
-Segel.resources.remove = function (resources) {
-  Process(resources, function (resource) {
+Segel.resources.remove = function(resources) {
+  Process(resources, function(resource) {
     Store.resources.remove(Cast.resource(resource));
   });
 
@@ -205,11 +205,8 @@ Segel.time = {};
  * @param end
  * @returns {Segel.time}
  */
-Segel.time.set = function (start, end) {
-  Store.time.set(
-    Cast.date(start),
-    Cast.date(end)
-  );
+Segel.time.set = function(start, end) {
+  Store.time.set(Cast.date(start), Cast.date(end));
 
   return this;
 };
@@ -234,8 +231,12 @@ Segel.user = {};
  * @param user
  * @returns {Segel.user}
  */
-Segel.user.set = function (user) {
-  if (['[object String]', '[object Number]'].indexOf(Object.prototype.toString.call(user)) > -1) {
+Segel.user.set = function(user) {
+  if (
+    ["[object String]", "[object Number]"].indexOf(
+      Object.prototype.toString.call(user)
+    ) > -1
+  ) {
     user = { id: user };
   }
 
@@ -258,7 +259,7 @@ Segel.user.end = returnSegel;
  * @param {Function} callback - Function to run when event is broadcast.
  * @returns {Segel}
  */
-Segel.on = function (event, callback) {
+Segel.on = function(event, callback) {
   Events.$on(event, callback);
 
   return Segel;
@@ -271,7 +272,7 @@ Segel.on = function (event, callback) {
  * @param {Function} callback - Function to remove.
  * @returns {Segel}
  */
-Segel.off = function (event, callback) {
+Segel.off = function(event, callback) {
   Events.$off(event, callback);
 
   return Segel;

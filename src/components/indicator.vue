@@ -7,22 +7,30 @@
 </template>
 
 <script>
-  import inRange from 'lodash/inRange';
+import inRange from "lodash/inRange";
 
-  export default {
-    data: function () {
-      return {};
+export default {
+  data: function() {
+    return {};
+  },
+
+  inject: ["state"],
+
+  computed: {
+    isInView: function() {
+      return inRange(
+        this.state.time.current,
+        this.state.time.start,
+        this.state.time.end
+      );
     },
-
-    inject: ['state'],
-
-    computed: {
-      isInView: function () {
-        return inRange(this.state.time.current, this.state.time.start, this.state.time.end);
-      },
-      left: function () {
-        return (this.state.time.current - this.state.time.start) / this.state.time.duration() * 100;
-      }
+    left: function() {
+      return (
+        ((this.state.time.current - this.state.time.start) /
+          this.state.time.duration()) *
+        100
+      );
     }
-  };
+  }
+};
 </script>

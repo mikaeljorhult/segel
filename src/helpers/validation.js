@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
 // Dependencies.
-import castArray from 'lodash/castArray';
-import forEach from 'lodash/forEach';
-import inRange from 'lodash/inRange';
-import isFunction from 'lodash/isFunction';
+import castArray from "lodash/castArray";
+import forEach from "lodash/forEach";
+import inRange from "lodash/inRange";
+import isFunction from "lodash/isFunction";
 
 /**
  * Base validation object.
@@ -20,20 +20,26 @@ const Validation = {};
  * @param {Object} data - Booking object to validate.
  * @returns {boolean} - Whether data is valid to insert or update as a booking.
  */
-Validation.isAvailable = function (bookings, data) {
+Validation.isAvailable = function(bookings, data) {
   // Bookings for the requested resource.
-  let resourceBookings = bookings.filter(function (booking) {
+  let resourceBookings = bookings.filter(function(booking) {
     // Same resource as booking but ignore itself.
-    return booking.resource === data.resource &&
-      !(data.id !== undefined && booking.id === data.id);
+    return (
+      booking.resource === data.resource &&
+      !(data.id !== undefined && booking.id === data.id)
+    );
   });
 
   // Return false if any bookings are in the same time slot.
-  return resourceBookings.filter(function (booking) {
-    return inRange(data.start, booking.start - 1, booking.end) ||
-      inRange(data.end, booking.start + 1, booking.end) ||
-      inRange(booking.start, data.start, data.end);
-  }).length === 0;
+  return (
+    resourceBookings.filter(function(booking) {
+      return (
+        inRange(data.start, booking.start - 1, booking.end) ||
+        inRange(data.end, booking.start + 1, booking.end) ||
+        inRange(booking.start, data.start, data.end)
+      );
+    }).length === 0
+  );
 };
 
 /**
@@ -43,11 +49,13 @@ Validation.isAvailable = function (bookings, data) {
  * @param {Object} data - Booking or resource to validate.
  * @returns {boolean} - Whether data is valid to insert or update as a booking or resource.
  */
-Validation.isUnique = function (array, data) {
+Validation.isUnique = function(array, data) {
   // Check if object with index exists in array.
-  return array.findIndex(function (element) {
-    return element.id === data.id;
-  }) === -1;
+  return (
+    array.findIndex(function(element) {
+      return element.id === data.id;
+    }) === -1
+  );
 };
 
 /**
@@ -58,11 +66,11 @@ Validation.isUnique = function (array, data) {
  * @param {Object} data - Booking or resource to validate.
  * @returns {boolean} - Whether data is valid to insert or update as a booking or resource.
  */
-Validation.multipleRules = function (rules, array, data) {
+Validation.multipleRules = function(rules, array, data) {
   let valid = true;
 
   // Go through each requested rule.
-  forEach(castArray(rules), function (rule) {
+  forEach(castArray(rules), function(rule) {
     // Make sure that rule exists on validation object.
     if (isFunction(Validation[rule])) {
       // Validate data and set result to variable.

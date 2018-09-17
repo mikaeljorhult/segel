@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
  * Far future date to compare timestamps against.
@@ -22,7 +22,7 @@ const Cast = {};
  * @param {Object} booking - Booking to work with.
  * @returns {Object} - Booking with properties cast to correct types.
  */
-Cast.booking = function (booking) {
+Cast.booking = function(booking) {
   booking.start = this.date(booking.start);
   booking.end = this.date(booking.end);
 
@@ -35,7 +35,7 @@ Cast.booking = function (booking) {
  * @param {Object} resource - Resource to work with.
  * @returns {Object} - Resource with properties cast to correct types.
  */
-Cast.resource = function (resource) {
+Cast.resource = function(resource) {
   return resource;
 };
 
@@ -45,20 +45,23 @@ Cast.resource = function (resource) {
  * @param date - Date to be cast.
  * @returns {number} - Date in Unix Epoch timestamp (seconds).
  */
-Cast.date = function (date) {
+Cast.date = function(date) {
   let dateReturn = date;
 
   // Convert strings to integer if it's numeric.
-  if (Object.prototype.toString.call(date) === '[object String]' && /^\d+$/.test(date)) {
+  if (
+    Object.prototype.toString.call(date) === "[object String]" &&
+    /^\d+$/.test(date)
+  ) {
     date = parseInt(date);
   }
 
   switch (Object.prototype.toString.call(date)) {
-    case '[object Date]':
+    case "[object Date]":
       // Get Unix timestamp (in milliseconds) and divide to seconds.
       dateReturn = date.getTime() / 1000;
       break;
-    case '[object Number]':
+    case "[object Number]":
       // If timestamp is in milliseconds it will be beyond year 10000 multiplied, otherwise assume it is in seconds.
       dateReturn = date * 1000 > futureDate.getTime() ? date / 1000 : date;
       break;

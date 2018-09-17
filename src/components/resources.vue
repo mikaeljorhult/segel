@@ -11,38 +11,38 @@
 </template>
 
 <script>
-  import SegelResource from './resource.vue';
+import SegelResource from "./resource.vue";
 
-  export default {
-    props: {
-      resources: {
-        type: Array,
-        default: function () {
-          return [];
-        }
-      },
-      bookings: {
-        type: Array,
-        default: function () {
-          return [];
-        }
+export default {
+  props: {
+    resources: {
+      type: Array,
+      default: function() {
+        return [];
       }
     },
-
-    data () {
-      return {};
-    },
-
-    components: {
-      'segel-resource': SegelResource
-    },
-
-    methods: {
-      relatedBookings: function (resource) {
-        return this.bookings.filter(function (booking) {
-          return booking.resource === resource;
-        });
+    bookings: {
+      type: Array,
+      default: function() {
+        return [];
       }
     }
-  };
+  },
+
+  data() {
+    return {};
+  },
+
+  components: {
+    "segel-resource": SegelResource
+  },
+
+  methods: {
+    relatedBookings: function(resource) {
+      return this.bookings.filter(function(booking) {
+        return booking.resource === resource;
+      });
+    }
+  }
+};
 </script>

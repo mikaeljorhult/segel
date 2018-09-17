@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
 // Dependencies.
-import Vue from 'vue';
+import Vue from "vue";
 
 /**
  * Create base events object.

@@ -1,7 +1,8 @@
 .segel {
   margin: 1rem 0;
 
-  &, & * {
+  &,
+  & * {
     box-sizing: border-box;
   }
 
@@ -26,20 +27,20 @@
   z-index: 100;
   background-color: #1a9bfc;
   pointer-events: none;
-  transition: left .1s;
+  transition: left 0.1s;
 }
 
 .segel-ruler {
   ul {
     display: flex;
     justify-content: space-between;
-    font-size: .8rem;
+    font-size: 0.8rem;
   }
 
   li {
     flex: 1;
     position: relative;
-    padding: .5rem 0 .6rem .5rem;
+    padding: 0.5rem 0 0.6rem 0.5rem;
     background-color: #f3f3f3;
   }
 
@@ -70,11 +71,11 @@
 
   li {
     flex: 1;
-    background-color: rgba(0, 0, 0, .025);
+    background-color: rgba(0, 0, 0, 0.025);
   }
 
   li:nth-child(even) {
-    background-color: rgba(0, 0, 0, .01);
+    background-color: rgba(0, 0, 0, 0.01);
   }
 }
 
@@ -91,15 +92,15 @@
 
 .segel-resource {
   position: relative;
-  padding: .5rem 0;
+  padding: 0.5rem 0;
   border-bottom: 1px solid #e6e6e6;
 
   .droppable {
-    background-color: rgba(0, 0, 0, .05);
+    background-color: rgba(0, 0, 0, 0.05);
   }
 
   .dragging {
-    border: 2px solid rgba(0, 0, 0, .1);
+    border: 2px solid rgba(0, 0, 0, 0.1);
   }
 }
 
@@ -120,5 +121,5 @@
   display: block;
   height: 100%;
   z-index: 100;
-  background-color: rgba(255, 0, 0, .25);
+  background-color: rgba(255, 0, 0, 0.25);
 }
