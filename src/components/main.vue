@@ -8,8 +8,8 @@
             <segel-indicator></segel-indicator>
             <segel-ruler></segel-ruler>
             <segel-resources
-                v-bind:resources="resources.all"
-                v-bind:bookings="bookings.all"
+                v-bind:resources="resources"
+                v-bind:bookings="bookings"
             ></segel-resources>
         </div>
     </section>
@@ -22,6 +22,30 @@ import SegelRuler from "./ruler.vue";
 import SegelResources from "./resources.vue";
 
 export default {
+  props: {
+    bookings: {
+      type: Array,
+      default: function() {
+        return [];
+      }
+    },
+    resources: {
+      type: Array,
+      default: function() {
+        return [];
+      }
+    },
+    time: {
+      type: Object,
+      default: function() {
+        return {
+          start: Cast.date(new Date().setHours(0, 0, 0, 0)),
+          end: Cast.date(new Date().setHours(24, 0, 0, 0))
+        };
+      }
+    }
+  },
+
   data: function() {
     return Store;
   },
@@ -36,7 +60,7 @@ export default {
 
     Object.defineProperty(state, "time", {
       enumerable: true,
-      get: () => Store.time
+      get: () => Object.assign(this.time, Store.clock)
     });
 
     Object.defineProperty(state, "user", {

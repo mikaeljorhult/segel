@@ -12,10 +12,19 @@ import Main from "./components/main.vue";
  * @type {Vue}
  */
 const Instance = new Vue({
-  template: "<segel-main></segel-main>",
+  template:
+    "<segel-main v-bind:bookings='bookings' v-bind:resources='resources' v-bind:time='time'></segel-main>",
 
   components: {
     "segel-main": Main
+  },
+
+  data: function() {
+    return {
+      bookings: [],
+      resources: [],
+      time: {}
+    };
   }
 });
 

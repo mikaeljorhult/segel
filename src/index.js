@@ -11,13 +11,16 @@ import Store from "./store";
  * Constructor.
  *
  * @param {String} selector - CSS selector to which it will insert the schedule.
- * @param {Object} [config] - Configuration to use.
  * @constructor
  */
-const Segel = function(selector, config) {
-  if (typeof config === "object") {
-    Store.commit("config/set", config);
-  }
+const Segel = function(selector) {
+  // Set required properties of the Vue instance.
+  Instance.bookings = [];
+  Instance.resources = [];
+  Instance.time = {
+    start: Cast.date(new Date().setHours(0, 0, 0, 0)),
+    end: Cast.date(new Date().setHours(24, 0, 0, 0))
+  };
 
   // Mount the Vue instance to document.
   Instance.$mount(selector);
