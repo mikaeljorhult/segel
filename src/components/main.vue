@@ -1,18 +1,18 @@
 <template>
-    <section class="segel">
-        <div class="segel-container">
-            <ul class="segel-grid">
-                <li v-for="n in 24">&nbsp;</li>
-            </ul>
+  <section class="segel">
+    <div class="segel-container">
+      <ul class="segel-grid">
+        <li v-for="n in 24">&nbsp;</li>
+      </ul>
 
-            <segel-indicator></segel-indicator>
-            <segel-ruler></segel-ruler>
-            <segel-resources
-                v-bind:resources="resources"
-                v-bind:bookings="bookings"
-            ></segel-resources>
-        </div>
-    </section>
+      <segel-indicator></segel-indicator>
+      <segel-ruler></segel-ruler>
+      <segel-resources
+        v-bind:resources="resources"
+        v-bind:bookings="bookings"
+      ></segel-resources>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -20,6 +20,7 @@ import Store from "../store";
 import SegelIndicator from "./indicator.vue";
 import SegelRuler from "./ruler.vue";
 import SegelResources from "./resources.vue";
+import Cast from "../helpers/cast";
 
 export default {
   props: {
