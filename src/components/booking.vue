@@ -1,11 +1,11 @@
 <template>
-    <li
-        v-if="isInView"
-        v-draggable="isEditable"
-        v-resizable="isEditable"
-        v-bind:class="{'segel-booking': true, editable: isEditable}"
-        v-bind:style="{ left: left + '%', width: width + '%' }"
-    ></li>
+  <li
+    v-if="isInView"
+    v-draggable="isEditable"
+    v-resizable="isEditable"
+    v-bind:class="{ 'segel-booking': true, editable: isEditable }"
+    v-bind:style="{ left: left + '%', width: width + '%' }"
+  ></li>
 </template>
 
 <script>
@@ -45,12 +45,12 @@ export default {
     return {};
   },
 
-  inject: ["state"],
+  inject: ["config", "state"],
 
   computed: {
     isEditable: function() {
       // Check if bookings should be editable at all.
-      if (!this.state.config.editable) {
+      if (!this.config.editable) {
         return false;
       }
 

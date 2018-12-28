@@ -1,9 +1,9 @@
 <template>
-    <div
-        v-if="isInView"
-        v-bind:class="{'segel-indicator': true}"
-        v-bind:style="{left: left + '%'}"
-    ></div>
+  <div
+    v-if="isInView"
+    v-bind:class="{ 'segel-indicator': true }"
+    v-bind:style="{ left: left + '%' }"
+  ></div>
 </template>
 
 <script>
@@ -14,7 +14,7 @@ export default {
     return {};
   },
 
-  inject: ["state"],
+  inject: ["config", "state"],
 
   computed: {
     isInView: function() {

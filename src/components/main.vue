@@ -24,6 +24,12 @@ import Cast from "../helpers/cast";
 
 export default {
   props: {
+    editable: {
+      type: Boolean,
+      default: function() {
+        return false;
+      }
+    },
     bookings: {
       type: Array,
       default: function() {
@@ -52,11 +58,12 @@ export default {
   },
 
   provide: function() {
+    const config = {};
     const state = {};
 
-    Object.defineProperty(state, "config", {
+    Object.defineProperty(config, "editable", {
       enumerable: true,
-      get: () => Store.config
+      get: () => this.editable
     });
 
     Object.defineProperty(state, "time", {
@@ -69,7 +76,10 @@ export default {
       get: () => Store.user
     });
 
-    return { state: state };
+    return {
+      config: config,
+      state: state
+    };
   },
 
   components: {

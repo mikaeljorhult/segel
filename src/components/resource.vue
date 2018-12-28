@@ -1,21 +1,19 @@
 <template>
-    <li class="segel-resource">
-        {{ name }}
+  <li class="segel-resource">
+    {{ name }}
 
-        <ul class="segel-bookings"
-            v-dropzone
-        >
-            <segel-booking
-                    v-for="booking in bookings"
-                    v-bind:key="booking.id"
-                    v-bind:id="booking.id"
-                    v-bind:resource="id"
-                    v-bind:user="booking.user"
-                    v-bind:start="booking.start"
-                    v-bind:end="booking.end"
-            ></segel-booking>
-        </ul>
-    </li>
+    <ul class="segel-bookings" v-dropzone>
+      <segel-booking
+        v-for="booking in bookings"
+        v-bind:key="booking.id"
+        v-bind:id="booking.id"
+        v-bind:resource="id"
+        v-bind:user="booking.user"
+        v-bind:start="booking.start"
+        v-bind:end="booking.end"
+      ></segel-booking>
+    </ul>
+  </li>
 </template>
 
 <script>
@@ -50,7 +48,7 @@ export default {
     };
   },
 
-  inject: ["state"],
+  inject: ["config", "state"],
 
   components: {
     "segel-booking": SegelBooking
