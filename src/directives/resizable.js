@@ -11,7 +11,7 @@ const handleResize = function(element, vnode) {
   interact(element).resizable().snap.targets = Grid.create(
     vnode.context.$root.$el.clientWidth,
     35,
-    vnode.context.state.time.steps
+    vnode.context.config.steps
   );
 };
 
@@ -28,7 +28,7 @@ export default {
         targets: Grid.create(
           vnode.context.$root.$el.clientWidth,
           35,
-          vnode.context.state.time.steps
+          vnode.context.config.steps
         ),
         offset: "startCoords"
       },
@@ -78,12 +78,12 @@ export default {
           start: Grid.round(
             vnode.context.state.time.start + start,
             vnode.context.state.time.duration(),
-            vnode.context.state.time.steps
+            vnode.context.config.steps
           ),
           end: Grid.round(
             vnode.context.state.time.start + start + end,
             vnode.context.state.time.duration(),
-            vnode.context.state.time.steps
+            vnode.context.config.steps
           )
         });
 

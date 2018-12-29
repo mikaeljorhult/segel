@@ -11,7 +11,7 @@ const handleResize = function(element, vnode) {
   interact(element).draggable().snap.targets = Grid.create(
     vnode.context.$root.$el.clientWidth,
     36,
-    vnode.context.state.time.steps
+    vnode.context.config.steps
   );
 };
 
@@ -28,7 +28,7 @@ export default {
         targets: Grid.create(
           vnode.context.$root.$el.clientWidth,
           36,
-          vnode.context.state.time.steps
+          vnode.context.config.steps
         ),
         offset: "startCoords"
       },

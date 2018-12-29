@@ -42,13 +42,22 @@ export default {
         return [];
       }
     },
-    time: {
-      type: Object,
+    start: {
+      type: Number,
       default: function() {
-        return {
-          start: Cast.date(new Date().setHours(0, 0, 0, 0)),
-          end: Cast.date(new Date().setHours(24, 0, 0, 0))
-        };
+        return Cast.date(new Date().setHours(0, 0, 0, 0));
+      }
+    },
+    end: {
+      type: Number,
+      default: function() {
+        return Cast.date(new Date().setHours(24, 0, 0, 0));
+      }
+    },
+    steps: {
+      type: Number,
+      default: function() {
+        return 48;
       }
     }
   },
@@ -66,9 +75,21 @@ export default {
       get: () => this.editable
     });
 
+    Object.defineProperty(config, "steps", {
+      enumerable: true,
+      get: () => this.steps
+    });
+
     Object.defineProperty(state, "time", {
       enumerable: true,
-      get: () => Object.assign(this.time, Store.clock)
+      get: () =>
+        Object.assign(
+          {
+            start: this.start,
+            end: this.end
+          },
+          Store.clock
+        )
     });
 
     Object.defineProperty(state, "user", {

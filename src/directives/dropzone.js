@@ -55,11 +55,11 @@ export default {
             vnode.context.state.time.duration()
         );
         let stepSize =
-          vnode.context.state.time.duration() / vnode.context.state.time.steps;
+          vnode.context.state.time.duration() / vnode.context.config.steps;
         let start = Grid.round(
           position + vnode.context.state.time.start,
           vnode.context.state.time.duration(),
-          vnode.context.state.time.steps
+          vnode.context.config.steps
         );
 
         // Add new booking to store.
