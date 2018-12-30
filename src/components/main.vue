@@ -63,12 +63,22 @@ export default {
   },
 
   data: function() {
-    return Store;
+    return {
+      timer: null,
+      time: {
+        current: Cast.date(new Date()),
+        duration: function() {
+          return this.end - this.start;
+        }
+      },
+      user: Store.user
+    };
   },
 
   provide: function() {
     const config = {};
     const state = {};
+    const time = {};
 
     Object.defineProperty(config, "editable", {
       enumerable: true,
@@ -80,16 +90,24 @@ export default {
       get: () => this.steps
     });
 
-    Object.defineProperty(state, "time", {
+    Object.defineProperty(time, "start", {
       enumerable: true,
-      get: () =>
-        Object.assign(
-          {
-            start: this.start,
-            end: this.end
-          },
-          Store.clock
-        )
+      get: () => this.start
+    });
+
+    Object.defineProperty(time, "end", {
+      enumerable: true,
+      get: () => this.end
+    });
+
+    Object.defineProperty(time, "current", {
+      enumerable: true,
+      get: () => this.time.current
+    });
+
+    Object.defineProperty(time, "duration", {
+      enumerable: true,
+      get: () => this.time.duration
     });
 
     Object.defineProperty(state, "user", {
@@ -99,7 +117,8 @@ export default {
 
     return {
       config: config,
-      state: state
+      state: state,
+      time: time
     };
   },
 
@@ -107,6 +126,24 @@ export default {
     "segel-indicator": SegelIndicator,
     "segel-ruler": SegelRuler,
     "segel-resources": SegelResources
+  },
+
+  methods: {
+    updateTimer: function() {
+      this.time.current = Cast.date(new Date());
+    },
+
+    cancelTimer: function() {
+      clearInterval(this.timer);
+    }
+  },
+
+  created: function() {
+    this.timer = setInterval(this.updateTimer, 1000);
+  },
+
+  beforeDestroy: function() {
+    this.cancelTimer();
   }
 };
 </script>

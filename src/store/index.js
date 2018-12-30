@@ -1,18 +1,8 @@
 "use strict";
 
 import forOwn from "lodash/forOwn";
-import Cast from "../helpers/cast";
 
 const Store = {
-  clock: {
-    duration: function() {
-      return this.end - this.start;
-    },
-    current: null,
-    tick: function() {
-      this.current = Cast.date(new Date());
-    }
-  },
   user: {
     id: null,
     admin: false,
@@ -33,12 +23,6 @@ const Store = {
     }
   }
 };
-
-// Start timer that ticks every second.
-(function timer() {
-  Store.clock.tick();
-  setTimeout(timer, 1000);
-})();
 
 // Return the instance.
 export default Store;
