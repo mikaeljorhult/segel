@@ -45,12 +45,12 @@ export default {
     return {};
   },
 
-  inject: ["config", "state", "time"],
+  inject: ["state"],
 
   computed: {
     isEditable: function() {
       // Check if bookings should be editable at all.
-      if (!this.config.editable) {
+      if (!this.state.config.editable) {
         return false;
       }
 
@@ -63,24 +63,28 @@ export default {
       }
 
       // Past and current bookings can't be edited.
-      return this.start > this.time.current;
+      return this.start > this.state.time.current;
     },
     isInView: function() {
       return (
-        inRange(this.start, this.time.start, this.time.end) ||
-        inRange(this.end, this.time.start, this.time.end) ||
-        (this.start < this.time.start && this.end > this.time.start) ||
-        (this.end < this.time.end && this.end > this.time.end)
+        inRange(this.start, this.state.time.start, this.state.time.end) ||
+        inRange(this.end, this.state.time.start, this.state.time.end) ||
+        (this.start < this.state.time.start &&
+          this.end > this.state.time.start) ||
+        (this.end < this.state.time.end && this.end > this.state.time.end)
       );
     },
     duration: function() {
       return this.end - this.start;
     },
     left: function() {
-      return ((this.start - this.time.start) / this.time.duration()) * 100;
+      return (
+        ((this.start - this.state.time.start) / this.state.time.duration()) *
+        100
+      );
     },
     width: function() {
-      return (this.duration / this.time.duration()) * 100;
+      return (this.duration / this.state.time.duration()) * 100;
     }
   }
 };

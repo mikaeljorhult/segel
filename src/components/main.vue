@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import Store from "../store";
 import SegelIndicator from "./indicator.vue";
 import SegelRuler from "./ruler.vue";
 import SegelResources from "./resources.vue";
@@ -71,55 +70,72 @@ export default {
           return this.end - this.start;
         }
       },
-      user: Store.user
+      user: {
+        id: null,
+        admin: false,
+        isAdmin: function() {
+          return this.admin === true;
+        },
+        isAuthenticated: function() {
+          return this.id !== null;
+        }
+      }
     };
   },
 
   provide: function() {
-    const config = {};
-    const state = {};
-    const time = {};
+    const state = {
+      config: {},
+      time: {},
+      user: {}
+    };
 
-    Object.defineProperty(config, "editable", {
+    Object.defineProperty(state.config, "editable", {
       enumerable: true,
       get: () => this.editable
     });
 
-    Object.defineProperty(config, "steps", {
+    Object.defineProperty(state.config, "steps", {
       enumerable: true,
       get: () => this.steps
     });
 
-    Object.defineProperty(time, "start", {
+    Object.defineProperty(state.time, "start", {
       enumerable: true,
       get: () => this.start
     });
 
-    Object.defineProperty(time, "end", {
+    Object.defineProperty(state.time, "end", {
       enumerable: true,
       get: () => this.end
     });
 
-    Object.defineProperty(time, "current", {
+    Object.defineProperty(state.time, "current", {
       enumerable: true,
       get: () => this.time.current
     });
 
-    Object.defineProperty(time, "duration", {
+    Object.defineProperty(state.time, "duration", {
       enumerable: true,
       get: () => this.time.duration
     });
 
-    Object.defineProperty(state, "user", {
+    Object.defineProperty(state.user, "id", {
       enumerable: true,
-      get: () => Store.user
+      get: () => this.user.id
     });
 
-    return {
-      config: config,
-      state: state,
-      time: time
-    };
+    Object.defineProperty(state.user, "isAdmin", {
+      enumerable: true,
+      get: () => this.user.isAdmin
+    });
+
+    Object.defineProperty(state.user, "isAuthenticated", {
+      enumerable: true,
+      get: () => this.user.isAuthenticated
+    });
+
+    return { state: state };
   },
 
   components: {

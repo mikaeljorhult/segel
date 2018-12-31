@@ -4,14 +4,13 @@
 import interact from "interactjs";
 import debounce from "lodash/debounce";
 import Grid from "../helpers/grid";
-import Store from "../store";
 
 const handleResize = function(element, vnode) {
   // Set new grid based on current widths.
   interact(element).resizable().snap.targets = Grid.create(
     vnode.context.$root.$el.clientWidth,
     35,
-    vnode.context.config.steps
+    vnode.context.state.config.steps
   );
 };
 
@@ -28,7 +27,7 @@ export default {
         targets: Grid.create(
           vnode.context.$root.$el.clientWidth,
           35,
-          vnode.context.config.steps
+          vnode.context.state.config.steps
         ),
         offset: "startCoords"
       },
@@ -71,21 +70,22 @@ export default {
             vnode.context.state.time.duration()
         );
 
+        // TODO: Replace call to Store with event.
         // Commit changes to store.
-        Store.bookings.update({
+        /*Store.bookings.update({
           id: vnode.context.id,
           resource: vnode.context.resource,
           start: Grid.round(
             vnode.context.state.time.start + start,
             vnode.context.state.time.duration(),
-            vnode.context.config.steps
+            vnode.context.state.config.steps
           ),
           end: Grid.round(
             vnode.context.state.time.start + start + end,
             vnode.context.state.time.duration(),
-            vnode.context.config.steps
+            vnode.context.state.config.steps
           )
-        });
+        });*/
 
         // Reset booking styles.
         element.webkitTransform = element.style.transform = "";

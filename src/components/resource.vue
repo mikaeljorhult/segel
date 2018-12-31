@@ -48,7 +48,7 @@ export default {
     };
   },
 
-  inject: ["config", "state", "time"],
+  inject: ["state"],
 
   components: {
     "segel-booking": SegelBooking
