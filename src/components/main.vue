@@ -20,6 +20,7 @@ import SegelIndicator from "./indicator.vue";
 import SegelRuler from "./ruler.vue";
 import SegelResources from "./resources.vue";
 import Cast from "../helpers/cast";
+import Events from "../helpers/events";
 
 export default {
   props: {
@@ -156,6 +157,13 @@ export default {
 
   created: function() {
     this.timer = setInterval(this.updateTimer, 1000);
+
+    Events.$on("bookings-create", booking => {
+      this.$emit("bookings-create", booking);
+    });
+    Events.$on("bookings-update", booking => {
+      this.$emit("bookings-update", booking);
+    });
   },
 
   beforeDestroy: function() {

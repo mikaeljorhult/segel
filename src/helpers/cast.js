@@ -1,5 +1,3 @@
-"use strict";
-
 /**
  * Far future date to compare timestamps against.
  * Is used to detect if timestamp is defined in seconds or milliseconds.

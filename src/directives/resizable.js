@@ -1,8 +1,7 @@
-"use strict";
-
 // Dependencies.
 import interact from "interactjs";
 import debounce from "lodash/debounce";
+import Events from "../helpers/events";
 import Grid from "../helpers/grid";
 
 const handleResize = function(element, vnode) {
@@ -70,9 +69,8 @@ export default {
             vnode.context.state.time.duration()
         );
 
-        // TODO: Replace call to Store with event.
-        // Commit changes to store.
-        /*Store.bookings.update({
+        // Emit event to update booking.
+        Events.$emit("bookings-update", {
           id: vnode.context.id,
           resource: vnode.context.resource,
           start: Grid.round(
@@ -85,7 +83,7 @@ export default {
             vnode.context.state.time.duration(),
             vnode.context.state.config.steps
           )
-        });*/
+        });
 
         // Reset booking styles.
         element.webkitTransform = element.style.transform = "";

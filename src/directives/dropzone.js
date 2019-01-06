@@ -1,8 +1,7 @@
-"use strict";
-
 // Dependencies.
 import interact from "interactjs";
-import Grid from "../helpers/grid.js";
+import Events from "../helpers/events";
+import Grid from "../helpers/grid";
 
 export default {
   bind: function(element, binding, vnode) {
@@ -23,22 +22,20 @@ export default {
 
           // Create copy if ALT key is pressed, otherwise edit existing.
           if (event.dragEvent.altKey) {
-            // TODO: Replace call to Store with event.
-            // Add new booking to store.
-            /*Store.bookings.create({
+            // Emit event to create booking.
+            Events.$emit("bookings-create", {
               resource: vnode.context.id,
               start: event.relatedTarget.__vue__.start + change,
               end: event.relatedTarget.__vue__.end + change
-            });*/
+            });
           } else {
-            // TODO: Replace call to Store with event.
-            // Commit changes of existing booking to store.
-            /*Store.bookings.update({
+            // Emit event to update booking.
+            Events.$emit("bookings-update", {
               id: event.relatedTarget.__vue__.id,
               resource: vnode.context.id,
               start: event.relatedTarget.__vue__.start + change,
               end: event.relatedTarget.__vue__.end + change
-            });*/
+            });
           }
 
           element.classList.remove("droppable");
@@ -64,13 +61,12 @@ export default {
           vnode.context.state.config.steps
         );
 
-        // TODO: Replace call to Store with event.
-        // Add new booking to store.
-        /*Store.bookings.create({
+        // Emit event to create booking.
+        Events.$emit("bookings-create", {
           resource: vnode.context.id,
           start: start,
           end: start + stepSize * 2
-        });*/
+        });
       });
   },
   unbind: function(element) {

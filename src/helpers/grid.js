@@ -1,5 +1,3 @@
-"use strict";
-
 // Dependencies.
 import interact from "interactjs";
 

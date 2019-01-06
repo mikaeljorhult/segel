@@ -1,5 +1,3 @@
-"use strict";
-
 // Dependencies.
 import Vue from "vue";
 
