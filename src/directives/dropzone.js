@@ -1,5 +1,6 @@
 // Dependencies.
 import interact from "interactjs";
+import Cast from "../helpers/cast";
 import Events from "../helpers/events";
 import Grid from "../helpers/grid";
 
@@ -20,22 +21,23 @@ export default {
               vnode.context.state.time.duration()
           );
 
+          // Build object.
+          let booking = {
+            resource: vnode.context.id,
+            start: Cast.date(event.relatedTarget.__vue__.start + change),
+            end: Cast.date(event.relatedTarget.__vue__.end + change)
+          };
+
           // Create copy if ALT key is pressed, otherwise edit existing.
           if (event.dragEvent.altKey) {
             // Emit event to create booking.
-            Events.$emit("bookings-create", {
-              resource: vnode.context.id,
-              start: event.relatedTarget.__vue__.start + change,
-              end: event.relatedTarget.__vue__.end + change
-            });
+            Events.$emit("bookings-create", booking);
           } else {
+            // Append ID of moved booking.
+            booking.id = event.relatedTarget.__vue__.id;
+
             // Emit event to update booking.
-            Events.$emit("bookings-update", {
-              id: event.relatedTarget.__vue__.id,
-              resource: vnode.context.id,
-              start: event.relatedTarget.__vue__.start + change,
-              end: event.relatedTarget.__vue__.end + change
-            });
+            Events.$emit("bookings-update", booking);
           }
 
           element.classList.remove("droppable");
