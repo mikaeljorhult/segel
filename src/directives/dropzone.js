@@ -24,8 +24,10 @@ export default {
           // Build object.
           let booking = {
             resource: vnode.context.id,
-            start: Cast.date(event.relatedTarget.__vue__.start + change),
-            end: Cast.date(event.relatedTarget.__vue__.end + change)
+            start: Cast.date(
+              parseInt(event.relatedTarget.__vue__.start) + change
+            ),
+            end: Cast.date(parseInt(event.relatedTarget.__vue__.end) + change)
           };
 
           // Create copy if ALT key is pressed, otherwise edit existing.
