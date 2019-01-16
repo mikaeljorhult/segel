@@ -5,7 +5,18 @@
     v-resizable="isEditable"
     v-bind:class="{ 'segel-booking': true, editable: isEditable }"
     v-bind:style="{ left: left + '%', width: width + '%' }"
-  ></li>
+  >
+    <span
+      v-if="isEditable"
+      class="segel-resize-handle segel-resize-handle__left"
+      >&#8942;</span
+    >
+    <span
+      v-if="isEditable"
+      class="segel-resize-handle segel-resize-handle__right"
+      >&#8942;</span
+    >
+  </li>
 </template>
 
 <script>

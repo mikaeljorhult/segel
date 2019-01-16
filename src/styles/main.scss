@@ -101,6 +101,7 @@
 
   .dragging {
     border: 2px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
   }
 }
 
@@ -121,5 +122,37 @@
   display: block;
   height: 100%;
   z-index: 100;
+  overflow: hidden;
   background-color: rgba(255, 0, 0, 0.25);
+  border-radius: 0.25rem;
+}
+
+.segel-resize-handle {
+  display: none;
+  align-items: center;
+  width: 0.5rem;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.15);
+  color: #fff;
+  text-align: center;
+
+  .segel-booking:hover &,
+  .segel-booking.resizing & {
+    display: flex;
+  }
+
+  .segel-booking.dragging & {
+    display: none;
+  }
+}
+
+.segel-resize-handle__left {
+  left: 0;
+}
+
+.segel-resize-handle__right {
+  right: 0;
 }

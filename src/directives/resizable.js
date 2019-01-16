@@ -33,8 +33,11 @@ export default {
       edges: {
         top: false,
         bottom: false,
-        left: true,
-        right: true
+        left: ".segel-resize-handle__left",
+        right: ".segel-resize-handle__right"
+      },
+      onstart: function() {
+        element.classList.add("resizing");
       },
       onmove: function(event) {
         // Get previous position from resource data.
@@ -86,6 +89,7 @@ export default {
         });
 
         // Reset booking styles.
+        element.classList.remove("resizing");
         element.webkitTransform = element.style.transform = "";
         element.style.width = vnode.context.width + "%";
         element.style.height = "";
