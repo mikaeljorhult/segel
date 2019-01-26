@@ -8,7 +8,6 @@
         v-bind:key="booking.id"
         v-bind:id="booking.id"
         v-bind:resource="id"
-        v-bind:user="booking.user"
         v-bind:status="booking.status"
         v-bind:start="booking.start"
         v-bind:end="booking.end"

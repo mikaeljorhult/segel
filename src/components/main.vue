@@ -70,16 +70,6 @@ export default {
         duration: function() {
           return this.end - this.start;
         }
-      },
-      user: {
-        id: null,
-        admin: false,
-        isAdmin: function() {
-          return this.admin === true;
-        },
-        isAuthenticated: function() {
-          return this.id !== null;
-        }
       }
     };
   },
@@ -87,8 +77,7 @@ export default {
   provide: function() {
     const state = {
       config: {},
-      time: {},
-      user: {}
+      time: {}
     };
 
     Object.defineProperty(state.config, "editable", {
@@ -119,21 +108,6 @@ export default {
     Object.defineProperty(state.time, "duration", {
       enumerable: true,
       get: () => this.time.duration
-    });
-
-    Object.defineProperty(state.user, "id", {
-      enumerable: true,
-      get: () => this.user.id
-    });
-
-    Object.defineProperty(state.user, "isAdmin", {
-      enumerable: true,
-      get: () => this.user.isAdmin
-    });
-
-    Object.defineProperty(state.user, "isAuthenticated", {
-      enumerable: true,
-      get: () => this.user.isAuthenticated
     });
 
     return { state: state };

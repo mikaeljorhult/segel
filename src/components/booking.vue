@@ -36,9 +36,6 @@ export default {
       type: [String, Number],
       required: true
     },
-    user: {
-      type: [String, Number]
-    },
     status: {
       type: String,
       default: "confirmed"
@@ -73,14 +70,6 @@ export default {
 
       // Check if status isn't updating.
       if (this.status === "updating") {
-        return false;
-      }
-
-      // If user is logged in, check that user own the booking or is admin.
-      if (
-        this.state.user.isAuthenticated() &&
-        (this.user !== this.state.user.id && this.state.user.isAdmin() !== true)
-      ) {
         return false;
       }
 
