@@ -16,6 +16,8 @@
       class="segel-resize-handle segel-resize-handle__right"
       >&#8942;</span
     >
+
+    <div class="progress" v-if="status === 'updating'"></div>
   </li>
 </template>
 
@@ -36,6 +38,10 @@ export default {
     },
     user: {
       type: [String, Number]
+    },
+    status: {
+      type: String,
+      default: "confirmed"
     },
     start: {
       type: Number,
@@ -62,6 +68,11 @@ export default {
     isEditable: function() {
       // Check if bookings should be editable at all.
       if (!this.state.config.editable) {
+        return false;
+      }
+
+      // Check if status isn't updating.
+      if (this.status === "updating") {
         return false;
       }
 
