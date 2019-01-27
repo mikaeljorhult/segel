@@ -46,6 +46,11 @@ export default {
         }
       })
       .on("doubletap", function(event) {
+        // Disregard all clicks when Segel is not editable.
+        if (!vnode.context.state.config.editable) {
+          return;
+        }
+
         // Only listen to clicks directly on the resource, not bookings.
         if (event.target !== element) {
           event.stopPropagation();
