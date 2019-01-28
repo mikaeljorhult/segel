@@ -35,6 +35,7 @@ Basic usage:
       v-bind:bookings="bookings"
       v-on:bookings-create="handleCreate"
       v-on:bookings-update="handleUpdate"
+      v-on:bookings-delete="handleDelete"
     ></Segel>
   </div>
 
@@ -83,6 +84,15 @@ Basic usage:
           });
 
           this.bookings.splice(index, 1, booking);
+        },
+        handleDelete: function(booking) {
+          // Find index of deleted booking.
+          let index = this.bookings.findIndex(function(stored) {
+            return stored.id == booking.id;
+          });
+
+          // Remove booking from array.
+          this.bookings.splice(index, 1);
         }
       }
     });

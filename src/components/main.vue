@@ -138,6 +138,9 @@ export default {
     Events.$on("bookings-update", booking => {
       this.$emit("bookings-update", booking);
     });
+    Events.$on("bookings-delete", booking => {
+      this.$emit("bookings-delete", booking);
+    });
   },
 
   beforeDestroy: function() {
