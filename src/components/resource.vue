@@ -2,7 +2,7 @@
   <li class="segel-resource">
     {{ name }}
 
-    <ul class="segel-bookings" v-dropzone>
+    <ul class="segel-bookings" v-dropzone v-on:dblclick="handleDblclick">
       <segel-booking
         v-for="booking in bookings"
         v-bind:key="booking.id"
@@ -19,6 +19,8 @@
 <script>
 import SegelBooking from "./booking.vue";
 import Dropzone from "../directives/dropzone.js";
+import Events from "../helpers/events";
+import Grid from "../helpers/grid";
 
 export default {
   props: {
@@ -67,6 +69,33 @@ export default {
     },
     drop: function() {
       this.dropTarget = false;
+    },
+    handleDblclick: function(event) {
+      // Disregard all clicks when Segel is not editable or if event originates another element.
+      if (
+        !this.state.config.editable ||
+        event.target.className !== "segel-bookings"
+      ) {
+        return;
+      }
+
+      let position = Math.round(
+        (event.offsetX / this.$root.$el.clientWidth) *
+          this.state.time.duration()
+      );
+      let stepSize = this.state.time.duration() / this.state.config.steps;
+      let start = Grid.round(
+        position + this.state.time.start,
+        this.state.time.duration(),
+        this.state.config.steps
+      );
+
+      // Emit event to create booking.
+      Events.$emit("bookings-create", {
+        resource: this.id,
+        start: start,
+        end: start + stepSize * 2
+      });
     }
   }
 };

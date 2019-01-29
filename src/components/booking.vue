@@ -5,6 +5,7 @@
     v-resizable="isEditable"
     v-bind:class="{ 'segel-booking': true, editable: isEditable }"
     v-bind:style="{ left: left + '%', width: width + '%' }"
+    v-on:dblclick="handleDblclick"
   >
     <span
       v-if="isEditable"
@@ -25,6 +26,7 @@
 import inRange from "lodash/inRange";
 import Draggable from "../directives/draggable.js";
 import Resizable from "../directives/resizable.js";
+import Events from "../helpers/events";
 
 export default {
   props: {
@@ -96,6 +98,22 @@ export default {
     },
     width: function() {
       return (this.duration / this.state.time.duration()) * 100;
+    }
+  },
+  methods: {
+    handleDblclick: function() {
+      // Disregard all clicks when Segel is not editable.
+      if (!this.state.config.editable) {
+        return;
+      }
+
+      // Emit event to delete booking.
+      Events.$emit("bookings-delete", {
+        id: this.id
+      });
+
+      // Reset cursor style.
+      window.document.documentElement.setAttribute("style", "");
     }
   }
 };
