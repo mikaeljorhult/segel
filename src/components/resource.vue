@@ -57,19 +57,6 @@ export default {
   },
 
   methods: {
-    dragenter: function() {
-      this.dropTarget = true;
-    },
-    dragleave: function() {
-      this.dropTarget = false;
-    },
-    dragover: function(e) {
-      this.dropTarget = true;
-      e.dataTransfer.dropEffect = e.altKey ? "copy" : "move";
-    },
-    drop: function() {
-      this.dropTarget = false;
-    },
     handleDblclick: function(event) {
       // Disregard all clicks when Segel is not editable or if event originates another element.
       if (
