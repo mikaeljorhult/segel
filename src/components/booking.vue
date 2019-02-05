@@ -57,6 +57,14 @@ export default {
 
   inject: ["state"],
 
+  watch: {
+    isEditable: function(value) {
+      // Deactivate interactions when not editable.
+      interact(this.$el).draggable().enabled = value;
+      interact(this.$el).resizable().enabled = value;
+    }
+  },
+
   computed: {
     isEditable: function() {
       // Check if bookings should be editable at all.
@@ -94,6 +102,7 @@ export default {
       return (this.duration / this.state.time.duration()) * 100;
     }
   },
+
   methods: {
     handleDblclick: function() {
       // Disregard all clicks when Segel is not editable.
@@ -123,6 +132,7 @@ export default {
       interact(this.$el).resizable().snap.targets = snapGrid;
     }
   },
+
   mounted: function() {
     // Wait until all components have been mounted.
     this.$nextTick(function() {
@@ -134,7 +144,7 @@ export default {
 
       // Initialize interact on component this.$el.
       interact(this.$el).draggable({
-        enabled: this.editable === undefined ? true : this.editable,
+        enabled: this.isEditable === undefined ? true : this.isEditable,
         snap: {
           targets: snapGrid,
           offset: "startCoords"
@@ -169,7 +179,7 @@ export default {
       });
 
       interact(this.$el).resizable({
-        enabled: this.editable === undefined ? true : this.editable,
+        enabled: this.isEditable === undefined ? true : this.isEditable,
         snap: {
           targets: snapGrid,
           offset: "startCoords"

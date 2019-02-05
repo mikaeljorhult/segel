@@ -82,6 +82,7 @@ export default {
       });
     }
   },
+
   mounted: function() {
     // Wait until all components have been mounted.
     this.$nextTick(function() {
@@ -125,6 +126,7 @@ export default {
       });
     });
   },
+
   beforeDestroy: function() {
     // Destroy interact instance on component this.$el.
     interact(this.$el).unset();
