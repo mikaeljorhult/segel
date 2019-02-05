@@ -64,7 +64,7 @@ export default {
       }
 
       let position = Math.round(
-        (event.offsetX / this.$root.$el.clientWidth) *
+        (event.offsetX / this.$parent.$el.clientWidth) *
           this.state.time.duration()
       );
       let stepSize = this.state.time.duration() / this.state.config.steps;
@@ -96,7 +96,7 @@ export default {
         ondrop: event => {
           // Convert moved pixels to change in timestamp.
           let change = Math.round(
-            (event.dragEvent.dx / this.$root.$el.clientWidth) *
+            (event.dragEvent.dx / this.$parent.$el.clientWidth) *
               this.state.time.duration()
           );
 

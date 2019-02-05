@@ -121,7 +121,7 @@ export default {
     handleResize: function() {
       // Calculate new snap grid.
       let snapGrid = Grid.create(
-        this.$root.$el.clientWidth,
+        this.$parent.$el.clientWidth,
         36,
         this.state.config.steps
       );
@@ -137,7 +137,7 @@ export default {
     // Wait until all components have been mounted.
     this.$nextTick(function() {
       let snapGrid = Grid.create(
-        this.$root.$el.clientWidth,
+        this.$parent.$el.clientWidth,
         36,
         this.state.config.steps
       );
@@ -217,12 +217,12 @@ export default {
         onend: () => {
           var start = Math.round(
             ((this.$el.offsetLeft + this.resizeX) /
-              this.$root.$el.clientWidth) *
+              this.$parent.$el.clientWidth) *
               this.state.time.duration()
           );
           var end = Math.round(
             (this.$el.getBoundingClientRect().width /
-              this.$root.$el.clientWidth) *
+              this.$parent.$el.clientWidth) *
               this.state.time.duration()
           );
 

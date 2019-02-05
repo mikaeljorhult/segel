@@ -1,5 +1,5 @@
 <template>
-  <section class="segel">
+  <section class="segel" ref="main">
     <div class="segel-container">
       <ul class="segel-grid">
         <li v-for="n in 24">&nbsp;</li>
