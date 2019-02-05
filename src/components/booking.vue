@@ -1,7 +1,6 @@
 <template>
   <li
     v-if="isInView"
-    v-resizable="isEditable"
     v-bind:class="{ 'segel-booking': true, editable: isEditable }"
     v-bind:style="{ left: left + '%', width: width + '%' }"
     v-on:dblclick="handleDblclick"
@@ -25,7 +24,6 @@
 import debounce from "lodash/debounce";
 import interact from "interactjs";
 import inRange from "lodash/inRange";
-import Resizable from "../directives/resizable.js";
 import Events from "../helpers/events";
 import Grid from "../helpers/grid";
 
@@ -51,10 +49,6 @@ export default {
       type: Number,
       required: true
     }
-  },
-
-  directives: {
-    resizable: Resizable
   },
 
   data: function() {
@@ -116,13 +110,17 @@ export default {
       window.document.documentElement.setAttribute("style", "");
     },
     handleResize: function() {
-      // Set new grid based on current widths.
-      // TODO: Calculate height.
-      interact(this.$el).draggable().snap.targets = Grid.create(
+      // Calculate new snap grid.
+      let snapGrid = Grid.create(
         this.$root.$el.clientWidth,
         36,
         this.state.config.steps
       );
+
+      // Set new grid based on current widths.
+      // TODO: Calculate height.
+      interact(this.$el).draggable().snap.targets = snapGrid;
+      interact(this.$el).resizable().snap.targets = snapGrid;
     }
   },
   mounted: function() {
@@ -134,7 +132,7 @@ export default {
         this.state.config.steps
       );
 
-      // Initialize interact on component element.
+      // Initialize interact on component this.$el.
       interact(this.$el).draggable({
         enabled: this.editable === undefined ? true : this.editable,
         snap: {
@@ -152,7 +150,7 @@ export default {
           var x = (this.dragX || 0) + event.dx;
           var y = (this.dragY || 0) + event.dy;
 
-          // Translate the element.
+          // Translate the this.$el.
           this.$el.style.webkitTransform = this.$el.style.transform =
             "translate(" + x + "px, " + y + "px)";
 
@@ -169,6 +167,80 @@ export default {
           this.dragY = 0;
         }
       });
+
+      interact(this.$el).resizable({
+        enabled: this.editable === undefined ? true : this.editable,
+        snap: {
+          targets: snapGrid,
+          offset: "startCoords"
+        },
+        edges: {
+          top: false,
+          bottom: false,
+          left: ".segel-resize-handle__left",
+          right: ".segel-resize-handle__right"
+        },
+        onstart: () => {
+          this.$el.classList.add("resizing");
+        },
+        onmove: event => {
+          // Get previous position from resource data.
+          var x = this.resizeX || 0;
+          var y = this.resizeY || 0;
+
+          // Update the this.$el style.
+          this.$el.style.width = event.rect.width + "px";
+          this.$el.style.height = event.rect.height + "px";
+
+          // Translate when resizing from top or left edges.
+          x += event.deltaRect.left;
+          y += event.deltaRect.top;
+
+          // Translate the this.$el.
+          this.$el.style.webkitTransform = this.$el.style.transform =
+            "translate(" + x + "px," + y + "px)";
+
+          // Update the position.
+          this.resizeX = parseFloat(x);
+          this.resizeY = parseFloat(y);
+        },
+        onend: () => {
+          var start = Math.round(
+            ((this.$el.offsetLeft + this.resizeX) /
+              this.$root.$el.clientWidth) *
+              this.state.time.duration()
+          );
+          var end = Math.round(
+            (this.$el.getBoundingClientRect().width /
+              this.$root.$el.clientWidth) *
+              this.state.time.duration()
+          );
+
+          // Emit event to update booking.
+          Events.$emit("bookings-update", {
+            id: this.id,
+            resource: this.resource,
+            start: Grid.round(
+              this.state.time.start + start,
+              this.state.time.duration(),
+              this.state.config.steps
+            ),
+            end: Grid.round(
+              this.state.time.start + start + end,
+              this.state.time.duration(),
+              this.state.config.steps
+            )
+          });
+
+          // Reset booking styles.
+          this.$el.classList.remove("resizing");
+          this.$el.webkitTransform = this.$el.style.transform = "";
+          this.$el.style.width = this.width + "%";
+          this.$el.style.height = "";
+          this.resizeX = 0;
+          this.resizeY = 0;
+        }
+      });
     });
   },
   beforeDestroy: function() {
@@ -178,7 +250,7 @@ export default {
       debounce(this.handleResize.bind(), 150)
     );
 
-    // Destroy interact instance on component element.
+    // Destroy interact instance on component this.$el.
     interact(this.$el).unset();
   }
 };
