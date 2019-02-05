@@ -1,7 +1,6 @@
 <template>
   <li
     v-if="isInView"
-    v-draggable="isEditable"
     v-resizable="isEditable"
     v-bind:class="{ 'segel-booking': true, editable: isEditable }"
     v-bind:style="{ left: left + '%', width: width + '%' }"
@@ -23,10 +22,12 @@
 </template>
 
 <script>
+import debounce from "lodash/debounce";
+import interact from "interactjs";
 import inRange from "lodash/inRange";
-import Draggable from "../directives/draggable.js";
 import Resizable from "../directives/resizable.js";
 import Events from "../helpers/events";
+import Grid from "../helpers/grid";
 
 export default {
   props: {
@@ -53,7 +54,6 @@ export default {
   },
 
   directives: {
-    draggable: Draggable,
     resizable: Resizable
   },
 
@@ -114,7 +114,72 @@ export default {
 
       // Reset cursor style.
       window.document.documentElement.setAttribute("style", "");
+    },
+    handleResize: function() {
+      // Set new grid based on current widths.
+      // TODO: Calculate height.
+      interact(this.$el).draggable().snap.targets = Grid.create(
+        this.$root.$el.clientWidth,
+        36,
+        this.state.config.steps
+      );
     }
+  },
+  mounted: function() {
+    // Wait until all components have been mounted.
+    this.$nextTick(function() {
+      let snapGrid = Grid.create(
+        this.$root.$el.clientWidth,
+        36,
+        this.state.config.steps
+      );
+
+      // Initialize interact on component element.
+      interact(this.$el).draggable({
+        enabled: this.editable === undefined ? true : this.editable,
+        snap: {
+          targets: snapGrid,
+          offset: "startCoords"
+        },
+        restrict: {
+          restriction: ".segel-resources"
+        },
+        onstart: () => {
+          this.$el.classList.add("dragging");
+        },
+        onmove: event => {
+          // Get previous position from resource data.
+          var x = (this.dragX || 0) + event.dx;
+          var y = (this.dragY || 0) + event.dy;
+
+          // Translate the element.
+          this.$el.style.webkitTransform = this.$el.style.transform =
+            "translate(" + x + "px, " + y + "px)";
+
+          // Update the position.
+          this.dragX = parseFloat(x);
+          this.dragY = parseFloat(y);
+        },
+        onend: () => {
+          // Reset booking styles.
+          this.$el.classList.remove("dragging");
+          this.$el.webkitTransform = this.$el.style.transform = "";
+          this.$el.style.height = "";
+          this.dragX = 0;
+          this.dragY = 0;
+        }
+      });
+    });
+  },
+  beforeDestroy: function() {
+    // Remove event listener for resize.
+    window.removeEventListener(
+      "resize",
+      debounce(this.handleResize.bind(), 150)
+    );
+
+    // Destroy interact instance on component element.
+    interact(this.$el).unset();
   }
 };
 </script>
