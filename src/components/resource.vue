@@ -96,7 +96,7 @@ export default {
         ondrop: event => {
           // Convert moved pixels to change in timestamp.
           let change = Math.round(
-            (event.dragEvent.dx / this.$parent.$el.clientWidth) *
+            (event.dragEvent.dx / this.$el.clientWidth) *
               this.state.time.duration()
           );
 

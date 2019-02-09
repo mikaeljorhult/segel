@@ -1,7 +1,12 @@
 <template>
   <li
     v-if="isInView"
-    v-bind:class="{ 'segel-booking': true, editable: isEditable }"
+    v-bind:class="{
+      'segel-booking': true,
+      editable: isEditable,
+      dragging: isInteractDragging,
+      resizing: isInteractResizing
+    }"
     v-bind:style="{ left: left + '%', width: width + '%' }"
     v-on:dblclick="handleDblclick"
   >
@@ -52,7 +57,14 @@ export default {
   },
 
   data: function() {
-    return {};
+    return {
+      isInteractDragging: false,
+      isInteractResizing: false,
+      dragX: 0,
+      dragY: 0,
+      resizeX: 0,
+      resizeY: 0
+    };
   },
 
   inject: ["state"],
@@ -153,12 +165,12 @@ export default {
           restriction: ".segel-resources"
         },
         onstart: () => {
-          this.$el.classList.add("dragging");
+          this.isInteractDragging = true;
         },
         onmove: event => {
           // Get previous position from resource data.
-          var x = (this.dragX || 0) + event.dx;
-          var y = (this.dragY || 0) + event.dy;
+          let x = (this.dragX || 0) + event.dx;
+          let y = (this.dragY || 0) + event.dy;
 
           // Translate the this.$el.
           this.$el.style.webkitTransform = this.$el.style.transform =
@@ -170,7 +182,7 @@ export default {
         },
         onend: () => {
           // Reset booking styles.
-          this.$el.classList.remove("dragging");
+          this.isInteractDragging = false;
           this.$el.webkitTransform = this.$el.style.transform = "";
           this.$el.style.height = "";
           this.dragX = 0;
@@ -191,12 +203,12 @@ export default {
           right: ".segel-resize-handle__right"
         },
         onstart: () => {
-          this.$el.classList.add("resizing");
+          this.isInteractResizing = true;
         },
         onmove: event => {
           // Get previous position from resource data.
-          var x = this.resizeX || 0;
-          var y = this.resizeY || 0;
+          let x = this.resizeX || 0;
+          let y = this.resizeY || 0;
 
           // Update the this.$el style.
           this.$el.style.width = event.rect.width + "px";
@@ -215,12 +227,12 @@ export default {
           this.resizeY = parseFloat(y);
         },
         onend: () => {
-          var start = Math.round(
+          let start = Math.round(
             ((this.$el.offsetLeft + this.resizeX) /
               this.$parent.$el.clientWidth) *
               this.state.time.duration()
           );
-          var end = Math.round(
+          let end = Math.round(
             (this.$el.getBoundingClientRect().width /
               this.$parent.$el.clientWidth) *
               this.state.time.duration()
@@ -243,7 +255,7 @@ export default {
           });
 
           // Reset booking styles.
-          this.$el.classList.remove("resizing");
+          this.isInteractResizing = false;
           this.$el.webkitTransform = this.$el.style.transform = "";
           this.$el.style.width = this.width + "%";
           this.$el.style.height = "";
