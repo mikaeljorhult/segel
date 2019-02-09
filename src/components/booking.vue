@@ -7,7 +7,11 @@
       dragging: isInteractDragging,
       resizing: isInteractResizing
     }"
-    v-bind:style="{ left: left + '%', width: width + '%' }"
+    v-bind:style="{
+      left: styleLeft,
+      width: styleWidth,
+      transform: styleTransform
+    }"
     v-on:dblclick="handleDblclick"
   >
     <span
@@ -60,10 +64,14 @@ export default {
     return {
       isInteractDragging: false,
       isInteractResizing: false,
-      dragX: 0,
-      dragY: 0,
-      resizeX: 0,
-      resizeY: 0
+      interactPosition: {
+        x: 0,
+        y: 0
+      },
+      interactSize: {
+        width: null,
+        height: null
+      }
     };
   },
 
@@ -104,14 +112,25 @@ export default {
     duration: function() {
       return this.end - this.start;
     },
-    left: function() {
-      return (
-        ((this.start - this.state.time.start) / this.state.time.duration()) *
-        100
-      );
+    styleLeft: function() {
+      return `${((this.start - this.state.time.start) /
+        this.state.time.duration()) *
+        100}%`;
     },
-    width: function() {
-      return (this.duration / this.state.time.duration()) * 100;
+    styleWidth: function() {
+      if (this.isInteractResizing) {
+        return `${this.interactSize.width}px`;
+      } else {
+        return `${(this.duration / this.state.time.duration()) * 100}%`;
+      }
+    },
+    styleTransform: function() {
+      if (this.isInteractDragging || this.isInteractResizing) {
+        const { x, y } = this.interactPosition;
+        return `translate(${x}px, ${y}px)`;
+      }
+
+      return null;
     }
   },
 
@@ -142,6 +161,24 @@ export default {
       // TODO: Calculate height.
       interact(this.$el).draggable().snap.targets = snapGrid;
       interact(this.$el).resizable().snap.targets = snapGrid;
+    },
+
+    interactSetPosition: function(coordinates) {
+      const { x = 0, y = 0 } = coordinates;
+      this.interactPosition = { x, y };
+    },
+
+    interactResetPosition: function() {
+      this.interactSetPosition({ x: 0, y: 0 });
+    },
+
+    interactSetSize: function(sizes) {
+      const { width = 0, height = 0 } = sizes;
+      this.interactSize = { width, height };
+    },
+
+    interactResetSize: function() {
+      this.interactSetSize({ width: null, height: null });
     }
   },
 
@@ -169,24 +206,16 @@ export default {
         },
         onmove: event => {
           // Get previous position from resource data.
-          let x = (this.dragX || 0) + event.dx;
-          let y = (this.dragY || 0) + event.dy;
-
-          // Translate the this.$el.
-          this.$el.style.webkitTransform = this.$el.style.transform =
-            "translate(" + x + "px, " + y + "px)";
+          const x = this.interactPosition.x + event.dx;
+          const y = this.interactPosition.y + event.dy;
 
           // Update the position.
-          this.dragX = parseFloat(x);
-          this.dragY = parseFloat(y);
+          this.interactSetPosition({ x, y });
         },
         onend: () => {
           // Reset booking styles.
           this.isInteractDragging = false;
-          this.$el.webkitTransform = this.$el.style.transform = "";
-          this.$el.style.height = "";
-          this.dragX = 0;
-          this.dragY = 0;
+          this.interactResetPosition();
         }
       });
 
@@ -206,29 +235,19 @@ export default {
           this.isInteractResizing = true;
         },
         onmove: event => {
-          // Get previous position from resource data.
-          let x = this.resizeX || 0;
-          let y = this.resizeY || 0;
-
-          // Update the this.$el style.
-          this.$el.style.width = event.rect.width + "px";
-          this.$el.style.height = event.rect.height + "px";
-
-          // Translate when resizing from top or left edges.
-          x += event.deltaRect.left;
-          y += event.deltaRect.top;
-
-          // Translate the this.$el.
-          this.$el.style.webkitTransform = this.$el.style.transform =
-            "translate(" + x + "px," + y + "px)";
+          // Get position and size of element.
+          const x = this.interactPosition.x + event.deltaRect.left;
+          const y = this.interactPosition.y + event.deltaRect.top;
+          const width = event.rect.width;
+          const height = event.rect.height;
 
           // Update the position.
-          this.resizeX = parseFloat(x);
-          this.resizeY = parseFloat(y);
+          this.interactSetPosition({ x, y });
+          this.interactSetSize({ width, height });
         },
         onend: () => {
           let start = Math.round(
-            ((this.$el.offsetLeft + this.resizeX) /
+            ((this.$el.offsetLeft + this.interactPosition.x) /
               this.$parent.$el.clientWidth) *
               this.state.time.duration()
           );
@@ -256,11 +275,8 @@ export default {
 
           // Reset booking styles.
           this.isInteractResizing = false;
-          this.$el.webkitTransform = this.$el.style.transform = "";
-          this.$el.style.width = this.width + "%";
-          this.$el.style.height = "";
-          this.resizeX = 0;
-          this.resizeY = 0;
+          this.interactResetSize();
+          this.interactResetPosition();
         }
       });
     });
