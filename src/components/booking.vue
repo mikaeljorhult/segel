@@ -215,7 +215,6 @@ export default {
         onend: () => {
           // Reset booking styles.
           this.isInteractDragging = false;
-          this.interactResetPosition();
         }
       });
 

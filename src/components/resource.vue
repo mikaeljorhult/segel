@@ -94,19 +94,20 @@ export default {
           this.$el.classList.remove("droppable");
         },
         ondrop: event => {
+          // TODO: Move access to booking component.
+          let bookingComponent = event.relatedTarget.__vue__;
+
           // Convert moved pixels to change in timestamp.
           let change = Math.round(
-            (event.dragEvent.dx / this.$el.clientWidth) *
+            (bookingComponent.interactPosition.x / this.$el.clientWidth) *
               this.state.time.duration()
           );
 
           // Build object.
           let booking = {
             resource: this.id,
-            start: Cast.date(
-              parseInt(event.relatedTarget.__vue__.start) + change
-            ),
-            end: Cast.date(parseInt(event.relatedTarget.__vue__.end) + change)
+            start: Cast.date(parseInt(bookingComponent.start) + change),
+            end: Cast.date(parseInt(bookingComponent.end) + change)
           };
 
           // Create copy if ALT key is pressed, otherwise edit existing.
@@ -115,13 +116,16 @@ export default {
             Events.$emit("bookings-create", booking);
           } else {
             // Append ID of moved booking.
-            booking.id = event.relatedTarget.__vue__.id;
+            booking.id = bookingComponent.id;
 
             // Emit event to update booking.
             Events.$emit("bookings-update", booking);
           }
 
           this.$el.classList.remove("droppable");
+
+          // Reset booking position.
+          bookingComponent.interactResetPosition();
         }
       });
     });
