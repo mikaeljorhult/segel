@@ -50,6 +50,10 @@ export default {
       type: String,
       default: "confirmed"
     },
+    editable: {
+      type: Boolean,
+      default: true
+    },
     start: {
       type: Number,
       required: true
@@ -89,6 +93,11 @@ export default {
     isEditable: function() {
       // Check if bookings should be editable at all.
       if (!this.state.config.editable) {
+        return false;
+      }
+
+      // Check if this specific booking is editable.
+      if (!this.editable) {
         return false;
       }
 
@@ -269,7 +278,8 @@ export default {
               this.state.time.start + start + end,
               this.state.time.duration(),
               this.state.config.steps
-            )
+            ),
+            editable: this.editable
           });
 
           // Reset booking styles.

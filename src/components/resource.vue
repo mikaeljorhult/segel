@@ -11,6 +11,7 @@
         v-bind:status="booking.status"
         v-bind:start="booking.start"
         v-bind:end="booking.end"
+        v-bind:editable="booking.editable"
       ></segel-booking>
     </ul>
   </li>
