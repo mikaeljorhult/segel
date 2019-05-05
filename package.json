@@ -23,7 +23,7 @@
     "url": "https://github.com/mikaeljorhult/segel.git"
   },
   "dependencies": {
-    "interactjs": "^1.3.4",
+    "interactjs": "^1.4.0",
     "lodash": "^4.17.11"
   },
   "devDependencies": {
