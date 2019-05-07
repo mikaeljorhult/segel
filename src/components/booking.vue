@@ -203,10 +203,12 @@ export default {
       // Initialize interact on component this.$el.
       interact(this.$el).draggable({
         enabled: this.isEditable === undefined ? true : this.isEditable,
-        snap: {
-          targets: snapGrid,
-          offset: "startCoords"
-        },
+        modifiers: [
+          interact.modifiers.snap({
+            targets: snapGrid,
+            offset: "startCoords"
+          })
+        ],
         restrict: {
           restriction: ".segel-resources"
         },
@@ -229,10 +231,12 @@ export default {
 
       interact(this.$el).resizable({
         enabled: this.isEditable === undefined ? true : this.isEditable,
-        snap: {
-          targets: snapGrid,
-          offset: "startCoords"
-        },
+        modifiers: [
+          interact.modifiers.snap({
+            targets: snapGrid,
+            offset: "startCoords"
+          })
+        ],
         edges: {
           top: false,
           bottom: false,
