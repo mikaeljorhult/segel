@@ -168,8 +168,8 @@ export default {
 
       // Set new grid based on current widths.
       // TODO: Calculate height.
-      interact(this.$el).draggable().snap.targets = snapGrid;
-      interact(this.$el).resizable().snap.targets = snapGrid;
+      interact(this.$el).draggable().modifiers[0].options.targets = snapGrid;
+      interact(this.$el).resizable().modifiers[0].options.targets = snapGrid;
     },
 
     interactSetPosition: function(coordinates) {
@@ -299,6 +299,12 @@ export default {
           this.interactResetPosition();
         }
       });
+
+      // TODO: Calculate snap grid globally.
+      window.addEventListener(
+        "resize",
+        debounce(this.handleResize.bind(), 150)
+      );
     });
   },
   beforeDestroy: function() {
