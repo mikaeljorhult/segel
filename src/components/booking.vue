@@ -235,6 +235,13 @@ export default {
           interact.modifiers.snap({
             targets: snapGrid,
             offset: "startCoords"
+          }),
+          interact.modifiers.restrictSize({
+            min: {
+              width: this.$parent.$el.clientWidth / this.state.config.steps,
+              height: 1
+            },
+            max: { width: this.$parent.$el.clientWidth, height: 40 }
           })
         ],
         edges: {
