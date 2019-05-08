@@ -170,6 +170,15 @@ export default {
       // TODO: Calculate height.
       interact(this.$el).draggable().modifiers[0].options.targets = snapGrid;
       interact(this.$el).resizable().modifiers[0].options.targets = snapGrid;
+
+      interact(this.$el).resizable().modifiers[1].options.min = {
+        width: this.$parent.$el.clientWidth / this.state.config.steps,
+        height: 1
+      };
+      interact(this.$el).resizable().modifiers[1].options.max = {
+        width: this.$parent.$el.clientWidth,
+        height: 40
+      };
     },
 
     interactSetPosition: function(coordinates) {
@@ -241,7 +250,10 @@ export default {
               width: this.$parent.$el.clientWidth / this.state.config.steps,
               height: 1
             },
-            max: { width: this.$parent.$el.clientWidth, height: 40 }
+            max: {
+              width: this.$parent.$el.clientWidth,
+              height: 40
+            }
           })
         ],
         edges: {
