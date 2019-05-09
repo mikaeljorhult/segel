@@ -14,21 +14,15 @@ export default {
     return {};
   },
 
-  inject: ["state"],
+  inject: ["time"],
 
   computed: {
     isInView: function() {
-      return inRange(
-        this.state.time.current,
-        this.state.time.start,
-        this.state.time.end
-      );
+      return inRange(this.time.current, this.time.start, this.time.end);
     },
     left: function() {
       return (
-        ((this.state.time.current - this.state.time.start) /
-          this.state.time.duration()) *
-        100
+        ((this.time.current - this.time.start) / this.time.duration()) * 100
       );
     }
   }

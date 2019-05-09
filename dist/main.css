@@ -1,20 +1,24 @@
 .segel {
   margin: 1rem 0;
 }
+
 .segel,
 .segel * {
   box-sizing: border-box;
 }
+
 .segel ul {
   margin: 0;
   padding-left: 0;
   list-style: none;
 }
+
 .segel-container {
   position: relative;
   border: 2px solid #f0f0f0;
   border-width: 2px 0;
 }
+
 .segel-indicator {
   width: 2px;
   position: absolute;
@@ -25,28 +29,34 @@
   pointer-events: none;
   transition: left 0.1s;
 }
+
 .segel-ruler ul {
   display: flex;
   justify-content: space-between;
   font-size: 0.8rem;
 }
+
 .segel-ruler li {
   flex: 1;
   position: relative;
   padding: 0.5rem 0 0.6rem 0.5rem;
   background-color: #f3f3f3;
 }
-.segel-ruler li:nth-child(2n) {
+
+.segel-ruler li:nth-child(even) {
   background-color: #f8f8f8;
 }
-.segel-ruler li:nth-child(2n) span {
+
+.segel-ruler li:nth-child(even) span {
   display: none;
 }
+
 @media (min-width: 701px) {
-  .segel-ruler li:nth-child(2n) span {
+  .segel-ruler li:nth-child(even) span {
     display: inline;
   }
 }
+
 .segel-grid {
   display: flex;
   position: absolute;
@@ -56,13 +66,16 @@
   right: 0;
   pointer-events: none;
 }
+
 .segel-grid li {
   flex: 1;
   background-color: rgba(0, 0, 0, 0.025);
 }
-.segel-grid li:nth-child(2n) {
+
+.segel-grid li:nth-child(even) {
   background-color: rgba(0, 0, 0, 0.01);
 }
+
 .segel-resources {
   overflow: hidden;
   -webkit-touch-callout: none;
@@ -71,24 +84,29 @@
   -ms-user-select: none;
   user-select: none;
 }
+
 .segel-resource {
   position: relative;
   padding: 0.5rem 0;
   border-bottom: 1px solid #e6e6e6;
 }
+
 .segel-resource .droppable {
   background-color: rgba(0, 0, 0, 0.05);
 }
+
 .segel-resource .dragging {
   border: 2px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
 }
-.segel-booking,
-.segel-bookings {
+
+.segel-bookings,
+.segel-booking {
   position: absolute;
   top: 0;
   bottom: 0;
 }
+
 .segel-bookings {
   left: 0;
   right: 0;
@@ -97,6 +115,7 @@
   -ms-user-select: none;
   user-select: none;
 }
+
 .segel-booking {
   display: block;
   height: 100%;
@@ -105,6 +124,7 @@
   background-color: rgba(255, 0, 0, 0.25);
   border-radius: 0.25rem;
 }
+
 .segel-resize-handle {
   display: none;
   align-items: center;
@@ -117,80 +137,98 @@
   color: #fff;
   text-align: center;
 }
-.segel-booking.resizing .segel-resize-handle,
-.segel-booking:hover .segel-resize-handle {
+
+.segel-booking:hover .segel-resize-handle,
+.segel-booking.resizing .segel-resize-handle {
   display: flex;
 }
+
 .segel-booking.dragging .segel-resize-handle {
   display: none;
 }
+
 .segel-resize-handle__left {
   left: 0;
 }
+
 .segel-resize-handle__right {
   right: 0;
 }
+
 @-webkit-keyframes indeterminate {
   0% {
     left: -35%;
     right: 100%;
   }
+
   60% {
     left: 100%;
     right: -90%;
   }
-  to {
+
+  100% {
     left: 100%;
     right: -90%;
   }
 }
+
 @keyframes indeterminate {
   0% {
     left: -35%;
     right: 100%;
   }
+
   60% {
     left: 100%;
     right: -90%;
   }
-  to {
+
+  100% {
     left: 100%;
     right: -90%;
   }
 }
+
 @-webkit-keyframes indeterminate-short {
   0% {
     left: -200%;
     right: 100%;
   }
+
   60% {
     left: 107%;
     right: -8%;
   }
-  to {
+
+  100% {
     left: 107%;
     right: -8%;
   }
 }
+
 @keyframes indeterminate-short {
   0% {
     left: -200%;
     right: 100%;
   }
+
   60% {
     left: 107%;
     right: -8%;
   }
-  to {
+
+  100% {
     left: 107%;
     right: -8%;
   }
 }
+
 .progress {
   background-color: tomato;
 }
-.progress:after,
-.progress:before {
+
+.progress:before,
+.progress:after {
   content: "";
   position: absolute;
   height: 3px;
@@ -199,11 +237,13 @@
   background-color: inherit;
   will-change: left, right;
 }
+
 .progress:before {
   -webkit-animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395)
     infinite;
   animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
 }
+
 .progress:after {
   -webkit-animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1)
     infinite;

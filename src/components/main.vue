@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { ReactiveProvideMixin } from "vue-reactive-provide";
 import SegelIndicator from "./indicator.vue";
 import SegelRuler from "./ruler.vue";
 import SegelResources from "./resources.vue";
@@ -65,53 +66,23 @@ export default {
   data: function() {
     return {
       timer: null,
-      time: {
-        current: Cast.date(new Date()),
-        duration: function() {
-          return this.end - this.start;
-        }
+      current: Cast.date(new Date()),
+      duration: function() {
+        return this.end - this.start;
       }
     };
   },
 
-  provide: function() {
-    const state = {
-      config: {},
-      time: {}
-    };
-
-    Object.defineProperty(state.config, "editable", {
-      enumerable: true,
-      get: () => this.editable
-    });
-
-    Object.defineProperty(state.config, "steps", {
-      enumerable: true,
-      get: () => this.steps
-    });
-
-    Object.defineProperty(state.time, "start", {
-      enumerable: true,
-      get: () => this.start
-    });
-
-    Object.defineProperty(state.time, "end", {
-      enumerable: true,
-      get: () => this.end
-    });
-
-    Object.defineProperty(state.time, "current", {
-      enumerable: true,
-      get: () => this.time.current
-    });
-
-    Object.defineProperty(state.time, "duration", {
-      enumerable: true,
-      get: () => this.time.duration
-    });
-
-    return { state: state };
-  },
+  mixins: [
+    ReactiveProvideMixin({
+      name: "config",
+      include: ["editable", "steps"]
+    }),
+    ReactiveProvideMixin({
+      name: "time",
+      include: ["start", "end", "current", "duration"]
+    })
+  ],
 
   components: {
     "segel-indicator": SegelIndicator,
@@ -121,7 +92,7 @@ export default {
 
   methods: {
     updateTimer: function() {
-      this.time.current = Cast.date(new Date());
+      this.current = Cast.date(new Date());
     },
 
     cancelTimer: function() {

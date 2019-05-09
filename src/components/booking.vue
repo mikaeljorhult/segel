@@ -79,7 +79,7 @@ export default {
     };
   },
 
-  inject: ["state"],
+  inject: ["config", "time"],
 
   watch: {
     isEditable: function(value) {
@@ -92,7 +92,7 @@ export default {
   computed: {
     isEditable: function() {
       // Check if bookings should be editable at all.
-      if (!this.state.config.editable) {
+      if (!this.config.editable) {
         return false;
       }
 
@@ -107,30 +107,28 @@ export default {
       }
 
       // Past and current bookings can't be edited.
-      return this.start > this.state.time.current;
+      return this.start > this.time.current;
     },
     isInView: function() {
       return (
-        inRange(this.start, this.state.time.start, this.state.time.end) ||
-        inRange(this.end, this.state.time.start, this.state.time.end) ||
-        (this.start < this.state.time.start &&
-          this.end > this.state.time.start) ||
-        (this.end < this.state.time.end && this.end > this.state.time.end)
+        inRange(this.start, this.time.start, this.time.end) ||
+        inRange(this.end, this.time.start, this.time.end) ||
+        (this.start < this.time.start && this.end > this.time.start) ||
+        (this.end < this.time.end && this.end > this.time.end)
       );
     },
     duration: function() {
       return this.end - this.start;
     },
     styleLeft: function() {
-      return `${((this.start - this.state.time.start) /
-        this.state.time.duration()) *
+      return `${((this.start - this.time.start) / this.time.duration()) *
         100}%`;
     },
     styleWidth: function() {
       if (this.isInteractResizing) {
         return `${this.interactSize.width}px`;
       } else {
-        return `${(this.duration / this.state.time.duration()) * 100}%`;
+        return `${(this.duration / this.time.duration()) * 100}%`;
       }
     },
     styleTransform: function() {
@@ -146,7 +144,7 @@ export default {
   methods: {
     handleDblclick: function() {
       // Disregard all clicks when Segel is not editable.
-      if (!this.state.config.editable) {
+      if (!this.config.editable) {
         return;
       }
 
@@ -163,7 +161,7 @@ export default {
       let snapGrid = Grid.create(
         this.$parent.$el.clientWidth,
         36,
-        this.state.config.steps
+        this.config.steps
       );
 
       // Set new grid based on current widths.
@@ -172,7 +170,7 @@ export default {
       interact(this.$el).resizable().modifiers[0].options.targets = snapGrid;
 
       interact(this.$el).resizable().modifiers[1].options.min = {
-        width: this.$parent.$el.clientWidth / this.state.config.steps,
+        width: this.$parent.$el.clientWidth / this.config.steps,
         height: 1
       };
       interact(this.$el).resizable().modifiers[1].options.max = {
@@ -206,7 +204,7 @@ export default {
       let snapGrid = Grid.create(
         this.$parent.$el.clientWidth,
         36,
-        this.state.config.steps
+        this.config.steps
       );
 
       // Initialize interact on component this.$el.
@@ -247,7 +245,7 @@ export default {
           }),
           interact.modifiers.restrictSize({
             min: {
-              width: this.$parent.$el.clientWidth / this.state.config.steps,
+              width: this.$parent.$el.clientWidth / this.config.steps,
               height: 1
             },
             max: {
@@ -280,12 +278,12 @@ export default {
           let start = Math.round(
             ((this.$el.offsetLeft + this.interactPosition.x) /
               this.$parent.$el.clientWidth) *
-              this.state.time.duration()
+              this.time.duration()
           );
           let end = Math.round(
             (this.$el.getBoundingClientRect().width /
               this.$parent.$el.clientWidth) *
-              this.state.time.duration()
+              this.time.duration()
           );
 
           // Emit event to update booking.
@@ -293,14 +291,14 @@ export default {
             id: this.id,
             resource: this.resource,
             start: Grid.round(
-              this.state.time.start + start,
-              this.state.time.duration(),
-              this.state.config.steps
+              this.time.start + start,
+              this.time.duration(),
+              this.config.steps
             ),
             end: Grid.round(
-              this.state.time.start + start + end,
-              this.state.time.duration(),
-              this.state.config.steps
+              this.time.start + start + end,
+              this.time.duration(),
+              this.config.steps
             ),
             editable: this.editable
           });

@@ -48,7 +48,7 @@ export default {
     };
   },
 
-  inject: ["state"],
+  inject: ["config", "time"],
 
   components: {
     "segel-booking": SegelBooking
@@ -58,21 +58,20 @@ export default {
     handleDblclick: function(event) {
       // Disregard all clicks when Segel is not editable or if event originates another this.$el.
       if (
-        !this.state.config.editable ||
+        !this.config.editable ||
         event.target.className !== "segel-bookings"
       ) {
         return;
       }
 
       let position = Math.round(
-        (event.offsetX / this.$parent.$el.clientWidth) *
-          this.state.time.duration()
+        (event.offsetX / this.$parent.$el.clientWidth) * this.time.duration()
       );
-      let stepSize = this.state.time.duration() / this.state.config.steps;
+      let stepSize = this.time.duration() / this.config.steps;
       let start = Grid.round(
-        position + this.state.time.start,
-        this.state.time.duration(),
-        this.state.config.steps
+        position + this.time.start,
+        this.time.duration(),
+        this.config.steps
       );
 
       // Emit event to create booking.
@@ -101,7 +100,7 @@ export default {
           // Convert moved pixels to change in timestamp.
           let change = Math.round(
             (bookingComponent.interactPosition.x / this.$el.clientWidth) *
-              this.state.time.duration()
+              this.time.duration()
           );
 
           // Build object.
