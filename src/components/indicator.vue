@@ -21,9 +21,7 @@ export default {
       return inRange(this.time.current, this.time.start, this.time.end);
     },
     left: function() {
-      return (
-        ((this.time.current - this.time.start) / this.time.duration()) * 100
-      );
+      return ((this.time.current - this.time.start) / this.time.duration) * 100;
     }
   }
 };

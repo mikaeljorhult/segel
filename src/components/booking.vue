@@ -121,14 +121,13 @@ export default {
       return this.end - this.start;
     },
     styleLeft: function() {
-      return `${((this.start - this.time.start) / this.time.duration()) *
-        100}%`;
+      return `${((this.start - this.time.start) / this.time.duration) * 100}%`;
     },
     styleWidth: function() {
       if (this.isInteractResizing) {
         return `${this.interactSize.width}px`;
       } else {
-        return `${(this.duration / this.time.duration()) * 100}%`;
+        return `${(this.duration / this.time.duration) * 100}%`;
       }
     },
     styleTransform: function() {
@@ -278,12 +277,12 @@ export default {
           let start = Math.round(
             ((this.$el.offsetLeft + this.interactPosition.x) /
               this.$parent.$el.clientWidth) *
-              this.time.duration()
+              this.time.duration
           );
           let end = Math.round(
             (this.$el.getBoundingClientRect().width /
               this.$parent.$el.clientWidth) *
-              this.time.duration()
+              this.time.duration
           );
 
           // Emit event to update booking.
@@ -292,12 +291,12 @@ export default {
             resource: this.resource,
             start: Grid.round(
               this.time.start + start,
-              this.time.duration(),
+              this.time.duration,
               this.config.steps
             ),
             end: Grid.round(
               this.time.start + start + end,
-              this.time.duration(),
+              this.time.duration,
               this.config.steps
             ),
             editable: this.editable

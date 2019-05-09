@@ -1,13 +1,13 @@
 <template>
-    <ul class="segel-resources">
-        <segel-resource
-                v-for="resource in resources"
-                v-bind:key="resource.id"
-                v-bind:id="resource.id"
-                v-bind:name="resource.name"
-                v-bind:bookings="relatedBookings(resource.id)"
-        ></segel-resource>
-    </ul>
+  <ul class="segel-resources">
+    <segel-resource
+      v-for="resource in resources"
+      v-bind:key="resource.id"
+      v-bind:id="resource.id"
+      v-bind:name="resource.name"
+      v-bind:bookings="relatedBookings(resource.id)"
+    ></segel-resource>
+  </ul>
 </template>
 
 <script>
@@ -33,16 +33,16 @@ export default {
     return {};
   },
 
-  components: {
-    "segel-resource": SegelResource
-  },
-
   methods: {
     relatedBookings: function(resource) {
       return this.bookings.filter(function(booking) {
         return booking.resource === resource;
       });
     }
+  },
+
+  components: {
+    "segel-resource": SegelResource
   }
 };
 </script>

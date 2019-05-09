@@ -50,10 +50,6 @@ export default {
 
   inject: ["config", "time"],
 
-  components: {
-    "segel-booking": SegelBooking
-  },
-
   methods: {
     handleDblclick: function(event) {
       // Disregard all clicks when Segel is not editable or if event originates another this.$el.
@@ -65,12 +61,12 @@ export default {
       }
 
       let position = Math.round(
-        (event.offsetX / this.$parent.$el.clientWidth) * this.time.duration()
+        (event.offsetX / this.$parent.$el.clientWidth) * this.time.duration
       );
-      let stepSize = this.time.duration() / this.config.steps;
+      let stepSize = this.time.duration / this.config.steps;
       let start = Grid.round(
         position + this.time.start,
-        this.time.duration(),
+        this.time.duration,
         this.config.steps
       );
 
@@ -100,7 +96,7 @@ export default {
           // Convert moved pixels to change in timestamp.
           let change = Math.round(
             (bookingComponent.interactPosition.x / this.$el.clientWidth) *
-              this.time.duration()
+              this.time.duration
           );
 
           // Build object.
@@ -134,6 +130,10 @@ export default {
   beforeDestroy: function() {
     // Destroy interact instance on component this.$el.
     interact(this.$el).unset();
+  },
+
+  components: {
+    "segel-booking": SegelBooking
   }
 };
 </script>

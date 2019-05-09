@@ -66,11 +66,14 @@ export default {
   data: function() {
     return {
       timer: null,
-      current: Cast.date(new Date()),
-      duration: function() {
-        return this.end - this.start;
-      }
+      current: Cast.date(new Date())
     };
+  },
+
+  computed: {
+    duration: function() {
+      return this.end - this.start;
+    }
   },
 
   mixins: [
@@ -83,12 +86,6 @@ export default {
       include: ["start", "end", "current", "duration"]
     })
   ],
-
-  components: {
-    "segel-indicator": SegelIndicator,
-    "segel-ruler": SegelRuler,
-    "segel-resources": SegelResources
-  },
 
   methods: {
     updateTimer: function() {
@@ -116,6 +113,12 @@ export default {
 
   beforeDestroy: function() {
     this.cancelTimer();
+  },
+
+  components: {
+    "segel-indicator": SegelIndicator,
+    "segel-ruler": SegelRuler,
+    "segel-resources": SegelResources
   }
 };
 </script>
