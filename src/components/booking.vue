@@ -30,7 +30,6 @@
 </template>
 
 <script>
-import debounce from "lodash/debounce";
 import interact from "interactjs";
 import inRange from "lodash/inRange";
 import Events from "../helpers/events";
@@ -79,13 +78,19 @@ export default {
     };
   },
 
-  inject: ["config", "time"],
+  inject: ["config", "grid", "time"],
 
   watch: {
     isEditable: function(value) {
       // Deactivate interactions when not editable.
       interact(this.$el).draggable().enabled = value;
       interact(this.$el).resizable().enabled = value;
+    },
+    grid: {
+      handler: function() {
+        this.handleResize();
+      },
+      deep: true
     }
   },
 
@@ -156,26 +161,19 @@ export default {
       window.document.documentElement.setAttribute("style", "");
     },
     handleResize: function() {
-      // Calculate new snap grid.
-      let snapGrid = Grid.create(
-        this.$parent.$el.clientWidth,
-        36,
-        this.config.steps
-      );
-
       // Set new grid based on current widths.
-      // TODO: Calculate height.
-      interact(this.$el).draggable().modifiers[0].options.targets = snapGrid;
-      interact(this.$el).resizable().modifiers[0].options.targets = snapGrid;
-
-      interact(this.$el).resizable().modifiers[1].options.min = {
-        width: this.$parent.$el.clientWidth / this.config.steps,
-        height: 1
-      };
-      interact(this.$el).resizable().modifiers[1].options.max = {
-        width: this.$parent.$el.clientWidth,
-        height: 40
-      };
+      interact(
+        this.$el
+      ).draggable().modifiers[0].options.targets = this.grid.snap;
+      interact(
+        this.$el
+      ).resizable().modifiers[0].options.targets = this.grid.snap;
+      interact(
+        this.$el
+      ).resizable().modifiers[1].options.min = this.grid.size.min;
+      interact(
+        this.$el
+      ).resizable().modifiers[1].options.max = this.grid.size.max;
     },
 
     interactSetPosition: function(coordinates) {
@@ -200,18 +198,12 @@ export default {
   mounted: function() {
     // Wait until all components have been mounted.
     this.$nextTick(function() {
-      let snapGrid = Grid.create(
-        this.$parent.$el.clientWidth,
-        36,
-        this.config.steps
-      );
-
       // Initialize interact on component this.$el.
       interact(this.$el).draggable({
         enabled: this.isEditable === undefined ? true : this.isEditable,
         modifiers: [
           interact.modifiers.snap({
-            targets: snapGrid,
+            targets: this.grid.snap,
             offset: "startCoords"
           })
         ],
@@ -239,19 +231,10 @@ export default {
         enabled: this.isEditable === undefined ? true : this.isEditable,
         modifiers: [
           interact.modifiers.snap({
-            targets: snapGrid,
+            targets: this.grid.snap,
             offset: "startCoords"
           }),
-          interact.modifiers.restrictSize({
-            min: {
-              width: this.$parent.$el.clientWidth / this.config.steps,
-              height: 1
-            },
-            max: {
-              width: this.$parent.$el.clientWidth,
-              height: 40
-            }
-          })
+          interact.modifiers.restrictSize(this.grid.size)
         ],
         edges: {
           top: false,
@@ -308,21 +291,9 @@ export default {
           this.interactResetPosition();
         }
       });
-
-      // TODO: Calculate snap grid globally.
-      window.addEventListener(
-        "resize",
-        debounce(this.handleResize.bind(), 150)
-      );
     });
   },
   beforeDestroy: function() {
-    // Remove event listener for resize.
-    window.removeEventListener(
-      "resize",
-      debounce(this.handleResize.bind(), 150)
-    );
-
     // Destroy interact instance on component this.$el.
     interact(this.$el).unset();
   }

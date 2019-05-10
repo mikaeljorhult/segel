@@ -16,12 +16,14 @@
 </template>
 
 <script>
+import debounce from "lodash/debounce";
 import { ReactiveProvideMixin } from "vue-reactive-provide";
 import SegelIndicator from "./indicator.vue";
 import SegelRuler from "./ruler.vue";
 import SegelResources from "./resources.vue";
 import Cast from "../helpers/cast";
 import Events from "../helpers/events";
+import Grid from "../helpers/grid";
 
 export default {
   props: {
@@ -66,7 +68,9 @@ export default {
   data: function() {
     return {
       timer: null,
-      current: Cast.date(new Date())
+      current: Cast.date(new Date()),
+      snap: null,
+      size: null
     };
   },
 
@@ -82,6 +86,10 @@ export default {
       include: ["editable", "steps"]
     }),
     ReactiveProvideMixin({
+      name: "grid",
+      include: ["size", "snap"]
+    }),
+    ReactiveProvideMixin({
       name: "time",
       include: ["start", "end", "current", "duration"]
     })
@@ -94,6 +102,23 @@ export default {
 
     cancelTimer: function() {
       clearInterval(this.timer);
+    },
+
+    handleResize: function() {
+      // Calculate new snap grid.
+      this.snap = Grid.create(this.$el.clientWidth, 36, this.steps);
+
+      // Calculate new size restriction.
+      this.size = {
+        min: {
+          width: this.$el.clientWidth / this.steps,
+          height: 1
+        },
+        max: {
+          width: this.$el.clientWidth,
+          height: 40
+        }
+      };
     }
   },
 
@@ -111,8 +136,20 @@ export default {
     });
   },
 
+  mounted: function() {
+    this.handleResize();
+
+    window.addEventListener("resize", debounce(this.handleResize.bind(), 150));
+  },
+
   beforeDestroy: function() {
     this.cancelTimer();
+
+    // Remove event listener for resize.
+    window.removeEventListener(
+      "resize",
+      debounce(this.handleResize.bind(), 150)
+    );
   },
 
   components: {
