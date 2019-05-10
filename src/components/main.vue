@@ -48,13 +48,19 @@ export default {
     start: {
       type: Number,
       default: function() {
-        return Cast.date(new Date().setHours(0, 0, 0, 0));
+        return Cast.date(
+          new Date().setHours(0, 0, 0, 0) -
+            new Date().getTimezoneOffset() * 60 * 1000
+        );
       }
     },
     end: {
       type: Number,
       default: function() {
-        return Cast.date(new Date().setHours(24, 0, 0, 0));
+        return Cast.date(
+          new Date().setHours(24, 0, 0, 0) -
+            new Date().getTimezoneOffset() * 60 * 1000
+        );
       }
     },
     steps: {
@@ -68,7 +74,9 @@ export default {
   data: function() {
     return {
       timer: null,
-      current: Cast.date(new Date()),
+      current: Cast.date(
+        new Date().getTime() - new Date().getTimezoneOffset() * 60 * 1000
+      ),
       snap: null,
       size: null
     };
@@ -97,7 +105,9 @@ export default {
 
   methods: {
     updateTimer: function() {
-      this.current = Cast.date(new Date());
+      this.current = Cast.date(
+        new Date().getTime() - new Date().getTimezoneOffset() * 60 * 1000
+      );
     },
 
     cancelTimer: function() {
