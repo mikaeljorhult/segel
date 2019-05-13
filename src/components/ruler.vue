@@ -1,9 +1,9 @@
 <template>
   <aside class="segel-ruler">
     <ul>
-      <li v-for="n in 24">
-        <span v-bind:class="[n === new Date().getHours() + 1 ? 'current' : '']">
-          {{ (n - 1) | leadingZero }}
+      <li v-for="label in labels">
+        <span>
+          {{ label }}
         </span>
       </li>
     </ul>
@@ -12,10 +12,6 @@
 
 <script>
 export default {
-  filters: {
-    leadingZero: function(value) {
-      return ("0" + value).slice(-2);
-    }
-  }
+  props: ["labels"]
 };
 </script>

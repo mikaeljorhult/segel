@@ -2,11 +2,11 @@
   <section class="segel" ref="main">
     <div class="segel-container">
       <ul class="segel-grid">
-        <li v-for="n in 24">&nbsp;</li>
+        <li v-for="n in labels.length">&nbsp;</li>
       </ul>
 
       <segel-indicator></segel-indicator>
-      <segel-ruler></segel-ruler>
+      <segel-ruler v-bind:labels="labels"></segel-ruler>
       <segel-resources
         v-bind:resources="resources"
         v-bind:bookings="bookings"
@@ -67,6 +67,14 @@ export default {
       type: Number,
       default: function() {
         return 48;
+      }
+    },
+    labels: {
+      type: [Array, String],
+      default: function() {
+        return Array(24)
+          .fill(1)
+          .map((_, i) => ("0" + i).slice(-2));
       }
     }
   },
