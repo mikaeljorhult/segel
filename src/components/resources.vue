@@ -7,6 +7,10 @@
       v-bind:name="resource.name"
       v-bind:bookings="relatedBookings(resource.id)"
     ></segel-resource>
+
+    <li class="segel-no-resources" v-if="resources.length === 0">
+      No resources have been selected.
+    </li>
   </ul>
 </template>
 
