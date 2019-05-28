@@ -1,12 +1,7 @@
 <template>
   <li
     v-if="isInView"
-    v-bind:class="{
-      'segel-booking': true,
-      editable: isEditable,
-      dragging: isInteractDragging,
-      resizing: isInteractResizing
-    }"
+    v-bind:class="classAttribute"
     v-bind:style="{
       left: styleLeft,
       width: styleWidth,
@@ -60,6 +55,10 @@ export default {
     end: {
       type: Number,
       required: true
+    },
+    classes: {
+      type: Array,
+      required: false
     }
   },
 
@@ -142,6 +141,22 @@ export default {
       }
 
       return null;
+    },
+    classAttribute: function() {
+      let classObject = {
+        "segel-booking": true,
+        editable: this.isEditable,
+        dragging: this.isInteractDragging,
+        resizing: this.isInteractResizing
+      };
+
+      if (Array.isArray(this.classes)) {
+        this.classes.forEach(className, function() {
+          classObject[className] = true;
+        });
+      }
+
+      return classObject;
     }
   },
 
