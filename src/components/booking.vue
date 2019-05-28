@@ -3,6 +3,7 @@
     v-if="isInView"
     v-bind:class="classAttribute"
     v-bind:style="styleAttribute"
+    v-bind:title="title"
     v-on:dblclick="handleDblclick"
   >
     <span
@@ -58,7 +59,8 @@ export default {
     },
     title: {
       type: String,
-      required: false
+      required: false,
+      default: ""
     }
   },
 
