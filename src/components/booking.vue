@@ -2,11 +2,7 @@
   <li
     v-if="isInView"
     v-bind:class="classAttribute"
-    v-bind:style="{
-      left: styleLeft,
-      width: styleWidth,
-      transform: styleTransform
-    }"
+    v-bind:style="styleAttribute"
     v-on:dblclick="handleDblclick"
   >
     <span
@@ -58,6 +54,10 @@ export default {
     },
     classes: {
       type: Array,
+      required: false
+    },
+    title: {
+      type: String,
       required: false
     }
   },
@@ -157,6 +157,13 @@ export default {
       }
 
       return classObject;
+    },
+    styleAttribute: function() {
+      return {
+        left: this.styleLeft,
+        width: this.styleWidth,
+        transform: this.styleTransform
+      };
     }
   },
 
