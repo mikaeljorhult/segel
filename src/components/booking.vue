@@ -222,6 +222,10 @@ export default {
   mounted: function() {
     // Wait until all components have been mounted.
     this.$nextTick(function() {
+      if (this.grid.height === null) {
+        Events.$emit("grid-height", this.$el.offsetHeight + 1);
+      }
+
       // Initialize interact on component this.$el.
       interact(this.$el).draggable({
         enabled: this.isEditable === undefined ? true : this.isEditable,

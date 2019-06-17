@@ -37,15 +37,15 @@
     "require-extension-hooks": "^0.3.3",
     "require-extension-hooks-babel": "^0.1.1",
     "require-extension-hooks-vue": "^1.1.0",
-    "resolve-url-loader": "2.3.1",
+    "resolve-url-loader": "^2.3.1",
     "sass": "^1.15.2",
     "sass-loader": "7.*",
-    "vue": "^2.5.0",
+    "vue": "^2.6.0",
     "vue-reactive-provide": "^0.3.0",
-    "vue-template-compiler": "^2.5.0"
+    "vue-template-compiler": "^2.6.0"
   },
   "peerDependencies": {
-    "vue": "^2.5.0"
+    "vue": "^2.6.0"
   },
   "scripts": {
     "test": "ava",

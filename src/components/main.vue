@@ -86,7 +86,8 @@ export default {
         new Date().getTime() - new Date().getTimezoneOffset() * 60 * 1000
       ),
       snap: null,
-      size: null
+      size: null,
+      height: null
     };
   },
 
@@ -103,7 +104,7 @@ export default {
     }),
     ReactiveProvideMixin({
       name: "grid",
-      include: ["size", "snap"]
+      include: ["height", "size", "snap"]
     }),
     ReactiveProvideMixin({
       name: "time",
@@ -124,7 +125,11 @@ export default {
 
     handleResize: function() {
       // Calculate new snap grid.
-      this.snap = Grid.create(this.$el.clientWidth, 36, this.steps);
+      this.snap = Grid.create(
+        this.$el.clientWidth,
+        this.height || 36,
+        this.steps
+      );
 
       // Calculate new size restriction.
       this.size = {
@@ -142,6 +147,11 @@ export default {
 
   created: function() {
     this.timer = setInterval(this.updateTimer, 1000);
+
+    Events.$on("grid-height", height => {
+      this.height = height;
+      this.handleResize();
+    });
 
     Events.$on("bookings-create", booking => {
       this.$emit("bookings-create", booking);
