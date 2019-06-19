@@ -1,5 +1,5 @@
 // Import main Segel component.
-import Main from "./components/Main";
+import Main from "./components/main";
 
 // Declare install function executed by Vue.use().
 export function install(Vue) {
