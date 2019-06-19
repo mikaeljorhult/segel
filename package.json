@@ -27,16 +27,10 @@
     "lodash": "^4.17.11"
   },
   "devDependencies": {
-    "ava": "^1.0.0",
-    "babel-register": "^6.26.0",
-    "browser-env": "^3.2.5",
     "husky": "^2.2.0",
     "laravel-mix": "^4.0.0",
     "prettier": "^1.17.0",
     "pretty-quick": "^1.10.0",
-    "require-extension-hooks": "^0.3.3",
-    "require-extension-hooks-babel": "^0.1.1",
-    "require-extension-hooks-vue": "^1.1.0",
     "resolve-url-loader": "^2.3.1",
     "sass": "^1.15.2",
     "sass-loader": "7.*",
@@ -48,18 +42,12 @@
     "vue": "^2.6.0"
   },
   "scripts": {
-    "test": "ava",
     "precommit": "pretty-quick --staged",
     "dev": "NODE_ENV=development webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "watch": "NODE_ENV=development webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "hot": "NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
     "production": "NODE_ENV=production webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
-  "ava": {
-    "require": [
-      "babel-register",
-      "./test/helpers/setup.js"
-    ]
   },
   "husky": {
     "hooks": {
