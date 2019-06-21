@@ -2,8 +2,11 @@
   "name": "segel",
   "description": "Vue component for creating Gantt-like timeline charts for bookings.",
   "version": "0.1.1",
-  "main": "src/index.js",
-  "browser": "dist/index.js",
+  "main": "dist/segel.umd.js",
+  "unpkg": "dist/segel.umd.min.js",
+  "browser": {
+    "./sfc": "src/components/main.vue"
+  },
   "author": "Mikael Jorhult",
   "license": "MIT",
   "keywords": [
@@ -27,26 +30,22 @@
     "lodash": "^4.17.11"
   },
   "devDependencies": {
-    "css-loader": "^3.0.0",
-    "husky": "^2.2.0",
-    "prettier": "^1.17.0",
-    "pretty-quick": "^1.10.0",
+    "@vue/cli-service": "^3.8.4",
+    "husky": "^2.4.1",
+    "node-sass": "^4.12.0",
+    "prettier": "^1.18.2",
+    "pretty-quick": "^1.11.1",
+    "sass-loader": "^7.1.0",
     "vue": "^2.6.0",
-    "vue-loader": "^15.7.0",
     "vue-reactive-provide": "^0.3.0",
-    "vue-template-compiler": "^2.6.0",
-    "webpack": "^4.34.0",
-    "webpack-cli": "^3.3.4"
+    "vue-template-compiler": "^2.6.0"
   },
   "peerDependencies": {
     "vue": "^2.6.0"
   },
   "scripts": {
     "precommit": "pretty-quick --staged",
-    "dev": "NODE_ENV=development webpack --mode=development --progress --hide-modules",
-    "watch": "NODE_ENV=development webpack --mode=development --watch --progress --hide-modules",
-    "hot": "NODE_ENV=development webpack-dev-server --mode=development --inline --hot",
-    "production": "NODE_ENV=production webpack --mode=production --progress --hide-modules"
+    "build": "vue-cli-service build --target lib --name segel ./src/index.js"
   },
   "husky": {
     "hooks": {

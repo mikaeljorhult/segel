@@ -25,6 +25,8 @@ import Cast from "../helpers/cast";
 import Events from "../helpers/events";
 import Grid from "../helpers/grid";
 
+import CSS from "../styles/main.scss";
+
 export default {
   props: {
     editable: {
