@@ -399,12 +399,12 @@ module.exports = now;
 
 "use strict";
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"3ba499e7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/main.vue?vue&type=template&id=72d04269&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"3ba499e7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/main.vue?vue&type=template&id=1dc35c33&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('section',{ref:"main",staticClass:"segel"},[_c('div',{staticClass:"segel-container"},[_c('ul',{staticClass:"segel-grid"},_vm._l((_vm.labels.length),function(n){return _c('li',[_vm._v(" ")])}),0),_c('segel-indicator'),_c('segel-ruler',{attrs:{"labels":_vm.labels}}),_c('segel-resources',{attrs:{"resources":_vm.resources,"bookings":_vm.bookings}})],1)])}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/main.vue?vue&type=template&id=72d04269&
+// CONCATENATED MODULE: ./src/components/main.vue?vue&type=template&id=1dc35c33&
 
 // EXTERNAL MODULE: ./node_modules/lodash/debounce.js
 var debounce = __webpack_require__("b047");
@@ -635,12 +635,12 @@ var resourcevue_type_template_id_249909d0_staticRenderFns = []
 var external_commonjs_interactjs_commonjs2_interactjs_amd_interactjs_root_interact_ = __webpack_require__("9720");
 var external_commonjs_interactjs_commonjs2_interactjs_amd_interactjs_root_interact_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_interactjs_commonjs2_interactjs_amd_interactjs_root_interact_);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"3ba499e7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/booking.vue?vue&type=template&id=2a535f18&
-var bookingvue_type_template_id_2a535f18_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.isInView)?_c('li',{class:_vm.classAttribute,style:(_vm.styleAttribute),attrs:{"title":_vm.title},on:{"dblclick":_vm.handleDblclick}},[(_vm.isEditable)?_c('span',{staticClass:"segel-resize-handle segel-resize-handle__left"},[_vm._v("⋮")]):_vm._e(),(_vm.isEditable)?_c('span',{staticClass:"segel-resize-handle segel-resize-handle__right"},[_vm._v("⋮")]):_vm._e(),(_vm.status === 'updating')?_c('div',{staticClass:"progress"}):_vm._e()]):_vm._e()}
-var bookingvue_type_template_id_2a535f18_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"3ba499e7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/booking.vue?vue&type=template&id=dea78990&
+var bookingvue_type_template_id_dea78990_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.isInView)?_c('li',{class:_vm.classAttribute,style:(_vm.styleAttribute),attrs:{"title":_vm.title},on:{"dblclick":_vm.handleDblclick}},[(_vm.isEditable)?_c('span',{staticClass:"segel-resize-handle segel-resize-handle__left"},[_vm._v("⋮")]):_vm._e(),(_vm.isEditable)?_c('span',{staticClass:"segel-resize-handle segel-resize-handle__right"},[_vm._v("⋮")]):_vm._e(),(_vm.status === 'updating')?_c('div',{staticClass:"progress"}):_vm._e()]):_vm._e()}
+var bookingvue_type_template_id_dea78990_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/booking.vue?vue&type=template&id=2a535f18&
+// CONCATENATED MODULE: ./src/components/booking.vue?vue&type=template&id=dea78990&
 
 // EXTERNAL MODULE: external {"commonjs":"vue","commonjs2":"vue","root":"Vue","amd":"vue"}
 var external_commonjs_vue_commonjs2_vue_root_Vue_amd_vue_ = __webpack_require__("8bbf");
@@ -891,7 +891,7 @@ Grid.round = function(timestamp, duration, steps) {
   methods: {
     handleDblclick: function() {
       // Disregard all clicks when Segel is not editable.
-      if (!this.config.editable) {
+      if (!this.isEditable) {
         return;
       }
 
@@ -1029,7 +1029,8 @@ Grid.round = function(timestamp, duration, steps) {
               this.time.duration,
               this.config.steps
             ),
-            editable: this.editable
+            editable: this.editable,
+            classes: this.classes
           });
 
           // Reset booking styles.
@@ -1058,8 +1059,8 @@ Grid.round = function(timestamp, duration, steps) {
 
 var booking_component = normalizeComponent(
   components_bookingvue_type_script_lang_js_,
-  bookingvue_type_template_id_2a535f18_render,
-  bookingvue_type_template_id_2a535f18_staticRenderFns,
+  bookingvue_type_template_id_dea78990_render,
+  bookingvue_type_template_id_dea78990_staticRenderFns,
   false,
   null,
   null,

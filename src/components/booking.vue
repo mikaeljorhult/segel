@@ -172,7 +172,7 @@ export default {
   methods: {
     handleDblclick: function() {
       // Disregard all clicks when Segel is not editable.
-      if (!this.config.editable) {
+      if (!this.isEditable) {
         return;
       }
 
@@ -310,7 +310,8 @@ export default {
               this.time.duration,
               this.config.steps
             ),
-            editable: this.editable
+            editable: this.editable,
+            classes: this.classes
           });
 
           // Reset booking styles.
