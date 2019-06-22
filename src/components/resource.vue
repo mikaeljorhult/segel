@@ -12,7 +12,7 @@
         v-bind:start="booking.start"
         v-bind:end="booking.end"
         v-bind:editable="booking.editable"
-        v-bind:class="booking.classes"
+        v-bind:classes="booking.classes"
         v-bind:title="booking.title"
       ></segel-booking>
     </ul>

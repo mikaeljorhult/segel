@@ -633,23 +633,23 @@ var resourcesvue_type_template_id_07908458_staticRenderFns = []
 
 // CONCATENATED MODULE: ./src/components/resources.vue?vue&type=template&id=07908458&
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"3ba499e7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/resource.vue?vue&type=template&id=249909d0&
-var resourcevue_type_template_id_249909d0_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('li',{staticClass:"segel-resource"},[_vm._v("\n  "+_vm._s(_vm.name)+"\n\n  "),_c('ul',{staticClass:"segel-bookings",on:{"dblclick":_vm.handleDblclick}},_vm._l((_vm.bookings),function(booking){return _c('segel-booking',{key:booking.id,class:booking.classes,attrs:{"id":booking.id,"resource":_vm.id,"status":booking.status,"start":booking.start,"end":booking.end,"editable":booking.editable,"title":booking.title}})}),1)])}
-var resourcevue_type_template_id_249909d0_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"3ba499e7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/resource.vue?vue&type=template&id=6bfd20ea&
+var resourcevue_type_template_id_6bfd20ea_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('li',{staticClass:"segel-resource"},[_vm._v("\n  "+_vm._s(_vm.name)+"\n\n  "),_c('ul',{staticClass:"segel-bookings",on:{"dblclick":_vm.handleDblclick}},_vm._l((_vm.bookings),function(booking){return _c('segel-booking',{key:booking.id,attrs:{"id":booking.id,"resource":_vm.id,"status":booking.status,"start":booking.start,"end":booking.end,"editable":booking.editable,"classes":booking.classes,"title":booking.title}})}),1)])}
+var resourcevue_type_template_id_6bfd20ea_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/resource.vue?vue&type=template&id=249909d0&
+// CONCATENATED MODULE: ./src/components/resource.vue?vue&type=template&id=6bfd20ea&
 
 // EXTERNAL MODULE: external {"commonjs":"interactjs","commonjs2":"interactjs","amd":"interactjs","root":"interact"}
 var external_commonjs_interactjs_commonjs2_interactjs_amd_interactjs_root_interact_ = __webpack_require__("9720");
 var external_commonjs_interactjs_commonjs2_interactjs_amd_interactjs_root_interact_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_interactjs_commonjs2_interactjs_amd_interactjs_root_interact_);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"3ba499e7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/booking.vue?vue&type=template&id=dea78990&
-var bookingvue_type_template_id_dea78990_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.isInView)?_c('li',{class:_vm.classAttribute,style:(_vm.styleAttribute),attrs:{"title":_vm.title},on:{"dblclick":_vm.handleDblclick}},[(_vm.isEditable)?_c('span',{staticClass:"segel-resize-handle segel-resize-handle__left"},[_vm._v("⋮")]):_vm._e(),(_vm.isEditable)?_c('span',{staticClass:"segel-resize-handle segel-resize-handle__right"},[_vm._v("⋮")]):_vm._e(),(_vm.status === 'updating')?_c('div',{staticClass:"progress"}):_vm._e()]):_vm._e()}
-var bookingvue_type_template_id_dea78990_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"3ba499e7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/booking.vue?vue&type=template&id=992ad34a&
+var bookingvue_type_template_id_992ad34a_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.isInView)?_c('li',{class:_vm.classAttribute,style:(_vm.styleAttribute),attrs:{"title":_vm.title},on:{"dblclick":_vm.handleDblclick}},[(_vm.isEditable)?_c('span',{staticClass:"segel-resize-handle segel-resize-handle__left"},[_vm._v("⋮")]):_vm._e(),(_vm.isEditable)?_c('span',{staticClass:"segel-resize-handle segel-resize-handle__right"},[_vm._v("⋮")]):_vm._e(),(_vm.status === 'updating')?_c('div',{staticClass:"progress"}):_vm._e()]):_vm._e()}
+var bookingvue_type_template_id_992ad34a_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/booking.vue?vue&type=template&id=dea78990&
+// CONCATENATED MODULE: ./src/components/booking.vue?vue&type=template&id=992ad34a&
 
 // EXTERNAL MODULE: external {"commonjs":"vue","commonjs2":"vue","root":"Vue","amd":"vue"}
 var external_commonjs_vue_commonjs2_vue_root_Vue_amd_vue_ = __webpack_require__("8bbf");
@@ -783,7 +783,10 @@ Grid.round = function(timestamp, duration, steps) {
     },
     classes: {
       type: Array,
-      required: false
+      required: false,
+      default: function() {
+        return [];
+      }
     },
     title: {
       type: String,
@@ -880,8 +883,8 @@ Grid.round = function(timestamp, duration, steps) {
         resizing: this.isInteractResizing
       };
 
-      if (Array.isArray(this.classes)) {
-        this.classes.forEach(className, function() {
+      if (Array.isArray(this.classes) && this.classes.length > 0) {
+        this.classes.forEach(function(className) {
           classObject[className] = true;
         });
       }
@@ -1039,7 +1042,9 @@ Grid.round = function(timestamp, duration, steps) {
               this.config.steps
             ),
             editable: this.editable,
-            classes: this.classes
+            classes: this.classes,
+            status: this.status,
+            title: this.title
           });
 
           // Reset booking styles.
@@ -1068,8 +1073,8 @@ Grid.round = function(timestamp, duration, steps) {
 
 var booking_component = normalizeComponent(
   components_bookingvue_type_script_lang_js_,
-  bookingvue_type_template_id_dea78990_render,
-  bookingvue_type_template_id_dea78990_staticRenderFns,
+  bookingvue_type_template_id_992ad34a_render,
+  bookingvue_type_template_id_992ad34a_staticRenderFns,
   false,
   null,
   null,
@@ -1310,8 +1315,8 @@ Cast.date = function(date) {
 
 var resource_component = normalizeComponent(
   components_resourcevue_type_script_lang_js_,
-  resourcevue_type_template_id_249909d0_render,
-  resourcevue_type_template_id_249909d0_staticRenderFns,
+  resourcevue_type_template_id_6bfd20ea_render,
+  resourcevue_type_template_id_6bfd20ea_staticRenderFns,
   false,
   null,
   null,

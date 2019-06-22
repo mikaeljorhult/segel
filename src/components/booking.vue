@@ -55,7 +55,10 @@ export default {
     },
     classes: {
       type: Array,
-      required: false
+      required: false,
+      default: function() {
+        return [];
+      }
     },
     title: {
       type: String,
@@ -152,8 +155,8 @@ export default {
         resizing: this.isInteractResizing
       };
 
-      if (Array.isArray(this.classes)) {
-        this.classes.forEach(className, function() {
+      if (Array.isArray(this.classes) && this.classes.length > 0) {
+        this.classes.forEach(function(className) {
           classObject[className] = true;
         });
       }
@@ -311,7 +314,9 @@ export default {
               this.config.steps
             ),
             editable: this.editable,
-            classes: this.classes
+            classes: this.classes,
+            status: this.status,
+            title: this.title
           });
 
           // Reset booking styles.
