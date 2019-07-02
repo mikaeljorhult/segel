@@ -35,6 +35,12 @@ export default {
         return false;
       }
     },
+    editableInPast: {
+      type: Boolean,
+      default: function() {
+        return false;
+      }
+    },
     bookings: {
       type: Array,
       default: function() {
@@ -102,7 +108,7 @@ export default {
   mixins: [
     ReactiveProvideMixin({
       name: "config",
-      include: ["editable", "steps"]
+      include: ["editable", "editableInPast", "steps"]
     }),
     ReactiveProvideMixin({
       name: "grid",

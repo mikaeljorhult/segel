@@ -116,7 +116,11 @@ export default {
       }
 
       // Past and current bookings can't be edited.
-      return this.start > this.time.current;
+      if (!this.config.editableInPast) {
+        return this.start > this.time.current;
+      } else {
+        return true;
+      }
     },
     isInView: function() {
       return (
