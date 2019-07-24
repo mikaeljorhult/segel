@@ -26,12 +26,12 @@
     "url": "https://github.com/mikaeljorhult/segel.git"
   },
   "dependencies": {
-    "interactjs": "^1.4.0",
-    "lodash": "^4.17.11"
+    "interactjs": "^1.5.3",
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@vue/cli-service": "^3.8.4",
-    "husky": "^2.4.1",
+    "@vue/cli-service": "^3.9.3",
+    "husky": "^3.0.1",
     "node-sass": "^4.12.0",
     "prettier": "^1.18.2",
     "pretty-quick": "^1.11.1",
