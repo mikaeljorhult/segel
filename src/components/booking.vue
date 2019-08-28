@@ -238,6 +238,7 @@ export default {
         enabled: this.isEditable === undefined ? true : this.isEditable,
         modifiers: [
           interact.modifiers.snap({
+            enabled: true,
             targets: this.grid.snap,
             offset: "startCoords"
           })
@@ -266,6 +267,7 @@ export default {
         enabled: this.isEditable === undefined ? true : this.isEditable,
         modifiers: [
           interact.modifiers.snap({
+            enabled: true,
             targets: this.grid.snap,
             offset: "startCoords"
           }),
